@@ -16,6 +16,7 @@ function aerodallas_icon_paths() {
 	return array(
 		'arrow-right' => '<path d="M5 12h14M13 6l6 6-6 6"/>',
 		'arrow-up'    => '<path d="M12 19V5M6 11l6-6 6 6"/>',
+		'arrow-down'  => '<path d="M12 5v14M6 13l6 6 6-6"/>',
 		'phone'       => '<path d="M6.6 3.5h2.6l1.5 4-2 1.3a11 11 0 0 0 6.5 6.5l1.3-2 4 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/>',
 		'mail'        => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
 		'pin'         => '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',

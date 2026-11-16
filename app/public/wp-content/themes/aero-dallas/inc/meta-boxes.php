@@ -97,6 +97,16 @@ function aerodallas_page_fields() {
 		'about'    => array(
 			'eyebrow'       => array_merge( $eyebrow, array( 'default' => __( 'About Us', 'aero-dallas' ) ) ),
 			'heading'       => array_merge( $heading, array( 'default' => __( 'Who We Are', 'aero-dallas' ) ) ),
+			'highlight'     => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'We Are', 'aero-dallas' ),
+			),
+			'lead'          => array(
+				'label'   => __( 'Hero intro paragraph', 'aero-dallas' ),
+				'type'    => 'textarea',
+				'default' => __( 'We aim to build lasting business relationships through integrity, commitment, technical excellence, and consistent service delivery.', 'aero-dallas' ),
+			),
 			'vision'        => array(
 				'label'   => __( 'Vision', 'aero-dallas' ),
 				'type'    => 'textarea',
@@ -121,10 +131,20 @@ function aerodallas_page_fields() {
 		'services' => array(
 			'eyebrow' => array_merge( $eyebrow, array( 'default' => __( 'Our Services', 'aero-dallas' ) ) ),
 			'heading' => array_merge( $heading, array( 'default' => __( 'Comprehensive Industrial & Aviation Support Solutions', 'aero-dallas' ) ) ),
+			'highlight' => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Support Solutions', 'aero-dallas' ),
+			),
 		),
 		'process'  => array(
 			'eyebrow'            => array_merge( $eyebrow, array( 'default' => __( 'Mode of Operation', 'aero-dallas' ) ) ),
 			'heading'            => $heading,
+			'highlight'          => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Work', 'aero-dallas' ),
+			),
 			'commitment_heading' => array(
 				'label'   => __( 'Commitment heading', 'aero-dallas' ),
 				'type'    => 'text',
@@ -137,12 +157,27 @@ function aerodallas_page_fields() {
 			),
 		),
 		'policies' => array(
-			'eyebrow' => array_merge( $eyebrow, array( 'default' => __( 'Company Policies', 'aero-dallas' ) ) ),
-			'heading' => $heading,
+			'eyebrow'   => array_merge( $eyebrow, array( 'default' => __( 'Company Policies', 'aero-dallas' ) ) ),
+			'heading'   => array_merge( $heading, array( 'default' => __( 'Our Company Policies', 'aero-dallas' ) ) ),
+			'highlight' => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Policies', 'aero-dallas' ),
+			),
+			'lead'      => array(
+				'label'   => __( 'Hero intro paragraph', 'aero-dallas' ),
+				'type'    => 'textarea',
+				'default' => __( 'How we handle quotations, payments, service delivery, cancellations, warranties, health and safety, and your personal information.', 'aero-dallas' ),
+			),
 		),
 		'contact'  => array(
 			'eyebrow'      => array_merge( $eyebrow, array( 'default' => __( 'Contact Us', 'aero-dallas' ) ) ),
 			'heading'      => array_merge( $heading, array( 'default' => __( "Let's Support Your Operations", 'aero-dallas' ) ) ),
+			'highlight'    => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Your Operations', 'aero-dallas' ),
+			),
 			'form_heading' => array(
 				'label'   => __( 'Form heading', 'aero-dallas' ),
 				'type'    => 'text',
@@ -258,11 +293,11 @@ function aerodallas_page_sections_box( $post ) {
 
 	$notes = array(
 		'front'    => __( 'The home page is built from these fields plus Site Content (services, steps, why-choose points, FAQs). The main editor content of this page is not shown.', 'aero-dallas' ),
-		'about'    => __( 'The main editor content is the "Who We Are" text.', 'aero-dallas' ),
-		'services' => __( 'The main editor content is the intro under the heading. The four service sections come from Site Content → Services.', 'aero-dallas' ),
-		'process'  => __( 'The main editor content is the intro. The steps come from Site Content → Process Steps.', 'aero-dallas' ),
+		'services' => __( 'The main editor content is the intro shown in the hero. The four service sections come from Site Content → Services.', 'aero-dallas' ),
+		'process'  => __( 'The main editor content is the intro shown in the hero. The steps come from Site Content → Process Steps.', 'aero-dallas' ),
 		'policies' => __( 'The main editor content holds the policies. Each Heading block becomes an entry in the table of contents; set its HTML anchor (Advanced panel) to control the link, e.g. "privacy".', 'aero-dallas' ),
-		'contact'  => __( 'The main editor content is the intro. Contact details come from Appearance → Customize → AERO DALLAS — Company Details.', 'aero-dallas' ),
+		'contact'  => __( 'The main editor content is the intro shown in the hero. Contact details come from Appearance → Customize → AERO DALLAS — Company Details.', 'aero-dallas' ),
+		'about'    => __( 'The main editor content is the "Who We Are" text. The hero photo can be replaced with a featured image.', 'aero-dallas' ),
 		'default'  => __( 'Choose a page template in the Page panel to see more fields after saving.', 'aero-dallas' ),
 	);
 	printf( '<p class="description">%s</p>', esc_html( $notes[ $key ] ) );

@@ -431,3 +431,62 @@ function aerodallas_service_intro( $service ) {
 	$intro = trim( (string) get_post_meta( $service->ID, '_aerodallas_intro', true ) );
 	return $intro ? $intro : get_the_excerpt( $service );
 }
+
+/**
+ * Hero panel items for the four services.
+ *
+ * @param bool $anchors Link to the sections on the Services page instead of each service page.
+ * @return array[]
+ */
+function aerodallas_service_panel_items( $anchors = false ) {
+	$items = array();
+	foreach ( aerodallas_items( 'aerodallas_service' ) as $service ) {
+		$card    = (string) get_post_meta( $service->ID, '_aerodallas_card_title', true );
+		$anchor  = (string) get_post_meta( $service->ID, '_aerodallas_anchor', true );
+		$items[] = array(
+			'icon'  => (string) get_post_meta( $service->ID, '_aerodallas_icon', true ),
+			'title' => $card ? $card : get_the_title( $service ),
+			'text'  => get_the_excerpt( $service ),
+			'url'   => $anchors && $anchor ? '#' . $anchor : get_permalink( $service ),
+		);
+	}
+	return $items;
+}
+
+/**
+ * Split rendered policy content into sections at each H2.
+ *
+ * A heading such as "A. General Business Policy" gives letter "A" and name
+ * "General Business Policy". Content before the first H2 is returned as intro.
+ *
+ * @param string $html Rendered content.
+ * @return array{intro:string,sections:array<int,array{id:string,letter:string,title:string,name:string,html:string}>}
+ */
+function aerodallas_policy_sections( $html ) {
+	list( $html ) = aerodallas_policies_toc( $html );
+	$parts        = preg_split( '#(<h2[^>]*>.*?</h2>)#is', $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+	$result       = array(
+		'intro'    => trim( (string) array_shift( $parts ) ),
+		'sections' => array(),
+	);
+	for ( $i = 0; $i < count( $parts ); $i += 2 ) { // phpcs:ignore Squiz.PHP.DisallowSizeFunctionsInLoops.Found
+		$heading = $parts[ $i ];
+		$body    = $parts[ $i + 1 ] ?? '';
+		preg_match( '/\sid=["\']([^"\']+)["\']/', $heading, $id );
+		$title  = trim( wp_strip_all_tags( $heading ) );
+		$letter = '';
+		$name   = $title;
+		if ( preg_match( '/^([A-Z])[.)]\s+(.+)$/u', $title, $m ) ) {
+			$letter = $m[1];
+			$name   = $m[2];
+		}
+		$result['sections'][] = array(
+			'id'     => $id[1] ?? sanitize_title( $title ),
+			'letter' => $letter,
+			'title'  => $title,
+			'name'   => $name,
+			'html'   => trim( $body ),
+		);
+	}
+	return $result;
+}

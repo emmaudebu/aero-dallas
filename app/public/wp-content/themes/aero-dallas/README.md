@@ -45,7 +45,8 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Where quote requests are emailed | Same panel → **Quote notification email** |
 | The quote call-to-action band (heading and text) | Same panel → **Quote call-to-action band** |
 | Home hero photo, About photo, Vision & mission photo | Same panel → **Photos** |
-| Inner page header photo | Set a **Featured image** on the page |
+| Inner page hero photo (About, Services, How We Work, Policies, Contact) | Set a **Featured image** on the page |
+| Inner page hero heading, orange highlight and intro | Pages → edit the page → "Page sections" box (**Page heading**, **Heading highlight**, **Hero intro paragraph**). On Services, How We Work and Contact the intro is the page's main editor content. |
 | Services (name, home card title, short text, detail list, photo, anchor) | **Site Content → Services** |
 | Each service's own page (`/services/<slug>/`): hero intro, "What's Included" list, detailed write-up, hero and secondary photos | **Site Content → Services → edit the service.** The main editor is the detailed write-up; the **Service details** box holds the intro, the included list (one item per line) and the photos. A featured image replaces the hero photo. The page address comes from the service's slug (Permalink in the sidebar). |
 | How We Work steps | **Site Content → Process Steps** |
