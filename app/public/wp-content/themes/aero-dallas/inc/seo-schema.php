@@ -126,9 +126,9 @@ function aerodallas_schema_organization() {
 		'url'    => home_url( '/' ),
 		'logo'   => array(
 			'@type'  => 'ImageObject',
-			'url'    => AERODALLAS_URI . '/assets/img/brand/logo.png',
-			'width'  => 640,
-			'height' => 210,
+			'url'    => AERODALLAS_URI . '/assets/img/brand/logo-main.png',
+			'width'  => 553,
+			'height' => 185,
 		),
 		'slogan' => get_bloginfo( 'description' ),
 	);

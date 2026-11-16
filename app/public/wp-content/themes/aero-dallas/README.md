@@ -16,7 +16,7 @@ The site has two looks that share all content:
 
 Choose the default under **Appearance → Customize → AERO DALLAS — Company Details → Appearance (light / dark)**: Light, Dark, or follow the visitor's device setting. Visitors can switch with the sun/moon button in the header, and their choice is remembered on their device. You can hide the toggle in the same panel; the default then always applies.
 
-The logo switches automatically: navy wordmark on light backgrounds, white wordmark on dark backgrounds (header in dark mode, footer, mobile menu). Both are traced SVGs with transparent backgrounds.
+The logo switches automatically: the main logo (navy wordmark, `assets/img/brand/logo-main.webp`) on light backgrounds, and a white-wordmark version of the same artwork (`logo-main-white.webp`) on dark backgrounds (header in dark mode, footer, mobile menu). Both have transparent backgrounds. To replace the light-mode logo without editing files, upload one under Appearance → Customize → Site Identity → Logo.
 
 ## Installation
 
