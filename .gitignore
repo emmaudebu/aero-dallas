@@ -1,0 +1,26 @@
+# Track only custom code in wp-content; ignore everything else.
+/*
+!/.gitignore
+!/README.md
+
+!/app/
+/app/*
+!/app/public/
+/app/public/*
+!/app/public/wp-content/
+/app/public/wp-content/*
+!/app/public/wp-content/themes/
+!/app/public/wp-content/plugins/
+!/app/public/wp-content/mu-plugins/
+
+# Bundled default themes
+/app/public/wp-content/themes/twenty*/
+
+# OS / editor / dependencies
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+vendor/
+*.log
+.env
