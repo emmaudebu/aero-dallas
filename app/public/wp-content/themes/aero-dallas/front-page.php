@@ -56,7 +56,7 @@ $aerodallas_services = aerodallas_items( 'aerodallas_service' );
 			<li class="feature-strip__item">
 				<span class="icon-badge"><?php echo aerodallas_icon( (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_icon', true ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 				<div>
-					<h2 class="feature-strip__title"><a href="<?php echo esc_url( aerodallas_page_url( 'services', (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_anchor', true ) ) ); ?>"><?php echo esc_html( $aerodallas_card ); ?></a></h2>
+					<h2 class="feature-strip__title"><a href="<?php echo esc_url( get_permalink( $aerodallas_service ) ); ?>"><?php echo esc_html( $aerodallas_card ); ?></a></h2>
 					<p><?php echo esc_html( get_the_excerpt( $aerodallas_service ) ); ?></p>
 				</div>
 			</li>

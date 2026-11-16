@@ -51,6 +51,9 @@ function aerodallas_meta_description() {
 		if ( '' === $desc && is_front_page() ) {
 			$desc = aerodallas_field( 'hero_lead', $id );
 		}
+		if ( '' === $desc && is_singular( 'aerodallas_service' ) ) {
+			$desc = aerodallas_service_intro( get_post( $id ) );
+		}
 		if ( '' === $desc ) {
 			$post = get_post( $id );
 			$desc = has_excerpt( $post ) ? $post->post_excerpt : wp_strip_all_tags( strip_shortcodes( $post->post_content ) );
@@ -191,14 +194,12 @@ function aerodallas_schema_faq() {
 function aerodallas_schema_services() {
 	$nodes = array();
 	foreach ( aerodallas_items( 'aerodallas_service' ) as $service ) {
-		$anchor      = get_post_meta( $service->ID, '_aerodallas_anchor', true );
-		$description = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $service->post_content ) ) );
-		$nodes[]     = array(
+		$nodes[] = array(
 			'@type'       => 'Service',
 			'name'        => wp_strip_all_tags( get_the_title( $service ) ),
 			'serviceType' => wp_strip_all_tags( get_the_title( $service ) ),
-			'description' => $description ? $description : wp_strip_all_tags( $service->post_excerpt ),
-			'url'         => aerodallas_page_url( 'services', $anchor ),
+			'description' => wp_strip_all_tags( aerodallas_service_intro( $service ) ),
+			'url'         => get_permalink( $service ),
 			'provider'    => array( '@id' => home_url( '/#organization' ) ),
 		);
 	}
@@ -226,29 +227,54 @@ function aerodallas_schema() {
 			'publisher' => array( '@id' => home_url( '/#organization' ) ),
 		);
 		if ( $page_id && ! is_front_page() ) {
+			$crumbs = array(
+				array(
+					'name' => __( 'Home', 'aero-dallas' ),
+					'item' => home_url( '/' ),
+				),
+			);
+			if ( is_singular( 'aerodallas_service' ) && aerodallas_page_id( 'services' ) ) {
+				$crumbs[] = array(
+					'name' => wp_strip_all_tags( get_the_title( aerodallas_page_id( 'services' ) ) ),
+					'item' => aerodallas_page_url( 'services' ),
+				);
+			}
+			$crumbs[] = array(
+				'name' => wp_strip_all_tags( get_the_title( $page_id ) ),
+				'item' => get_permalink( $page_id ),
+			);
+			$items = array();
+			foreach ( $crumbs as $position => $crumb ) {
+				$items[] = array_merge(
+					array(
+						'@type'    => 'ListItem',
+						'position' => $position + 1,
+					),
+					$crumb
+				);
+			}
 			$graph[] = array(
 				'@type'           => 'BreadcrumbList',
 				'@id'             => get_permalink( $page_id ) . '#breadcrumb',
-				'itemListElement' => array(
-					array(
-						'@type'    => 'ListItem',
-						'position' => 1,
-						'name'     => __( 'Home', 'aero-dallas' ),
-						'item'     => home_url( '/' ),
-					),
-					array(
-						'@type'    => 'ListItem',
-						'position' => 2,
-						'name'     => wp_strip_all_tags( get_the_title( $page_id ) ),
-						'item'     => get_permalink( $page_id ),
-					),
-				),
+				'itemListElement' => $items,
 			);
 		}
 	}
 
 	if ( is_page_template( 'page-templates/services.php' ) ) {
 		$graph = array_merge( $graph, aerodallas_schema_services() );
+	}
+	if ( is_singular( 'aerodallas_service' ) ) {
+		$service = get_queried_object();
+		$graph[] = array(
+			'@type'       => 'Service',
+			'@id'         => get_permalink( $service ) . '#service',
+			'name'        => wp_strip_all_tags( get_the_title( $service ) ),
+			'serviceType' => wp_strip_all_tags( get_the_title( $service ) ),
+			'description' => wp_strip_all_tags( aerodallas_service_intro( $service ) ),
+			'url'         => get_permalink( $service ),
+			'provider'    => array( '@id' => home_url( '/#organization' ) ),
+		);
 	}
 	if ( is_front_page() || is_page_template( 'page-templates/contact.php' ) ) {
 		$faq = aerodallas_schema_faq();

@@ -26,7 +26,7 @@ $aerodallas_icon   = (string) get_post_meta( $aerodallas_post->ID, '_aerodallas_
 			<span class="service-card__icon"><?php echo aerodallas_icon( $aerodallas_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 		<?php endif; ?>
 		<h3 class="service-card__title">
-			<a href="<?php echo esc_url( aerodallas_page_url( 'services', $aerodallas_anchor ) ); ?>"><?php echo esc_html( $aerodallas_title ); ?></a>
+			<a href="<?php echo esc_url( get_permalink( $aerodallas_post ) ); ?>"><?php echo esc_html( $aerodallas_title ); ?></a>
 		</h3>
 		<?php if ( has_excerpt( $aerodallas_post ) ) : ?>
 			<p><?php echo esc_html( get_the_excerpt( $aerodallas_post ) ); ?></p>

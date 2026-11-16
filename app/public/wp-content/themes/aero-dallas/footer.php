@@ -60,7 +60,7 @@ $aerodallas_policy_links = array(
 			<h2 class="site-footer__heading" id="footer-services"><?php esc_html_e( 'Our Services', 'aero-dallas' ); ?></h2>
 			<ul class="footer-list">
 				<?php foreach ( aerodallas_items( 'aerodallas_service' ) as $aerodallas_service ) : ?>
-					<li><a href="<?php echo esc_url( aerodallas_page_url( 'services', (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_anchor', true ) ) ); ?>"><?php echo esc_html( get_the_title( $aerodallas_service ) ); ?></a></li>
+					<li><a href="<?php echo esc_url( get_permalink( $aerodallas_service ) ); ?>"><?php echo esc_html( get_the_title( $aerodallas_service ) ); ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</nav>

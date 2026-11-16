@@ -20,7 +20,7 @@ function aerodallas_content_types() {
 			'plural'   => __( 'Services', 'aero-dallas' ),
 			'singular' => __( 'Service', 'aero-dallas' ),
 			'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
-			'help'     => __( 'The four service groups. Title = name on the Services page. Excerpt = short text on the home page card. Content = details on the Services page. Featured image replaces the default photo.', 'aero-dallas' ),
+			'help'     => __( 'The four services. Each has its own page at /services/<slug>/. Title = service name. Excerpt = short text on the home page card. Content = the detailed write-up on the service page. "Service details" box = hero intro, the "What\'s included" list and photos. Featured image replaces the hero photo.', 'aero-dallas' ),
 		),
 		'aerodallas_step'    => array(
 			'plural'   => __( 'Process Steps', 'aero-dallas' ),
@@ -60,6 +60,7 @@ function aerodallas_content_types() {
  */
 function aerodallas_register_content_types() {
 	foreach ( aerodallas_content_types() as $type => $def ) {
+		$is_service = 'aerodallas_service' === $type;
 		register_post_type(
 			$type,
 			array(
@@ -76,19 +77,20 @@ function aerodallas_register_content_types() {
 					'not_found'          => sprintf( __( 'No %s found.', 'aero-dallas' ), strtolower( $def['plural'] ) ),
 					'not_found_in_trash' => __( 'Nothing found in Trash.', 'aero-dallas' ),
 				),
-				'public'              => false,
-				'publicly_queryable'  => false,
-				'exclude_from_search' => true,
+				'public'              => $is_service,
+				'publicly_queryable'  => $is_service,
+				'exclude_from_search' => ! $is_service,
 				'show_ui'             => true,
 				'show_in_menu'        => 'aerodallas-content',
-				'show_in_nav_menus'   => false,
-				'show_in_rest'        => false,
+				'show_in_nav_menus'   => $is_service,
+				'show_in_rest'        => $is_service,
 				'hierarchical'        => false,
 				'capability_type'     => 'page',
 				'map_meta_cap'        => true,
 				'supports'            => $def['supports'],
-				'rewrite'             => false,
-				'query_var'           => false,
+				'rewrite'             => $is_service ? array( 'slug' => 'services', 'with_front' => false ) : false,
+				'query_var'           => $is_service,
+				'has_archive'         => false,
 			)
 		);
 	}

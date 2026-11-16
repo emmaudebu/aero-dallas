@@ -29,6 +29,7 @@ Or copy the `aero-dallas` folder into `wp-content/themes/` and activate it under
 
 Activating the theme builds the whole site. Running it again (for example after switching themes and back) does not create duplicates: existing pages, menus and content are detected and left as they are.
 
+- **Four service pages** at `/services/industrial-support/`, `/services/aviation-ground-support/`, `/services/parts-equipment-supply/` and `/services/air-ground-logistics/`, each with a detailed write-up.
 - **Six pages** with their templates: Home, About Us (`/about-us/`), Services (`/services/`), How We Work (`/how-we-work/`), Policies (`/policies/`), Contact Us (`/contact-us/`).
 - **Home** is set as the static front page (Settings → Reading).
 - **Menus**: "Primary Menu" (header) and "Footer Menu" (footer quick links), both assigned to their locations.
@@ -46,6 +47,7 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Home hero photo, About photo, Vision & mission photo | Same panel → **Photos** |
 | Inner page header photo | Set a **Featured image** on the page |
 | Services (name, home card title, short text, detail list, photo, anchor) | **Site Content → Services** |
+| Each service's own page (`/services/<slug>/`): hero intro, "What's Included" list, detailed write-up, hero and secondary photos | **Site Content → Services → edit the service.** The main editor is the detailed write-up; the **Service details** box holds the intro, the included list (one item per line) and the photos. A featured image replaces the hero photo. The page address comes from the service's slug (Permalink in the sidebar). |
 | How We Work steps | **Site Content → Process Steps** |
 | Core values | **Site Content → Core Values** |
 | "Why choose AERO DALLAS?" points | **Site Content → Why Choose Points** |
@@ -106,12 +108,13 @@ Quote requests are always saved in **Quote Requests** in WordPress even if an em
 aero-dallas/
 ├── style.css, functions.php, theme.json
 ├── header.php, footer.php, front-page.php, page.php, index.php, single.php, 404.php
+├── single-aerodallas_service.php   (individual service pages)
 ├── page-templates/   about, services, how-we-work, policies, contact
 ├── template-parts/   brand, page-header, quick-quote, service-card, why-choose, process-steps,
 │                     who-we-are, stats, testimonials, insights, faq, cta-band, quote-form,
 │                     contact-details, swoosh
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
-│                     cpt-quote-request, quote-form, seo-schema, activation
+│                     cpt-quote-request, quote-form, seo-schema, service-content, activation
 └── assets/           css, js, fonts, img/brand, img/photos
 ```
 
@@ -130,10 +133,16 @@ aero-dallas/
   - Aircraft nose gear (bundled, available as a replacement): Jacob Hamm — https://unsplash.com/photos/yJgD95BlxvA
   - Aviation, pushback tug: Krisztian Tabori — https://unsplash.com/photos/9RbWunBOMnw
   - Industrial, technician grinding: TECNIC Bioprocess Solutions — https://unsplash.com/photos/9IEGO2zcM2s
-  - Parts supply, warehouse: AFINIS Group — https://unsplash.com/photos/OnbSOhz0oig
-  - Logistics, air cargo containers: Bernd Dittrich — https://unsplash.com/photos/miHHRMLDDH8
+  - Parts & Equipment Supply, machined parts on drawings: EnCata PD — https://unsplash.com/photos/SRqJ3eli-4I
+  - Parts & Equipment Supply, components and fittings: Raymond Sime — https://unsplash.com/photos/oMysciSrkz4
+  - Logistics, freight loaded onto a cargo aircraft: CDC — https://unsplash.com/photos/sB3dGik-kYU
+  - Logistics page hero, cargo aircraft on the apron: Peaky_82 — https://unsplash.com/photos/PEf3deR3l_U
   - About, welding: Rob Lambert — https://unsplash.com/photos/9Q_pLLP_jmA
   - Detail, jet engine: Felix Berger — https://unsplash.com/photos/PfYaLrYS1Oc
 - **Icons**: drawn for this theme.
 
 Stock photos show generic equipment and settings, not AERO DALLAS's own work. Replace them with real company photography when it is available.
+
+## Upgrading from 1.0.0
+
+Version 1.1.0 gives each service its own page. On the first page load after updating the theme, a one-time upgrade sets each service's address, adds the detailed write-up, the "What's Included" list and the photos, and refreshes permalinks. Anything you had already edited (a service's slug, its content or these fields) is left as it is. Old service addresses redirect to the new ones.

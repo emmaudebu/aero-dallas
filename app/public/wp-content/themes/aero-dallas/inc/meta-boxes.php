@@ -199,7 +199,7 @@ function aerodallas_field_defaults( $post_id = null ) {
  */
 function aerodallas_add_meta_boxes() {
 	add_meta_box( 'aerodallas-page-sections', __( 'Page sections', 'aero-dallas' ), 'aerodallas_page_sections_box', 'page', 'normal', 'high' );
-	add_meta_box( 'aerodallas-seo', __( 'Search & sharing', 'aero-dallas' ), 'aerodallas_seo_box', array( 'page', 'post' ), 'normal', 'default' );
+	add_meta_box( 'aerodallas-seo', __( 'Search & sharing', 'aero-dallas' ), 'aerodallas_seo_box', array( 'page', 'post', 'aerodallas_service' ), 'normal', 'default' );
 	add_meta_box( 'aerodallas-service', __( 'Service details', 'aero-dallas' ), 'aerodallas_service_box', 'aerodallas_service', 'normal', 'high' );
 	add_meta_box( 'aerodallas-icon', __( 'Icon', 'aero-dallas' ), 'aerodallas_icon_box', array( 'aerodallas_value', 'aerodallas_step', 'aerodallas_reason' ), 'side', 'default' );
 	add_meta_box( 'aerodallas-testimonial', __( 'Client details', 'aero-dallas' ), 'aerodallas_testimonial_box', 'aerodallas_testimonial', 'normal', 'high' );
@@ -303,6 +303,14 @@ function aerodallas_service_box( $post ) {
 		$photos[ $key ] = $key;
 	}
 	$fields = array(
+		'intro'      => array(
+			'label' => __( 'Hero intro (shown under the title on the service page and on the Services page)', 'aero-dallas' ),
+			'type'  => 'textarea',
+		),
+		'scope'      => array(
+			'label' => __( '"What\'s included" list — one item per line', 'aero-dallas' ),
+			'type'  => 'textarea',
+		),
 		'card_title' => array(
 			'label' => __( 'Home page card title', 'aero-dallas' ),
 			'type'  => 'text',
@@ -319,7 +327,17 @@ function aerodallas_service_box( $post ) {
 			'options' => aerodallas_icon_choices(),
 		),
 		'photo'      => array(
-			'label'   => __( 'Default photo (used when no featured image is set)', 'aero-dallas' ),
+			'label'   => __( 'Card photo (home page and Services page)', 'aero-dallas' ),
+			'type'    => 'select',
+			'options' => $photos,
+		),
+		'hero_photo' => array(
+			'label'   => __( 'Service page hero photo (a featured image replaces it)', 'aero-dallas' ),
+			'type'    => 'select',
+			'options' => $photos,
+		),
+		'gallery_photo' => array(
+			'label'   => __( 'Service page secondary photo', 'aero-dallas' ),
 			'type'    => 'select',
 			'options' => $photos,
 		),
@@ -396,10 +414,14 @@ function aerodallas_save_meta( $post_id ) {
 
 	if ( 'service' === $set ) {
 		$fields = array(
-			'card_title' => 'text',
-			'anchor'     => 'slug',
-			'icon'       => 'icon',
-			'photo'      => 'photo',
+			'intro'         => 'textarea',
+			'scope'         => 'textarea',
+			'card_title'    => 'text',
+			'anchor'        => 'slug',
+			'icon'          => 'icon',
+			'photo'         => 'photo',
+			'hero_photo'    => 'photo',
+			'gallery_photo' => 'photo',
 		);
 	} elseif ( 'icon' === $set ) {
 		$fields = array( 'icon' => 'icon' );

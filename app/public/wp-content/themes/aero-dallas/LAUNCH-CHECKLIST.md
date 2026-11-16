@@ -28,6 +28,10 @@ Everything below must be confirmed by the business owner before the website goes
 - [ ] Choose the default appearance (light or dark) in Customize → Appearance
 - [ ] Optional sections stay hidden until real content exists: only add **confirmed** statistics, **approved** client testimonials, and enable "Latest Insights" once articles are published
 
+## Service page copy
+
+- [ ] Review and approve the detailed write-ups on the four service pages. They were drafted from the content brief and policies for the website and have not yet been confirmed by the business. Check in particular the "What's Included" lists and "What to include in your request" guidance for each service.
+
 ## Legal review
 
 - [ ] Legal review of all seven policies (General Business; Quotation & Payment; Service & Delivery; Cancellation & Refund; Warranty & After-Sales; Health, Safety & Quality; Privacy)

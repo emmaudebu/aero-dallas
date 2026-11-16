@@ -167,8 +167,10 @@ function aerodallas_photos() {
 		'hero-ground-power'  => __( 'Close-up of an aircraft nose gear on the apron with ground equipment connected', 'aero-dallas' ),
 		'service-industrial' => __( 'Technician grinding a steel component in an industrial workshop', 'aero-dallas' ),
 		'service-aviation'   => __( 'Aircraft tug pushing back a wide-body airliner on the apron', 'aero-dallas' ),
-		'service-parts'      => __( 'Warehouse racking stocked with parts and equipment, with a forklift in the aisle', 'aero-dallas' ),
-		'service-logistics'  => __( 'Air cargo containers being moved on an airport apron', 'aero-dallas' ),
+		'service-parts'      => __( 'Precision-machined metal parts lying on engineering drawings', 'aero-dallas' ),
+		'service-logistics'  => __( 'Ground crew loading a palletised consignment onto a cargo aircraft with a high loader', 'aero-dallas' ),
+		'parts-detail'       => __( 'Machined components and fittings laid out on a workshop mat beside technical drawings', 'aero-dallas' ),
+		'logistics-freighter' => __( 'Cargo aircraft parked on the apron with boarding stairs and ground equipment', 'aero-dallas' ),
 		'about-welding'      => __( 'Welder joining steel with sparks flying', 'aero-dallas' ),
 		'detail-engine'      => __( 'Front view of a jet engine fan', 'aero-dallas' ),
 		'hero-jet'           => __( 'Jet aircraft parked on the apron at sunset', 'aero-dallas' ),
@@ -406,4 +408,26 @@ function aerodallas_stats() {
 function aerodallas_item_icon( $post_id, $index, $fallback ) {
 	$icon = (string) get_post_meta( $post_id, '_aerodallas_icon', true );
 	return $icon ? $icon : ( $fallback[ $index % count( $fallback ) ] ?? 'check' );
+}
+
+/**
+ * "What's included" items for a service (one per line in the admin).
+ *
+ * @param int $post_id Service ID.
+ * @return string[]
+ */
+function aerodallas_service_scope( $post_id ) {
+	$raw = (string) get_post_meta( $post_id, '_aerodallas_scope', true );
+	return array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $raw ) ) ) );
+}
+
+/**
+ * Hero intro for a service, falling back to its excerpt.
+ *
+ * @param WP_Post $service Service.
+ * @return string
+ */
+function aerodallas_service_intro( $service ) {
+	$intro = trim( (string) get_post_meta( $service->ID, '_aerodallas_intro', true ) );
+	return $intro ? $intro : get_the_excerpt( $service );
 }

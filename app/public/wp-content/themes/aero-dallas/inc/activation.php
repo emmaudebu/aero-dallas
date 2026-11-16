@@ -363,10 +363,14 @@ function aerodallas_setup_items() {
 		);
 		if ( ! $existing ) {
 			foreach ( $items as $order => $item ) {
+				if ( 'aerodallas_service' === $type ) {
+					$item = aerodallas_with_service_details( $item );
+				}
 				$id = wp_insert_post(
 					array(
 						'post_type'    => $type,
 						'post_status'  => 'publish',
+						'post_name'    => $item['slug'] ?? '',
 						'post_title'   => $item['title'],
 						'post_excerpt' => $item['excerpt'] ?? '',
 						'post_content' => $item['content'] ?? '',
@@ -383,6 +387,87 @@ function aerodallas_setup_items() {
 		update_option( $flag, 1, false );
 	}
 }
+
+/**
+ * Merge the detailed page content into a seeded service item.
+ *
+ * @param array $item Seed item with meta.anchor.
+ * @return array
+ */
+function aerodallas_with_service_details( $item ) {
+	$details = aerodallas_service_details();
+	$anchor  = $item['meta']['anchor'] ?? '';
+	if ( ! isset( $details[ $anchor ] ) ) {
+		return $item;
+	}
+	$d               = $details[ $anchor ];
+	$item['slug']    = $d['slug'];
+	$item['content'] = $d['content'];
+	$item['meta']    = array_merge(
+		$item['meta'],
+		array(
+			'intro'         => $d['intro'],
+			'scope'         => implode( "\n", $d['scope'] ),
+			'hero_photo'    => $d['hero_photo'],
+			'gallery_photo' => $d['gallery_photo'],
+		)
+	);
+	return $item;
+}
+
+/**
+ * One-time upgrade to 1.1.0 for sites set up with 1.0.0: give each service
+ * its own page slug, the detailed content and the new fields. Anything the
+ * site owner has already edited (slug, content, fields) is left untouched.
+ */
+function aerodallas_upgrade() {
+	$version = (string) get_option( 'aerodallas_setup_version', '0' );
+	if ( version_compare( $version, '1.1.0', '>=' ) ) {
+		return;
+	}
+	$normalise = static function ( $html ) {
+		return trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $html ) ) );
+	};
+	foreach ( aerodallas_service_details() as $anchor => $d ) {
+		$found = get_posts(
+			array(
+				'post_type'      => 'aerodallas_service',
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'meta_key'       => '_aerodallas_anchor', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- one-time upgrade.
+				'meta_value'     => $anchor, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+			)
+		);
+		if ( ! $found ) {
+			continue;
+		}
+		$service = $found[0];
+		$update  = array( 'ID' => $service->ID );
+		if ( sanitize_title( $service->post_title ) === $service->post_name ) {
+			$update['post_name'] = $d['slug'];
+		}
+		if ( $normalise( $service->post_content ) === $normalise( $d['legacy'] ) ) {
+			$update['post_content'] = $d['content'];
+		}
+		if ( count( $update ) > 1 ) {
+			wp_update_post( wp_slash( $update ) );
+		}
+		$defaults = array(
+			'intro'         => $d['intro'],
+			'scope'         => implode( "\n", $d['scope'] ),
+			'hero_photo'    => $d['hero_photo'],
+			'gallery_photo' => $d['gallery_photo'],
+		);
+		foreach ( $defaults as $key => $value ) {
+			if ( ! metadata_exists( 'post', $service->ID, '_aerodallas_' . $key ) ) {
+				update_post_meta( $service->ID, '_aerodallas_' . $key, $value );
+			}
+		}
+	}
+	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
+	flush_rewrite_rules();
+}
+add_action( 'init', 'aerodallas_upgrade', 30 );
 
 /**
  * Run all setup steps.

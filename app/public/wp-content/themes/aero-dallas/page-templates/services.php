@@ -49,19 +49,31 @@ get_template_part(
 		<div class="container split <?php echo 1 === $aerodallas_i % 2 ? 'split--media-left' : 'split--media-right'; ?>">
 			<div class="split__body" data-reveal>
 				<p class="service-block__letter"><span aria-hidden="true"><?php echo esc_html( aerodallas_letter( $aerodallas_i ) ); ?></span><?php echo $aerodallas_icon ? aerodallas_icon( $aerodallas_icon ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-				<h2 class="section-title" id="<?php echo esc_attr( $aerodallas_anchor ); ?>-title"><?php echo esc_html( $aerodallas_title ); ?></h2>
-				<div class="prose service-block__content">
-					<?php echo wp_kses_post( wpautop( $aerodallas_service->post_content ) ); ?>
+				<h2 class="section-title" id="<?php echo esc_attr( $aerodallas_anchor ); ?>-title"><a href="<?php echo esc_url( get_permalink( $aerodallas_service ) ); ?>"><?php echo esc_html( $aerodallas_title ); ?></a></h2>
+				<p class="service-block__intro"><?php echo esc_html( aerodallas_service_intro( $aerodallas_service ) ); ?></p>
+				<?php $aerodallas_scope = aerodallas_service_scope( $aerodallas_service->ID ); ?>
+				<?php if ( $aerodallas_scope ) : ?>
+					<ul class="scope-list scope-list--compact">
+						<?php foreach ( $aerodallas_scope as $aerodallas_item ) : ?>
+							<li><?php echo aerodallas_icon( 'check-ring' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( $aerodallas_item ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<div class="service-block__actions">
+					<a class="btn btn--primary" href="<?php echo esc_url( get_permalink( $aerodallas_service ) ); ?>">
+						<?php esc_html_e( 'View Service Details', 'aero-dallas' ); ?>
+						<span class="screen-reader-text">: <?php echo esc_html( $aerodallas_title ); ?></span>
+						<?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
+					<a class="btn btn--outline" href="<?php echo esc_url( aerodallas_quote_url( $aerodallas_anchor ) ); ?>">
+						<?php esc_html_e( 'Request a Quote', 'aero-dallas' ); ?>
+						<span class="screen-reader-text">: <?php echo esc_html( $aerodallas_title ); ?></span>
+					</a>
 				</div>
-				<a class="btn btn--primary" href="<?php echo esc_url( aerodallas_quote_url( $aerodallas_anchor ) ); ?>">
-					<?php esc_html_e( 'Request a quote for this service', 'aero-dallas' ); ?>
-					<span class="screen-reader-text">: <?php echo esc_html( $aerodallas_title ); ?></span>
-					<?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</a>
 			</div>
 			<div class="split__media" data-reveal>
 				<div class="framed">
-					<?php echo aerodallas_image( (int) get_post_thumbnail_id( $aerodallas_service ), (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_photo', true ), array( 'sizes' => '(min-width: 1024px) 45vw, 100vw' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<a href="<?php echo esc_url( get_permalink( $aerodallas_service ) ); ?>" tabindex="-1" aria-hidden="true"><?php echo aerodallas_image( (int) get_post_thumbnail_id( $aerodallas_service ), (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_photo', true ), array( 'sizes' => '(min-width: 1024px) 45vw, 100vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 				</div>
 			</div>
 		</div>
