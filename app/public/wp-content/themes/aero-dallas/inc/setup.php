@@ -88,6 +88,7 @@ function aerodallas_menu_fallback( $args ) {
 		'about'    => __( 'About Us', 'aero-dallas' ),
 		'services' => __( 'Services', 'aero-dallas' ),
 		'process'  => __( 'How We Work', 'aero-dallas' ),
+		'news'     => __( 'News', 'aero-dallas' ),
 		'policies' => __( 'Policies', 'aero-dallas' ),
 		'contact'  => __( 'Contact Us', 'aero-dallas' ),
 	);

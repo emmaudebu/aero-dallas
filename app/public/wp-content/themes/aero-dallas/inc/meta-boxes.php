@@ -189,6 +189,20 @@ function aerodallas_page_fields() {
 				'default' => __( 'Frequently Asked Questions', 'aero-dallas' ),
 			),
 		),
+		'news'     => array(
+			'eyebrow'   => array_merge( $eyebrow, array( 'default' => __( 'News & Insights', 'aero-dallas' ) ) ),
+			'heading'   => array_merge( $heading, array( 'default' => __( 'Logistics News & Industry Insights', 'aero-dallas' ) ) ),
+			'highlight' => array(
+				'label'   => __( 'Heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Logistics News', 'aero-dallas' ),
+			),
+			'lead'      => array(
+				'label'   => __( 'Hero intro paragraph', 'aero-dallas' ),
+				'type'    => 'textarea',
+				'default' => __( 'Updates, insights and company news from AERO DALLAS on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
+			),
+		),
 		'default'  => array(
 			'eyebrow' => $eyebrow,
 			'heading' => $heading,
@@ -205,6 +219,9 @@ function aerodallas_page_fields() {
 function aerodallas_template_key( $post_id ) {
 	if ( (int) get_option( 'page_on_front' ) === (int) $post_id ) {
 		return 'front';
+	}
+	if ( (int) get_option( 'page_for_posts' ) === (int) $post_id ) {
+		return 'news';
 	}
 	$map = array(
 		'page-templates/about.php'       => 'about',

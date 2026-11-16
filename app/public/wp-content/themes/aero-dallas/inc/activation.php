@@ -136,6 +136,11 @@ function aerodallas_default_pages() {
 			'content' => $policies,
 			'seo'     => __( 'AERO DALLAS business, quotation and payment, service and delivery, cancellation and refund, warranty, health and safety, and privacy policies.', 'aero-dallas' ),
 		),
+		'news'     => array(
+			'title'   => __( 'News', 'aero-dallas' ),
+			'content' => '',
+			'seo'     => __( 'Logistics updates, industry insights and company news from AERO DALLAS on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
+		),
 		'contact'  => array(
 			'title'   => __( 'Contact Us', 'aero-dallas' ),
 			'content' => aerodallas_blocks_paragraphs( array( __( 'Whether you require industrial machinery repairs, aviation ground support equipment, parts supply, or logistics assistance, AERO DALLAS is ready to discuss your requirements. Our team is committed to providing professional responses and dependable support tailored to your business needs.', 'aero-dallas' ) ) ),
@@ -258,9 +263,10 @@ function aerodallas_default_items() {
 /**
  * Create missing pages and remember their IDs.
  *
+ * @param bool $set_front Also make the Home page the static front page.
  * @return array<string,int>
  */
-function aerodallas_setup_pages() {
+function aerodallas_setup_pages( $set_front = true ) {
 	$ids   = (array) get_option( 'aerodallas_page_ids', array() );
 	$pages = aerodallas_default_pages();
 
@@ -290,7 +296,7 @@ function aerodallas_setup_pages() {
 
 	update_option( 'aerodallas_page_ids', $ids, false );
 
-	if ( ! empty( $ids['home'] ) ) {
+	if ( $set_front && ! empty( $ids['home'] ) ) {
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $ids['home'] );
 	}
@@ -319,7 +325,7 @@ function aerodallas_setup_menus( $ids ) {
 			if ( is_wp_error( $menu_id ) ) {
 				continue;
 			}
-			foreach ( array( 'home', 'about', 'services', 'process', 'policies', 'contact' ) as $position => $key ) {
+			foreach ( array( 'home', 'about', 'services', 'process', 'news', 'policies', 'contact' ) as $position => $key ) {
 				if ( empty( $ids[ $key ] ) ) {
 					continue;
 				}
@@ -416,15 +422,30 @@ function aerodallas_with_service_details( $item ) {
 }
 
 /**
- * One-time upgrade to 1.1.0 for sites set up with 1.0.0: give each service
- * its own page slug, the detailed content and the new fields. Anything the
- * site owner has already edited (slug, content, fields) is left untouched.
+ * One-time upgrades for sites set up with an earlier version.
  */
 function aerodallas_upgrade() {
 	$version = (string) get_option( 'aerodallas_setup_version', '0' );
-	if ( version_compare( $version, '1.1.0', '>=' ) ) {
+	if ( version_compare( $version, AERODALLAS_VERSION, '>=' ) ) {
 		return;
 	}
+	if ( version_compare( $version, '1.1.0', '<' ) ) {
+		aerodallas_upgrade_services();
+	}
+	if ( version_compare( $version, '1.2.0', '<' ) ) {
+		aerodallas_setup_news();
+	}
+	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
+	flush_rewrite_rules();
+}
+add_action( 'init', 'aerodallas_upgrade', 30 );
+
+/**
+ * 1.1.0: give each service its own page slug, the detailed content and the
+ * new fields. Anything the site owner has already edited (slug, content,
+ * fields) is left untouched.
+ */
+function aerodallas_upgrade_services() {
 	$normalise = static function ( $html ) {
 		return trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $html ) ) );
 	};
@@ -464,10 +485,7 @@ function aerodallas_upgrade() {
 			}
 		}
 	}
-	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
-	flush_rewrite_rules();
 }
-add_action( 'init', 'aerodallas_upgrade', 30 );
 
 /**
  * Run all setup steps.
@@ -479,6 +497,7 @@ function aerodallas_activate() {
 	$ids = aerodallas_setup_pages();
 	aerodallas_setup_menus( $ids );
 	aerodallas_setup_items();
+	aerodallas_setup_news();
 
 	$tagline = get_option( 'blogdescription' );
 	if ( '' === trim( (string) $tagline ) || 'Just another WordPress site' === $tagline ) {

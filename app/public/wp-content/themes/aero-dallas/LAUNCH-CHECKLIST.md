@@ -28,6 +28,12 @@ Everything below must be confirmed by the business owner before the website goes
 - [ ] Choose the default appearance (light or dark) in Customize → Appearance
 - [ ] Optional sections stay hidden until real content exists: only add **confirmed** statistics, **approved** client testimonials, and enable "Latest Insights" once articles are published
 
+## News
+
+- [ ] Delete WordPress's sample "Hello world!" post (Posts) and the "Sample Page" (Pages)
+- [ ] Publish the first articles with a featured image, a topic (category) and an excerpt
+- [ ] Once there are at least three articles, consider switching on "Latest Insights" on the home page
+
 ## Service page copy
 
 - [ ] Review and approve the detailed write-ups on the four service pages. They were drafted from the content brief and policies for the website and have not yet been confirmed by the business. Check in particular the "What's Included" lists and "What to include in your request" guidance for each service.

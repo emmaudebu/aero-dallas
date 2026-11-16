@@ -87,6 +87,7 @@ function aerodallas_page_map() {
 		'about'    => array( 'slug' => 'about-us', 'template' => 'page-templates/about.php' ),
 		'services' => array( 'slug' => 'services', 'template' => 'page-templates/services.php' ),
 		'process'  => array( 'slug' => 'how-we-work', 'template' => 'page-templates/how-we-work.php' ),
+		'news'     => array( 'slug' => 'news', 'template' => '' ),
 		'policies' => array( 'slug' => 'policies', 'template' => 'page-templates/policies.php' ),
 		'contact'  => array( 'slug' => 'contact-us', 'template' => 'page-templates/contact.php' ),
 	);

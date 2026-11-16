@@ -1,5 +1,6 @@
 /**
- * AERO DALLAS — header, mobile menu, scroll reveal and policies TOC.
+ * AERO DALLAS — header, mobile menu, scroll reveal, article copy link and
+ * policies TOC.
  * Vanilla JS, loaded with defer.
  */
 ( function () {
@@ -136,6 +137,29 @@
 		} );
 	}
 	root.classList.add( 'reveal-ready' );
+
+	/* Articles: copy link button (shown only where the clipboard works). --- */
+	document.querySelectorAll( '[data-copy-link]' ).forEach( function ( button ) {
+		if ( ! navigator.clipboard || ! window.isSecureContext ) {
+			return;
+		}
+		var status = button.closest( '.article-share' ).querySelector( '.article-share__status' );
+		button.hidden = false;
+		button.addEventListener( 'click', function () {
+			navigator.clipboard.writeText( button.getAttribute( 'data-copy-link' ) ).then( function () {
+				button.classList.add( 'is-copied' );
+				if ( status ) {
+					status.textContent = button.getAttribute( 'data-copied' );
+				}
+				window.setTimeout( function () {
+					button.classList.remove( 'is-copied' );
+					if ( status ) {
+						status.textContent = '';
+					}
+				}, 2500 );
+			} );
+		} );
+	} );
 
 	/* Policies: highlight the section currently in view. ------------------ */
 	var tocLinks = document.querySelectorAll( '.toc__list a' );

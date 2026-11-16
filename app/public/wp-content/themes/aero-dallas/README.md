@@ -30,8 +30,9 @@ Or copy the `aero-dallas` folder into `wp-content/themes/` and activate it under
 Activating the theme builds the whole site. Running it again (for example after switching themes and back) does not create duplicates: existing pages, menus and content are detected and left as they are.
 
 - **Four service pages** at `/services/industrial-support/`, `/services/aviation-ground-support/`, `/services/parts-equipment-supply/` and `/services/air-ground-logistics/`, each with a detailed write-up.
-- **Six pages** with their templates: Home, About Us (`/about-us/`), Services (`/services/`), How We Work (`/how-we-work/`), Policies (`/policies/`), Contact Us (`/contact-us/`).
-- **Home** is set as the static front page (Settings → Reading).
+- **Seven pages** with their templates: Home, About Us (`/about-us/`), Services (`/services/`), How We Work (`/how-we-work/`), News (`/news/`), Policies (`/policies/`), Contact Us (`/contact-us/`).
+- **Home** is set as the static front page and **News** as the posts page (Settings → Reading).
+- **Article topics** (post categories): Logistics, Aviation Ground Support, Industrial Support, Parts & Equipment and Company News. The untouched default "Uncategorized" category is renamed "General". Topics with no articles are never shown.
 - **Menus**: "Primary Menu" (header) and "Footer Menu" (footer quick links), both assigned to their locations.
 - **Site content**: the four services, seven process steps, six core values, six "Why choose" points and five FAQs, using the copy from the content brief.
 - **Tagline** "Where industrial expertise meets dependable support." if the site had none.
@@ -55,7 +56,10 @@ Activating the theme builds the whole site. Running it again (for example after 
 | FAQs | **Site Content → FAQs** |
 | Client testimonials (hidden until at least one is published) | **Site Content → Testimonials** |
 | Statistics band (hidden until a number and label are filled in) | Customize → AERO DALLAS — Company Details → **Home: statistics and insights** |
-| "Latest Insights" (3 newest posts; off by default) | Same section → **Show "Latest Insights"** |
+| "Latest Insights" on the home page (3 newest articles; off by default) | Same section → **Show "Latest Insights"** |
+| News articles | **Posts → Add New**. Give each article a **Featured image** (used on its card and as its hero photo), choose one **Category** (its topic), and optionally write an **Excerpt** (the card summary and the article's hero intro). Without a featured image, a bundled photo matching the topic is used. |
+| News page hero heading, orange highlight and intro | Pages → News → "Page sections" box. A featured image on the News page replaces its hero photo. |
+| Article topics | **Posts → Categories**. A category description becomes that topic page's hero intro. |
 | Hero heading highlight (orange words) | Pages → Home → "Page sections" → **Hero heading highlight** |
 | "How We Work" band and quote band photos | Customize → … → **Photos** |
 | Page text (About "Who We Are", Services intro, How We Work intro, Contact intro, all Policies) | **Pages → edit the page** (main editor) |
@@ -70,6 +74,7 @@ Notes:
 - **Empty fields do not render.** If the address or hours are blank, those rows are simply left out. Nothing like "To be confirmed" is ever shown.
 - **Policies table of contents** is built automatically from the Heading blocks on the Policies page. Each heading's *HTML anchor* (block sidebar → Advanced) sets its link, e.g. `privacy` gives `/policies/#privacy`. The footer links to `#privacy`, `#quotation-payment`, `#cancellation-refund`, `#warranty` and `#health-safety-quality`, so keep those anchors.
 - **Service anchors** (`industrial`, `aviation`, `parts-supply`, `logistics`) are used in links such as `/services/#aviation` and to pre-select the service on the quote form (`/contact-us/?service=aviation#quote`).
+- **News**: the newest article is shown as a large feature card (a *sticky* post takes that place), the rest in a grid of 10 per page (Settings → Reading → *Blog pages show at most*). Articles have share links (LinkedIn, Facebook, X, email, and copy link on HTTPS), previous/next links and up to three related articles from the same topic. Comments are switched off on articles.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
 ## The Request a Quote form
@@ -100,7 +105,7 @@ Quote requests are always saved in **Quote Requests** in WordPress even if an em
 ## SEO
 
 - Each page outputs a title, meta description, canonical URL, Open Graph and Twitter card tags.
-- JSON-LD structured data: `Organization` (only filled-in details), `WebSite`, `BreadcrumbList` on inner pages, `Service` items on the Services page, and `FAQPage` wherever the FAQ appears.
+- JSON-LD structured data: `Organization` (only filled-in details), `WebSite`, `BreadcrumbList` on inner pages, `Service` items on the Services page, `BlogPosting` on each article, and `FAQPage` wherever the FAQ appears.
 - If an SEO plugin (Yoast, Rank Math, AIOSEO, SEOPress, The SEO Framework, Slim SEO) is active, the theme stops printing its own meta and social tags and Organization/Breadcrumb data, and leaves those to the plugin.
 
 ## Development notes
@@ -108,14 +113,17 @@ Quote requests are always saved in **Quote Requests** in WordPress even if an em
 ```
 aero-dallas/
 ├── style.css, functions.php, theme.json
-├── header.php, footer.php, front-page.php, page.php, index.php, single.php, 404.php
+├── header.php, footer.php, front-page.php, page.php, 404.php
 ├── single-aerodallas_service.php   (individual service pages)
 ├── page-templates/   about, services, how-we-work, policies, contact
-├── template-parts/   brand, page-header, quick-quote, service-card, why-choose, process-steps,
-│                     who-we-are, stats, testimonials, insights, faq, cta-band, quote-form,
-│                     contact-details, swoosh
+├── index.php         news listing, topic and tag archives, article search
+├── single.php        single article
+├── template-parts/   brand, page-header, page-hero, hero-panel, news-card, quick-quote,
+│                     service-card, why-choose, process-steps, who-we-are, stats, testimonials,
+│                     insights, faq, cta-band, quote-form, contact-details, swoosh
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
-│                     cpt-quote-request, quote-form, seo-schema, service-content, activation
+│                     cpt-quote-request, quote-form, seo-schema, service-content, news,
+│                     activation
 └── assets/           css, js, fonts, img/brand, img/photos
 ```
 
@@ -144,6 +152,9 @@ aero-dallas/
 
 Stock photos show generic equipment and settings, not AERO DALLAS's own work. Replace them with real company photography when it is available.
 
-## Upgrading from 1.0.0
+## Upgrading
+
 
 Version 1.1.0 gives each service its own page. On the first page load after updating the theme, a one-time upgrade sets each service's address, adds the detailed write-up, the "What's Included" list and the photos, and refreshes permalinks. Anything you had already edited (a service's slug, its content or these fields) is left as it is. Old service addresses redirect to the new ones.
+
+Version 1.2.0 adds the News section. On the first page load after updating, it creates the News page (unless one exists), makes it the posts page if none was set, adds it to the header and footer menus before Contact Us, and creates the article topics.

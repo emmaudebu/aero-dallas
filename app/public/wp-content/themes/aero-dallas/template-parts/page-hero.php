@@ -8,19 +8,25 @@
  * - lead (string, plain text) or lead_html (string, already escaped HTML)
  * - photo (bundled photo key; a featured image on the page replaces it)
  * - actions (array of array{label:string,url:string,style:string,icon?:string})
+ * - title (string) last breadcrumb; defaults to the current page title
+ * - crumbs (array of array{label:string,url:string}) between Home and title
+ * - thumb (int) image attachment; defaults to the current featured image
+ * - meta (array of array{icon:string,text:string}) shown under the heading
+ * - class (string) extra class on the section
  *
  * @package aero-dallas
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$aerodallas_title   = get_the_title();
+$aerodallas_title   = (string) ( $args['title'] ?? get_the_title() );
 $aerodallas_heading = trim( (string) ( $args['heading'] ?? '' ) );
 $aerodallas_heading = '' !== $aerodallas_heading ? $aerodallas_heading : $aerodallas_title;
-$aerodallas_thumb   = (int) get_post_thumbnail_id();
+$aerodallas_thumb   = (int) ( $args['thumb'] ?? get_post_thumbnail_id() );
 $aerodallas_actions = $args['actions'] ?? array();
+$aerodallas_class   = trim( 'page-hero ' . ( $args['class'] ?? '' ) );
 ?>
-<section class="page-hero" aria-labelledby="page-hero-title">
+<section class="<?php echo esc_attr( $aerodallas_class ); ?>" aria-labelledby="page-hero-title">
 	<div class="page-hero__bg" aria-hidden="true">
 		<?php echo aerodallas_image( $aerodallas_thumb, (string) ( $args['photo'] ?? '' ), array( 'sizes' => '100vw', 'eager' => true, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 	</div>
@@ -29,11 +35,21 @@ $aerodallas_actions = $args['actions'] ?? array();
 			<nav class="crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'aero-dallas' ); ?>">
 				<ol>
 					<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'aero-dallas' ); ?></a></li>
+					<?php foreach ( $args['crumbs'] ?? array() as $aerodallas_crumb ) : ?>
+						<li><a href="<?php echo esc_url( $aerodallas_crumb['url'] ); ?>"><?php echo esc_html( $aerodallas_crumb['label'] ); ?></a></li>
+					<?php endforeach; ?>
 					<li aria-current="page"><?php echo esc_html( $aerodallas_title ); ?></li>
 				</ol>
 			</nav>
 			<?php aerodallas_eyebrow( (string) ( $args['eyebrow'] ?? '' ) ); ?>
 			<h1 class="page-hero__title" id="page-hero-title"><?php echo aerodallas_highlight( $aerodallas_heading, (string) ( $args['highlight'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h1>
+			<?php if ( ! empty( $args['meta'] ) ) : ?>
+				<ul class="page-hero__meta">
+					<?php foreach ( $args['meta'] as $aerodallas_meta ) : ?>
+						<li><?php echo aerodallas_icon( $aerodallas_meta['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $aerodallas_meta['text'] ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 			<?php if ( ! empty( $args['lead_html'] ) ) : ?>
 				<div class="page-hero__lead"><?php echo $args['lead_html']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- caller passes escaped / the_content output. ?></div>
 			<?php elseif ( ! empty( $args['lead'] ) ) : ?>

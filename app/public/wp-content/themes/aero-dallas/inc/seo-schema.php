@@ -58,6 +58,14 @@ function aerodallas_meta_description() {
 			$post = get_post( $id );
 			$desc = has_excerpt( $post ) ? $post->post_excerpt : wp_strip_all_tags( strip_shortcodes( $post->post_content ) );
 		}
+	} elseif ( is_home() && aerodallas_news_page_id() ) {
+		$news = aerodallas_news_page_id();
+		$desc = (string) get_post_meta( $news, '_aerodallas_seo_description', true );
+		$desc = '' !== $desc ? $desc : aerodallas_field( 'lead', $news );
+	} elseif ( is_category() || is_tag() ) {
+		$desc = term_description();
+		/* translators: %s: topic name. */
+		$desc = '' !== trim( wp_strip_all_tags( $desc ) ) ? $desc : sprintf( __( 'Articles and updates from AERO DALLAS about %s.', 'aero-dallas' ), single_term_title( '', false ) );
 	} elseif ( is_home() || is_archive() ) {
 		$desc = get_bloginfo( 'description' );
 	}
@@ -75,6 +83,9 @@ function aerodallas_social_meta() {
 	$desc  = aerodallas_meta_description();
 	$title = wp_get_document_title();
 	$url   = is_singular() ? get_permalink( get_queried_object_id() ) : home_url( add_query_arg( array() ) );
+	if ( is_home() && aerodallas_news_page_id() && ! is_paged() ) {
+		$url = aerodallas_news_url();
+	}
 	if ( is_front_page() ) {
 		$url = home_url( '/' );
 	}
@@ -207,6 +218,39 @@ function aerodallas_schema_services() {
 }
 
 /**
+ * BlogPosting node for an article.
+ *
+ * @param WP_Post $post Post.
+ * @return array
+ */
+function aerodallas_schema_article( $post ) {
+	$image = AERODALLAS_URI . '/assets/img/brand/og-image.png';
+	if ( has_post_thumbnail( $post ) ) {
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'aerodallas-wide' );
+		$image = $thumb ? $thumb[0] : $image;
+	}
+	$topic = aerodallas_post_topic( $post );
+	$node  = array(
+		'@type'            => 'BlogPosting',
+		'@id'              => get_permalink( $post ) . '#article',
+		'headline'         => wp_strip_all_tags( get_the_title( $post ) ),
+		'description'      => aerodallas_post_summary( $post, 40 ),
+		'datePublished'    => get_the_date( 'c', $post ),
+		'dateModified'     => get_the_modified_date( 'c', $post ),
+		'image'            => $image,
+		'url'              => get_permalink( $post ),
+		'mainEntityOfPage' => get_permalink( $post ),
+		'wordCount'        => str_word_count( wp_strip_all_tags( $post->post_content ) ),
+		'author'           => array( '@id' => home_url( '/#organization' ) ),
+		'publisher'        => array( '@id' => home_url( '/#organization' ) ),
+	);
+	if ( $topic ) {
+		$node['articleSection'] = $topic->name;
+	}
+	return $node;
+}
+
+/**
  * Print the JSON-LD graph.
  */
 function aerodallas_schema() {
@@ -237,6 +281,12 @@ function aerodallas_schema() {
 				$crumbs[] = array(
 					'name' => wp_strip_all_tags( get_the_title( aerodallas_page_id( 'services' ) ) ),
 					'item' => aerodallas_page_url( 'services' ),
+				);
+			}
+			if ( is_singular( 'post' ) && aerodallas_news_page_id() ) {
+				$crumbs[] = array(
+					'name' => wp_strip_all_tags( get_the_title( aerodallas_news_page_id() ) ),
+					'item' => aerodallas_news_url(),
 				);
 			}
 			$crumbs[] = array(
@@ -275,6 +325,9 @@ function aerodallas_schema() {
 			'url'         => get_permalink( $service ),
 			'provider'    => array( '@id' => home_url( '/#organization' ) ),
 		);
+	}
+	if ( ! $plugin && is_singular( 'post' ) ) {
+		$graph[] = aerodallas_schema_article( get_queried_object() );
 	}
 	if ( is_front_page() || is_page_template( 'page-templates/contact.php' ) ) {
 		$faq = aerodallas_schema_faq();
