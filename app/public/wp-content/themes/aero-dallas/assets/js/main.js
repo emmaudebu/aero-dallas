@@ -8,6 +8,24 @@
 	var root = document.documentElement;
 	var hasIO = 'IntersectionObserver' in window;
 
+	/* Light / dark mode toggle. The initial mode is set inline in <head>. --- */
+	document.querySelectorAll( '[data-mode-toggle]' ).forEach( function ( button ) {
+		var sync = function () {
+			button.setAttribute( 'aria-pressed', root.getAttribute( 'data-theme' ) === 'dark' ? 'true' : 'false' );
+		};
+		sync();
+		button.addEventListener( 'click', function () {
+			var next = root.getAttribute( 'data-theme' ) === 'dark' ? 'light' : 'dark';
+			root.setAttribute( 'data-theme', next );
+			try {
+				window.localStorage.setItem( 'aerodallas-mode', next );
+			} catch ( e ) {}
+			document.querySelectorAll( '[data-mode-toggle]' ).forEach( function ( b ) {
+				b.setAttribute( 'aria-pressed', next === 'dark' ? 'true' : 'false' );
+			} );
+		} );
+	} );
+
 	/* Sticky header: condense once the page has scrolled. ------------------ */
 	var header = document.getElementById( 'site-header' );
 	var sentinel = document.querySelector( '.header-sentinel' );

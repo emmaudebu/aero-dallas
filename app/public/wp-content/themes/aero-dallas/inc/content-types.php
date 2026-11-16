@@ -40,6 +40,12 @@ function aerodallas_content_types() {
 			'supports' => array( 'title', 'page-attributes' ),
 			'help'     => __( 'The "Why Choose AERO DALLAS?" list on the home and About pages. Title = the point.', 'aero-dallas' ),
 		),
+		'aerodallas_testimonial' => array(
+			'plural'   => __( 'Testimonials', 'aero-dallas' ),
+			'singular' => __( 'Testimonial', 'aero-dallas' ),
+			'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+			'help'     => __( 'Client testimonials for the home page. Only add real, approved quotes. Title = client name, Content = the quote, Featured image = optional photo. The section stays hidden until at least one is published.', 'aero-dallas' ),
+		),
 		'aerodallas_faq'     => array(
 			'plural'   => __( 'FAQs', 'aero-dallas' ),
 			'singular' => __( 'FAQ', 'aero-dallas' ),

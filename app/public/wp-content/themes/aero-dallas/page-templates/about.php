@@ -61,7 +61,7 @@ get_template_part(
 <section class="section" aria-labelledby="values-title">
 	<div class="container">
 		<header class="section-head" data-reveal>
-			<p class="section-index"><?php esc_html_e( 'What guides our work', 'aero-dallas' ); ?></p>
+			<p class="eyebrow"><?php esc_html_e( 'What Guides Our Work', 'aero-dallas' ); ?></p>
 			<h2 class="section-title" id="values-title"><?php echo esc_html( aerodallas_field( 'values_heading' ) ); ?></h2>
 		</header>
 		<ul class="values">

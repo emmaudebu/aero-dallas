@@ -33,6 +33,11 @@ function aerodallas_page_fields() {
 				'type'    => 'text',
 				'default' => __( 'Where Industrial Expertise Meets Dependable Support.', 'aero-dallas' ),
 			),
+			'hero_highlight'   => array(
+				'label'   => __( 'Hero heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Dependable Support.', 'aero-dallas' ),
+			),
 			'hero_lead'        => array(
 				'label'   => __( 'Hero lead paragraph', 'aero-dallas' ),
 				'type'    => 'textarea',
@@ -77,6 +82,16 @@ function aerodallas_page_fields() {
 				'label'   => __( 'FAQ heading', 'aero-dallas' ),
 				'type'    => 'text',
 				'default' => __( 'Frequently Asked Questions', 'aero-dallas' ),
+			),
+			'testimonials_heading' => array(
+				'label'   => __( 'Testimonials heading (section shows once testimonials are added)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'What Our Clients Say', 'aero-dallas' ),
+			),
+			'insights_heading' => array(
+				'label'   => __( 'Latest insights heading (section shows when enabled in the Customizer)', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Latest Insights', 'aero-dallas' ),
 			),
 		),
 		'about'    => array(
@@ -186,7 +201,8 @@ function aerodallas_add_meta_boxes() {
 	add_meta_box( 'aerodallas-page-sections', __( 'Page sections', 'aero-dallas' ), 'aerodallas_page_sections_box', 'page', 'normal', 'high' );
 	add_meta_box( 'aerodallas-seo', __( 'Search & sharing', 'aero-dallas' ), 'aerodallas_seo_box', array( 'page', 'post' ), 'normal', 'default' );
 	add_meta_box( 'aerodallas-service', __( 'Service details', 'aero-dallas' ), 'aerodallas_service_box', 'aerodallas_service', 'normal', 'high' );
-	add_meta_box( 'aerodallas-icon', __( 'Icon', 'aero-dallas' ), 'aerodallas_icon_box', array( 'aerodallas_value', 'aerodallas_step' ), 'side', 'default' );
+	add_meta_box( 'aerodallas-icon', __( 'Icon', 'aero-dallas' ), 'aerodallas_icon_box', array( 'aerodallas_value', 'aerodallas_step', 'aerodallas_reason' ), 'side', 'default' );
+	add_meta_box( 'aerodallas-testimonial', __( 'Client details', 'aero-dallas' ), 'aerodallas_testimonial_box', 'aerodallas_testimonial', 'normal', 'high' );
 }
 add_action( 'add_meta_boxes', 'aerodallas_add_meta_boxes' );
 
@@ -334,6 +350,25 @@ function aerodallas_icon_box( $post ) {
 }
 
 /**
+ * Testimonial client details meta box.
+ *
+ * @param WP_Post $post Testimonial.
+ */
+function aerodallas_testimonial_box( $post ) {
+	wp_nonce_field( 'aerodallas_save_meta', 'aerodallas_meta_nonce' );
+	aerodallas_render_field(
+		'role',
+		array(
+			'label' => __( 'Role and company', 'aero-dallas' ),
+			'type'  => 'text',
+			'help'  => __( 'For example "Operations Manager, Company name". Shown under the name.', 'aero-dallas' ),
+		),
+		(string) get_post_meta( $post->ID, '_aerodallas_role', true )
+	);
+	echo '<input type="hidden" name="aerodallas_fieldset" value="testimonial">';
+}
+
+/**
  * Save meta box fields.
  *
  * @param int $post_id Post ID.
@@ -368,6 +403,8 @@ function aerodallas_save_meta( $post_id ) {
 		);
 	} elseif ( 'icon' === $set ) {
 		$fields = array( 'icon' => 'icon' );
+	} elseif ( 'testimonial' === $set ) {
+		$fields = array( 'role' => 'text' );
 	} else {
 		$page_fields = aerodallas_page_fields();
 		if ( isset( $page_fields[ $set ] ) ) {

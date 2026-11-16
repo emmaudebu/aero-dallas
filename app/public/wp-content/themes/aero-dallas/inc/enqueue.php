@@ -87,7 +87,14 @@ function aerodallas_head_early() {
 			esc_url( AERODALLAS_URI . '/assets/fonts/' . $font )
 		);
 	}
-	echo "<script>document.documentElement.classList.add('js');</script>\n";
+	// Set the colour mode before first paint: saved choice, else the site default.
+	$aerodallas_mode_script = sprintf(
+		'(function(d){var m=null,a=%2$s;try{if(a){m=localStorage.getItem("aerodallas-mode");}}catch(e){}if(m!=="light"&&m!=="dark"){m=%1$s;if(m==="system"){m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}}d.setAttribute("data-theme",m);d.classList.add("js");})(document.documentElement);',
+		wp_json_encode( aerodallas_default_mode() ),
+		get_theme_mod( 'aerodallas_show_toggle', true ) ? 'true' : 'false'
+	);
+	echo '<script>' . $aerodallas_mode_script . "</script>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static script with JSON-encoded values.
+	echo '<meta name="color-scheme" content="light dark">' . "\n";
 }
 add_action( 'wp_head', 'aerodallas_head_early', 1 );
 
@@ -102,7 +109,7 @@ function aerodallas_favicon_fallback() {
 	printf( '<link rel="icon" href="%s" type="image/svg+xml">' . "\n", esc_url( $base . 'icon.svg' ) );
 	printf( '<link rel="icon" href="%s" sizes="32x32" type="image/png">' . "\n", esc_url( $base . 'icon-32.png' ) );
 	printf( '<link rel="apple-touch-icon" href="%s">' . "\n", esc_url( $base . 'icon-180.png' ) );
-	echo '<meta name="theme-color" content="#152D63">' . "\n";
+	echo '<meta name="theme-color" content="#0A1430">' . "\n";
 }
 add_action( 'wp_head', 'aerodallas_favicon_fallback', 5 );
 

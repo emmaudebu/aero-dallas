@@ -13,12 +13,10 @@ if ( ! $aerodallas_faqs ) {
 }
 $aerodallas_heading = $args['heading'] ?? __( 'Frequently Asked Questions', 'aero-dallas' );
 ?>
-<section class="section section--mist faq" id="faq" aria-labelledby="faq-title">
+<section class="section section--alt faq" id="faq" aria-labelledby="faq-title">
 	<div class="container faq__grid">
 		<div class="faq__intro" data-reveal>
-			<?php if ( ! empty( $args['index'] ) ) : ?>
-				<p class="section-index"><span><?php echo esc_html( $args['index'] ); ?></span> <?php esc_html_e( 'FAQ', 'aero-dallas' ); ?></p>
-			<?php endif; ?>
+			<p class="eyebrow"><?php esc_html_e( 'FAQ', 'aero-dallas' ); ?></p>
 			<h2 class="section-title" id="faq-title"><?php echo esc_html( $aerodallas_heading ); ?></h2>
 			<?php if ( aerodallas_detail( 'phone' ) ) : ?>
 				<p class="faq__aside">

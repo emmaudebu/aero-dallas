@@ -5,6 +5,18 @@ Custom classic theme for **AERO DALLAS — Industrial & Aviation Support**. Hand
 - WordPress 6.5 or newer, PHP 8.1 or newer
 - Built-in Request a Quote form (no form plugin needed)
 - Fonts are self-hosted (Archivo Black, Open Sauce One); nothing is loaded from Google at runtime
+- Light and dark modes with a toggle in the header
+
+## Light and dark mode
+
+The site has two looks that share all content:
+
+- **Light mode:** bright photo hero, navy logo, and a floating quick-quote bar (service, equipment type, company) that opens the quote form already filled in.
+- **Dark mode:** dark photo hero, white logo, and a strip of the four service areas under the hero.
+
+Choose the default under **Appearance → Customize → AERO DALLAS — Company Details → Appearance (light / dark)**: Light, Dark, or follow the visitor's device setting. Visitors can switch with the sun/moon button in the header, and their choice is remembered on their device. You can hide the toggle in the same panel; the default then always applies.
+
+The logo switches automatically: navy wordmark on light backgrounds, white wordmark on dark backgrounds (header in dark mode, footer, mobile menu). Both are traced SVGs with transparent backgrounds.
 
 ## Installation
 
@@ -32,11 +44,17 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Where quote requests are emailed | Same panel → **Quote notification email** |
 | The quote call-to-action band (heading and text) | Same panel → **Quote call-to-action band** |
 | Home hero photo, About photo, Vision & mission photo | Same panel → **Photos** |
+| Inner page header photo | Set a **Featured image** on the page |
 | Services (name, home card title, short text, detail list, photo, anchor) | **Site Content → Services** |
 | How We Work steps | **Site Content → Process Steps** |
 | Core values | **Site Content → Core Values** |
 | "Why choose AERO DALLAS?" points | **Site Content → Why Choose Points** |
 | FAQs | **Site Content → FAQs** |
+| Client testimonials (hidden until at least one is published) | **Site Content → Testimonials** |
+| Statistics band (hidden until a number and label are filled in) | Customize → AERO DALLAS — Company Details → **Home: statistics and insights** |
+| "Latest Insights" (3 newest posts; off by default) | Same section → **Show "Latest Insights"** |
+| Hero heading highlight (orange words) | Pages → Home → "Page sections" → **Hero heading highlight** |
+| "How We Work" band and quote band photos | Customize → … → **Photos** |
 | Page text (About "Who We Are", Services intro, How We Work intro, Contact intro, all Policies) | **Pages → edit the page** (main editor) |
 | Page headings, hero text, vision, mission, commitment, section headings | **Pages → edit the page → "Page sections" box** below the editor |
 | Search result description per page | **Pages → edit → "Search & sharing" box** |
@@ -89,22 +107,27 @@ aero-dallas/
 ├── style.css, functions.php, theme.json
 ├── header.php, footer.php, front-page.php, page.php, index.php, single.php, 404.php
 ├── page-templates/   about, services, how-we-work, policies, contact
-├── template-parts/   brand, page-header, service-card, process-steps, why-choose, faq, cta-band,
-│                     quote-form, contact-details, swoosh
+├── template-parts/   brand, page-header, quick-quote, service-card, why-choose, process-steps,
+│                     who-we-are, stats, testimonials, insights, faq, cta-band, quote-form,
+│                     contact-details, swoosh
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
 │                     cpt-quote-request, quote-form, seo-schema, activation
 └── assets/           css, js, fonts, img/brand, img/photos
 ```
 
 - There is no build step. Edit `assets/css/main.css` and `assets/js/*.js` directly.
-- Colours and type are defined as CSS custom properties at the top of `main.css` and mirrored in `theme.json` for the block editor.
+- Colours and type are defined as CSS custom properties at the top of `main.css` and mirrored in `theme.json` for the block editor. Dark mode only redefines the tokens under `[data-theme="dark"]`; the mode is set on `<html>` by a small inline script in `<head>` before the page paints.
+- Accessibility: buttons use navy text on orange (4.9:1); white on this orange would fail WCAG AA. Small orange text in light mode uses a deeper orange (#B84A06) for the same reason.
 - Everything is prefixed `aerodallas_` and translatable with the `aero-dallas` text domain.
 
 ## Credits and licences
 
 - **Fonts**: Archivo Black (The Archivo Black Project Authors / Omnibus-Type) and Open Sauce One (The Open Sauce One Authors / marcologous), both under the SIL Open Font License 1.1. The licence texts are in `assets/fonts/`.
 - **Photography**: from Unsplash under the [Unsplash License](https://unsplash.com/license), which allows free commercial use without attribution. The images were cropped to remove third-party airline branding.
-  - Hero, aircraft nose gear: Jacob Hamm — https://unsplash.com/photos/yJgD95BlxvA
+  - Home hero, jet at sunset: Chris Leipelt — https://unsplash.com/photos/6w_dYdazo20
+  - "How We Work" band, aircraft at the gate at night: pengye Chen — https://unsplash.com/photos/qfHUdMG-OeI
+  - Quote band, truck at dusk: Josiah Farrow — https://unsplash.com/photos/ucuOscdCaO4
+  - Aircraft nose gear (bundled, available as a replacement): Jacob Hamm — https://unsplash.com/photos/yJgD95BlxvA
   - Aviation, pushback tug: Krisztian Tabori — https://unsplash.com/photos/9RbWunBOMnw
   - Industrial, technician grinding: TECNIC Bioprocess Solutions — https://unsplash.com/photos/9IEGO2zcM2s
   - Parts supply, warehouse: AFINIS Group — https://unsplash.com/photos/OnbSOhz0oig

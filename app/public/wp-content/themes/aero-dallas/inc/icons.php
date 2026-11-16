@@ -45,6 +45,9 @@ function aerodallas_icon_paths() {
 		'document'    => '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15.5h6"/>',
 		'handover'    => '<path d="M3 13.5h4l3 1.5h3.5a1.5 1.5 0 0 1 0 3H10M7 18.5l3.3 1h4.4L21 16a1.5 1.5 0 0 0-1.9-2.2l-4.3 2"/><path d="M9.5 4.5h7v6h-7z"/>',
 		'magnifier'   => '<circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/>',
+		'sun'         => '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>',
+		'moon'        => '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+		'quote'       => '<path d="M9.5 7.5H6a1.5 1.5 0 0 0-1.5 1.5v3A1.5 1.5 0 0 0 6 13.5h3v1a3 3 0 0 1-3 3M19.5 7.5H16a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3v1a3 3 0 0 1-3 3"/>',
 		'headset'     => '<path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13.5" width="4" height="6" rx="1.2"/><rect x="16.5" y="13.5" width="4" height="6" rx="1.2"/><path d="M18.5 19.5c0 1-1 2-3 2H13"/>',
 	);
 }

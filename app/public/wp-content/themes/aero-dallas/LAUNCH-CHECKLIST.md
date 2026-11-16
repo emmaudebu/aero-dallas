@@ -25,6 +25,8 @@ Everything below must be confirmed by the business owner before the website goes
 - [ ] Send a test quote request on the live site and confirm the email arrives
 - [ ] Replace or approve the stock photographs (Appearance → Customize → Photos, and featured images under Site Content → Services)
 - [ ] Settings → Reading: "Discourage search engines" is **off**
+- [ ] Choose the default appearance (light or dark) in Customize → Appearance
+- [ ] Optional sections stay hidden until real content exists: only add **confirmed** statistics, **approved** client testimonials, and enable "Latest Insights" once articles are published
 
 ## Legal review
 

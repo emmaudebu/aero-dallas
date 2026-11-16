@@ -171,6 +171,9 @@ function aerodallas_photos() {
 		'service-logistics'  => __( 'Air cargo containers being moved on an airport apron', 'aero-dallas' ),
 		'about-welding'      => __( 'Welder joining steel with sparks flying', 'aero-dallas' ),
 		'detail-engine'      => __( 'Front view of a jet engine fan', 'aero-dallas' ),
+		'hero-jet'           => __( 'Jet aircraft parked on the apron at sunset', 'aero-dallas' ),
+		'band-night-gate'    => __( 'Airliner at the gate at night with ground crew and equipment', 'aero-dallas' ),
+		'band-truck-dusk'    => __( 'Freight truck on the highway at dusk', 'aero-dallas' ),
 	);
 }
 
@@ -221,7 +224,7 @@ function aerodallas_image( $attachment_id, $photo, $args = array() ) {
 	$srcset = array();
 	$first  = '';
 	$dims   = null;
-	foreach ( array( 768, 480, 1024, 1600 ) as $w ) {
+	foreach ( array( 768, 480, 1024, 1600, 1920 ) as $w ) {
 		$rel = 'assets/img/photos/' . $photo . '-' . $w . '.webp';
 		if ( ! file_exists( AERODALLAS_DIR . '/' . $rel ) ) {
 			continue;
@@ -343,4 +346,64 @@ function aerodallas_policies_toc( $html ) {
 		$html
 	);
 	return array( $html, $toc );
+}
+
+/**
+ * Heading text with an optional highlighted phrase wrapped in an accent span.
+ *
+ * @param string $text      Full heading.
+ * @param string $highlight Phrase inside the heading to highlight.
+ * @return string Escaped HTML.
+ */
+function aerodallas_highlight( $text, $highlight ) {
+	$text      = (string) $text;
+	$highlight = trim( (string) $highlight );
+	if ( '' === $highlight || false === strpos( $text, $highlight ) ) {
+		return esc_html( $text );
+	}
+	$pos = strpos( $text, $highlight );
+	return esc_html( substr( $text, 0, $pos ) ) . '<span class="accent">' . esc_html( $highlight ) . '</span>' . esc_html( substr( $text, $pos + strlen( $highlight ) ) );
+}
+
+/**
+ * Default colour mode chosen in the Customizer: light, dark or system.
+ *
+ * @return string
+ */
+function aerodallas_default_mode() {
+	$mode = get_theme_mod( 'aerodallas_default_mode', 'light' );
+	return in_array( $mode, array( 'light', 'dark', 'system' ), true ) ? $mode : 'light';
+}
+
+/**
+ * Filled-in statistics from the Customizer.
+ *
+ * @return array<int,array{value:string,label:string}>
+ */
+function aerodallas_stats() {
+	$stats = array();
+	for ( $i = 1; $i <= 4; $i++ ) {
+		$value = trim( (string) get_theme_mod( 'aerodallas_stat_' . $i . '_value', '' ) );
+		$label = trim( (string) get_theme_mod( 'aerodallas_stat_' . $i . '_label', '' ) );
+		if ( '' !== $value && '' !== $label ) {
+			$stats[] = array(
+				'value' => $value,
+				'label' => $label,
+			);
+		}
+	}
+	return $stats;
+}
+
+/**
+ * Icon for an item, falling back to a default list by position.
+ *
+ * @param int      $post_id  Item ID.
+ * @param int      $index    Zero-based position.
+ * @param string[] $fallback Icons by position.
+ * @return string Icon name.
+ */
+function aerodallas_item_icon( $post_id, $index, $fallback ) {
+	$icon = (string) get_post_meta( $post_id, '_aerodallas_icon', true );
+	return $icon ? $icon : ( $fallback[ $index % count( $fallback ) ] ?? 'check' );
 }

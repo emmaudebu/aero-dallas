@@ -45,7 +45,7 @@ get_template_part(
 	$aerodallas_icon   = (string) get_post_meta( $aerodallas_service->ID, '_aerodallas_icon', true );
 	$aerodallas_title  = get_the_title( $aerodallas_service );
 	?>
-	<section class="section service-block<?php echo 1 === $aerodallas_i % 2 ? ' service-block--alt section--mist' : ''; ?>" id="<?php echo esc_attr( $aerodallas_anchor ); ?>" aria-labelledby="<?php echo esc_attr( $aerodallas_anchor ); ?>-title">
+	<section class="section service-block<?php echo 1 === $aerodallas_i % 2 ? ' service-block--alt section--alt' : ''; ?>" id="<?php echo esc_attr( $aerodallas_anchor ); ?>" aria-labelledby="<?php echo esc_attr( $aerodallas_anchor ); ?>-title">
 		<div class="container split <?php echo 1 === $aerodallas_i % 2 ? 'split--media-left' : 'split--media-right'; ?>">
 			<div class="split__body" data-reveal>
 				<p class="service-block__letter"><span aria-hidden="true"><?php echo esc_html( aerodallas_letter( $aerodallas_i ) ); ?></span><?php echo $aerodallas_icon ? aerodallas_icon( $aerodallas_icon ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>

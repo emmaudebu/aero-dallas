@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function aerodallas_cta_defaults() {
 	return array(
-		'cta_heading' => __( 'Request a Quote', 'aero-dallas' ),
+		'cta_heading' => __( 'Ready to Discuss Your Requirements?', 'aero-dallas' ),
 		'cta_text'    => __( 'Share your equipment requirements and specifications. Our team will review your requirements and guide you through the next steps.', 'aero-dallas' ),
 	);
 }
@@ -101,6 +101,90 @@ function aerodallas_customize_register( $wp_customize ) {
 		);
 	}
 
+	// Appearance: light / dark mode.
+	$wp_customize->add_section(
+		'aerodallas_appearance',
+		array(
+			'title'       => __( 'Appearance (light / dark)', 'aero-dallas' ),
+			'panel'       => 'aerodallas_company',
+			'description' => __( 'Light mode uses the bright hero with the quick-quote bar; dark mode uses the dark hero with the feature strip. Visitors can switch with the toggle in the header, and their choice is remembered on their device.', 'aero-dallas' ),
+		)
+	);
+	$wp_customize->add_setting(
+		'aerodallas_default_mode',
+		array(
+			'default'           => 'light',
+			'sanitize_callback' => static function ( $value ) {
+				return in_array( $value, array( 'light', 'dark', 'system' ), true ) ? $value : 'light';
+			},
+		)
+	);
+	$wp_customize->add_control(
+		'aerodallas_default_mode',
+		array(
+			'label'   => __( 'Default mode', 'aero-dallas' ),
+			'section' => 'aerodallas_appearance',
+			'type'    => 'radio',
+			'choices' => array(
+				'light'  => __( 'Light', 'aero-dallas' ),
+				'dark'   => __( 'Dark', 'aero-dallas' ),
+				'system' => __( "Follow the visitor's device setting", 'aero-dallas' ),
+			),
+		)
+	);
+	$wp_customize->add_setting(
+		'aerodallas_show_toggle',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+	$wp_customize->add_control(
+		'aerodallas_show_toggle',
+		array(
+			'label'   => __( 'Show the light/dark toggle in the header', 'aero-dallas' ),
+			'section' => 'aerodallas_appearance',
+			'type'    => 'checkbox',
+		)
+	);
+
+	// Home page extras that stay hidden until filled in.
+	$wp_customize->add_section(
+		'aerodallas_home_extras',
+		array(
+			'title'       => __( 'Home: statistics and insights', 'aero-dallas' ),
+			'panel'       => 'aerodallas_company',
+			'description' => __( 'The statistics band only appears when at least one number and label are filled in. Use confirmed figures only.', 'aero-dallas' ),
+		)
+	);
+	$wp_customize->add_setting( 'aerodallas_stats_heading', array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'aerodallas_stats_heading', array( 'label' => __( 'Statistics heading (optional)', 'aero-dallas' ), 'section' => 'aerodallas_home_extras', 'type' => 'text' ) );
+	for ( $i = 1; $i <= 4; $i++ ) {
+		foreach ( array( 'value', 'label' ) as $part ) {
+			$id = 'aerodallas_stat_' . $i . '_' . $part;
+			$wp_customize->add_setting( $id, array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
+			$wp_customize->add_control(
+				$id,
+				array(
+					/* translators: %d: statistic number. */
+					'label'   => sprintf( 'value' === $part ? __( 'Statistic %d — number (e.g. 120+)', 'aero-dallas' ) : __( 'Statistic %d — label', 'aero-dallas' ), $i ),
+					'section' => 'aerodallas_home_extras',
+					'type'    => 'text',
+				)
+			);
+		}
+	}
+	$wp_customize->add_setting( 'aerodallas_show_insights', array( 'default' => false, 'sanitize_callback' => 'wp_validate_boolean' ) );
+	$wp_customize->add_control(
+		'aerodallas_show_insights',
+		array(
+			'label'       => __( 'Show "Latest Insights" (3 newest blog posts) on the home page', 'aero-dallas' ),
+			'description' => __( 'Turn on once you have published articles under Posts.', 'aero-dallas' ),
+			'section'     => 'aerodallas_home_extras',
+			'type'        => 'checkbox',
+		)
+	);
+
 	// Photos.
 	$wp_customize->add_section(
 		'aerodallas_photos',
@@ -114,6 +198,8 @@ function aerodallas_customize_register( $wp_customize ) {
 		'hero_image'  => __( 'Home hero photo', 'aero-dallas' ),
 		'about_image' => __( 'About / "Who We Are" photo', 'aero-dallas' ),
 		'detail_image' => __( 'Vision & mission photo (About page)', 'aero-dallas' ),
+		'process_image' => __( '"How We Work" band background', 'aero-dallas' ),
+		'cta_image'     => __( 'Quote band background', 'aero-dallas' ),
 	);
 	foreach ( $photos as $key => $label ) {
 		$wp_customize->add_setting(

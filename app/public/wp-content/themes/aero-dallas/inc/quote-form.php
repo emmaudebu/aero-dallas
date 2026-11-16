@@ -405,6 +405,11 @@ function aerodallas_quote_state() {
 	if ( empty( $state['values']['service'] ) && isset( $_GET['service'] ) ) {
 		$state['values']['service'] = sanitize_key( wp_unslash( $_GET['service'] ) );
 	}
+	foreach ( array( 'equipment', 'company' ) as $prefill ) {
+		if ( empty( $state['values'][ $prefill ] ) && isset( $_GET[ $prefill ] ) ) {
+			$state['values'][ $prefill ] = sanitize_text_field( wp_unslash( $_GET[ $prefill ] ) );
+		}
+	}
 	// phpcs:enable
 	return $state;
 }

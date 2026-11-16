@@ -1,7 +1,7 @@
 <?php
 /**
  * Numbered process steps.
- * Variants: "compact" (home page summary) and "timeline" (How We Work page).
+ * Variants: "band" (home page photo band) and "timeline" (How We Work page).
  *
  * @package aero-dallas
  */
@@ -12,7 +12,8 @@ $aerodallas_steps = aerodallas_items( 'aerodallas_step' );
 if ( ! $aerodallas_steps ) {
 	return;
 }
-$aerodallas_variant = ( $args['variant'] ?? 'compact' ) === 'timeline' ? 'timeline' : 'compact';
+$aerodallas_variant = ( $args['variant'] ?? 'band' ) === 'timeline' ? 'timeline' : 'band';
+$aerodallas_icons   = array( 'chat', 'magnifier', 'document', 'clipboard', 'wrench', 'handover', 'headset' );
 $aerodallas_total   = count( $aerodallas_steps );
 
 if ( 'timeline' === $aerodallas_variant ) :
@@ -48,27 +49,27 @@ if ( 'timeline' === $aerodallas_variant ) :
 	return;
 endif;
 ?>
-<section class="section section--navy process-summary" aria-labelledby="process-title">
-	<div class="container">
-		<header class="section-head section-head--split" data-reveal>
-			<div>
-				<?php if ( ! empty( $args['index'] ) ) : ?>
-					<p class="section-index"><span><?php echo esc_html( $args['index'] ); ?></span> <?php esc_html_e( 'Process', 'aero-dallas' ); ?></p>
-				<?php endif; ?>
-				<h2 class="section-title" id="process-title"><?php echo esc_html( $args['heading'] ?? __( 'How We Work', 'aero-dallas' ) ); ?></h2>
-				<?php if ( ! empty( $args['intro'] ) ) : ?>
-					<p class="section-intro"><?php echo esc_html( $args['intro'] ); ?></p>
-				<?php endif; ?>
-			</div>
-			<a class="btn btn--ghost-light" href="<?php echo esc_url( aerodallas_page_url( 'process' ) ); ?>"><?php esc_html_e( 'See the full process', 'aero-dallas' ); ?> <?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+<section class="band process-band" aria-labelledby="process-title">
+	<div class="band__bg" aria-hidden="true">
+		<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_process_image', 0 ), 'band-night-gate', array( 'sizes' => '100vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	</div>
+	<div class="container band__inner">
+		<header class="band__head" data-reveal>
+			<p class="eyebrow eyebrow--on-dark"><?php esc_html_e( 'Our Process', 'aero-dallas' ); ?></p>
+			<h2 class="section-title" id="process-title"><?php echo esc_html( $args['heading'] ?? __( 'How We Work', 'aero-dallas' ) ); ?></h2>
+			<?php if ( ! empty( $args['intro'] ) ) : ?>
+				<p class="section-intro"><?php echo esc_html( $args['intro'] ); ?></p>
+			<?php endif; ?>
 		</header>
 		<ol class="steps-row">
 			<?php foreach ( $aerodallas_steps as $aerodallas_i => $aerodallas_step ) : ?>
 				<li class="steps-row__item" data-reveal style="--reveal-delay: <?php echo esc_attr( (string) ( $aerodallas_i * 60 ) ); ?>ms">
+					<span class="steps-row__icon"><?php echo aerodallas_icon( aerodallas_item_icon( $aerodallas_step->ID, $aerodallas_i, $aerodallas_icons ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<span class="steps-row__num" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $aerodallas_i + 1 ) ); ?></span>
 					<h3 class="steps-row__title"><?php echo esc_html( get_the_title( $aerodallas_step ) ); ?></h3>
 				</li>
 			<?php endforeach; ?>
 		</ol>
+		<a class="btn btn--ghost-light" href="<?php echo esc_url( aerodallas_page_url( 'process' ) ); ?>"><?php esc_html_e( 'See the full process', 'aero-dallas' ); ?> <?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 	</div>
 </section>
