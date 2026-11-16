@@ -84,6 +84,14 @@ get_template_part(
 <?php endif; ?>
 
 <?php
-get_template_part( 'template-parts/why-choose', null, array( 'heading' => aerodallas_field( 'why_heading' ) ) );
+get_template_part(
+	'template-parts/why-choose',
+	null,
+	array(
+		'heading' => aerodallas_field( 'why_heading' ),
+		'media'   => false,
+		'mist'    => true,
+	)
+);
 get_template_part( 'template-parts/cta-band' );
 get_footer();

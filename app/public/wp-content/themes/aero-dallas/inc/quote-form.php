@@ -411,10 +411,14 @@ function aerodallas_quote_state() {
 
 /**
  * Keep the error and success pages out of search indexes.
+ *
+ * @param array $robots Robots directives.
+ * @return array
  */
-function aerodallas_quote_noindex() {
+function aerodallas_quote_noindex( $robots ) {
 	if ( isset( $_GET['quote'] ) || isset( $_GET['quote_error'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		echo '<meta name="robots" content="noindex">' . "\n";
+		$robots['noindex'] = true;
 	}
+	return $robots;
 }
-add_action( 'wp_head', 'aerodallas_quote_noindex', 2 );
+add_filter( 'wp_robots', 'aerodallas_quote_noindex' );

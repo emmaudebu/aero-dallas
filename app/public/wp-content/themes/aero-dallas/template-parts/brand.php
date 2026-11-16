@@ -18,5 +18,5 @@ if ( 'default' === $aerodallas_variant && has_custom_logo() ) {
 }
 ?>
 <a class="brand brand--<?php echo esc_attr( $aerodallas_variant ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>
-	<img src="<?php echo esc_url( AERODALLAS_URI . '/assets/img/brand/' . $aerodallas_file ); ?>" width="3246" height="1084" alt="<?php echo esc_attr( $aerodallas_label ); ?>">
+	<img src="<?php echo esc_url( AERODALLAS_URI . '/assets/img/brand/' . $aerodallas_file ); ?>" width="3246" height="1084" alt="<?php echo esc_attr( $aerodallas_label ); ?>"<?php echo 'white' === $aerodallas_variant ? ' loading="lazy"' : ''; ?>>
 </a>

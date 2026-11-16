@@ -221,7 +221,7 @@ function aerodallas_image( $attachment_id, $photo, $args = array() ) {
 	$srcset = array();
 	$first  = '';
 	$dims   = null;
-	foreach ( array( 640, 1024, 1600 ) as $w ) {
+	foreach ( array( 768, 480, 1024, 1600 ) as $w ) {
 		$rel = 'assets/img/photos/' . $photo . '-' . $w . '.webp';
 		if ( ! file_exists( AERODALLAS_DIR . '/' . $rel ) ) {
 			continue;

@@ -157,7 +157,8 @@
 		data.append( 'aq_ajax', '1' );
 		busy( true );
 
-		fetch( form.action, { method: 'POST', body: data, credentials: 'same-origin' } )
+		// getAttribute: the hidden input named "action" shadows form.action.
+		fetch( form.getAttribute( 'action' ), { method: 'POST', body: data, credentials: 'same-origin' } )
 			.then( function ( response ) {
 				return response.json();
 			} )

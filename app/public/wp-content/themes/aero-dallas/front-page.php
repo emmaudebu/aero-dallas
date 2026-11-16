@@ -39,7 +39,7 @@ $aerodallas_phone    = aerodallas_detail( 'phone' );
 		</div>
 		<div class="hero__media">
 			<div class="hero__frame">
-				<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_hero_image', 0 ), 'hero-ground-power', array( 'sizes' => '(min-width: 1024px) 40vw, 100vw', 'eager' => true, 'class' => 'hero__img' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+				<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_hero_image', 0 ), 'hero-ground-power', array( 'sizes' => '(min-width: 1200px) 520px, 100vw', 'eager' => true, 'class' => 'hero__img' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 			</div>
 			<?php if ( $aerodallas_services ) : ?>
 				<ul class="hero__tags" aria-label="<?php esc_attr_e( 'Service areas', 'aero-dallas' ); ?>">

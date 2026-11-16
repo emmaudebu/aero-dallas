@@ -85,7 +85,7 @@ function aerodallas_social_meta() {
 		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $desc ) );
 	}
 	$tags = array(
-		'og:type'        => is_front_page() ? 'website' : 'article',
+		'og:type'        => is_single() ? 'article' : 'website',
 		'og:site_name'   => get_bloginfo( 'name' ),
 		'og:title'       => $title,
 		'og:description' => $desc,
