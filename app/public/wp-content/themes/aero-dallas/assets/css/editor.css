@@ -1,0 +1,55 @@
+/* Editor styles: same fonts and text styles as the front end. */
+@font-face {
+	font-family: "Archivo Black";
+	src: url("../fonts/archivo-black-400.woff2") format("woff2");
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Open Sauce One";
+	src: url("../fonts/open-sauce-one-400.woff2") format("woff2");
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Open Sauce One";
+	src: url("../fonts/open-sauce-one-500.woff2") format("woff2");
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Open Sauce One";
+	src: url("../fonts/open-sauce-one-700.woff2") format("woff2");
+	font-weight: 600 700;
+	font-display: swap;
+}
+
+body {
+	color: #3d475a;
+	font-family: "Open Sauce One", system-ui, sans-serif;
+	font-size: 17px;
+	line-height: 1.65;
+}
+
+h1,
+h2 {
+	color: #152d63;
+	font-family: "Archivo Black", "Arial Black", sans-serif;
+	font-weight: 400;
+	line-height: 1.1;
+}
+
+h3,
+h4 {
+	color: #152d63;
+	font-family: "Open Sauce One", system-ui, sans-serif;
+	font-weight: 700;
+}
+
+a {
+	color: #152d63;
+}
+
+ul li::marker {
+	color: #fe7620;
+}

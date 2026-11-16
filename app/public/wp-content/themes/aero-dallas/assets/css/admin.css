@@ -1,0 +1,32 @@
+/* Admin: theme meta boxes and Site Content guide. */
+.aerodallas-field {
+	margin: 0 0 1.25em;
+}
+
+.aerodallas-field label strong {
+	display: inline-block;
+	margin-bottom: 4px;
+}
+
+.aerodallas-field .description {
+	display: block;
+	margin-top: 4px;
+}
+
+.aerodallas-guide .widefat th {
+	width: 180px;
+	font-weight: 600;
+}
+
+.aerodallas-guide .widefat td:nth-child(2) {
+	width: 110px;
+	white-space: nowrap;
+}
+
+.aerodallas-quote-table th {
+	width: 200px;
+}
+
+.aerodallas-quote-table td {
+	white-space: pre-wrap;
+}
