@@ -77,6 +77,7 @@ Notes:
 - **Service anchors** (`industrial`, `aviation`, `parts-supply`, `logistics`) are used in links such as `/services/#aviation` and to pre-select the service on the quote form (`/contact-us/?service=aviation#quote`).
 - **News**: the newest article is shown as a large feature card (a *sticky* post takes that place), the rest in a grid of 10 per page (Settings → Reading → *Blog pages show at most*). Articles have share links (LinkedIn, Facebook, X, email, and copy link on HTTPS), previous/next links and up to three related articles from the same topic. Comments are switched off on articles.
 - **Coming soon mode**: while it is on, visitors see an animated holding page with a live countdown to the launch date, the phone number, email and Instagram link (whichever are filled in) and the four services. Logged-in editors and administrators still see the full website, with an orange "Coming soon mode is on" reminder in the toolbar. To check the page while logged in, open the **Coming soon mode** section in the Customizer (the preview switches to it), or add `?coming-soon-preview=1` to any address. Visitors receive a 503 "temporarily unavailable" status with a Retry-After header, so search engines keep the site's rankings and return later; feeds return the same status. If *Open the website automatically* is on, the site opens itself at the launch time and visitors on the page are reloaded into it; otherwise the page says the launch is moments away until you switch the mode off. The countdown uses the site time zone (Settings → General) and the server's clock, so a wrong clock on a visitor's device does not affect it. Pages are sent with no-cache headers, but if a caching plugin or host cache is added later, clear it after switching the mode off.
+- **Flight path animation**: every hero (home, inner pages, services, News, articles, 404 and the coming soon page) has a dotted flight path with an aircraft flying along it. It comes from `template-parts/flight-path.php`; the aircraft stays parked for visitors who have reduced motion switched on, and pauses while the hero is scrolled out of view.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
 ## The Request a Quote form
@@ -120,7 +121,7 @@ aero-dallas/
 ├── page-templates/   about, services, how-we-work, policies, contact
 ├── index.php         news listing, topic and tag archives, article search
 ├── single.php        single article
-├── template-parts/   brand, page-header, page-hero, hero-panel, news-card, quick-quote,
+├── template-parts/   brand, page-header, page-hero, hero-panel, flight-path, news-card, quick-quote,
 │                     service-card, why-choose, process-steps, who-we-are, stats, testimonials,
 │                     insights, faq, cta-band, quote-form, contact-details, swoosh,
 │                     coming-soon (the complete coming soon page)

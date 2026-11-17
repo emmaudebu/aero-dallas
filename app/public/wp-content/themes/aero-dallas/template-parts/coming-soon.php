@@ -2,7 +2,7 @@
 /**
  * Coming soon page: a complete document served by inc/coming-soon.php.
  * Heading and text, a live countdown to the launch date, contact links and a
- * photo with an aircraft flying across the page.
+ * photo, with the shared flight path flying across the page.
  *
  * @package aero-dallas
  */
@@ -45,18 +45,7 @@ if ( $aerodallas_launch ) {
 	<div class="cs__sky" aria-hidden="true">
 		<span class="cs__glow cs__glow--one"></span>
 		<span class="cs__glow cs__glow--two"></span>
-		<svg class="cs-flight" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
-			<path id="cs-route" class="cs-flight__route" d="M-80 820C260 860 470 610 720 560S1120 360 1520 90"/>
-			<path class="cs-flight__route cs-flight__route--faint" d="M-80 300C240 210 520 330 760 250S1180 40 1520 -40"/>
-			<g class="cs-flight__plane">
-				<g transform="rotate(90) scale(1.6) translate(-12 -12)">
-					<?php echo strip_tags( aerodallas_icon( 'plane' ), '<path>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static icon path. ?>
-				</g>
-				<animateMotion dur="16s" begin="indefinite" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-					<mpath href="#cs-route" xlink:href="#cs-route"/>
-				</animateMotion>
-			</g>
-		</svg>
+		<?php get_template_part( 'template-parts/flight-path' ); ?>
 	</div>
 
 	<header class="cs__top">

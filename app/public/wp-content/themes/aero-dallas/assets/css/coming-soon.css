@@ -27,7 +27,7 @@ body.coming-soon {
 	margin-inline: auto;
 }
 
-/* Sky: grid, drifting glows and the flight path ---------------------------- */
+/* Sky: grid and drifting glows (the flight path comes from main.css) ------- */
 .cs__sky {
 	position: absolute;
 	inset: 0;
@@ -72,38 +72,6 @@ body.coming-soon {
 
 [data-theme="dark"] .cs__glow--two {
 	background: radial-gradient(circle, rgba(76, 116, 214, 0.3), rgba(76, 116, 214, 0) 65%);
-}
-
-.cs-flight {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.cs-flight__route {
-	fill: none;
-	stroke: var(--orange);
-	stroke-width: 2;
-	stroke-linecap: round;
-	stroke-dasharray: 2 12;
-	opacity: 0.55;
-	animation: cs-march 3s linear infinite;
-}
-
-.cs-flight__route--faint {
-	stroke: var(--heading);
-	opacity: 0.14;
-	animation-duration: 5s;
-}
-
-.cs-flight__plane {
-	visibility: hidden;
-	fill: var(--orange);
-}
-
-.cs-flight.is-flying .cs-flight__plane {
-	visibility: visible;
 }
 
 /* Top bar ------------------------------------------------------------------ */
@@ -615,12 +583,6 @@ body.coming-soon {
 @keyframes cs-drift {
 	to {
 		transform: translate3d(-6vmax, 5vmax, 0);
-	}
-}
-
-@keyframes cs-march {
-	to {
-		stroke-dashoffset: -140;
 	}
 }
 

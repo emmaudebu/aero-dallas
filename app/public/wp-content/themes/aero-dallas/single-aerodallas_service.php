@@ -35,6 +35,7 @@ $aerodallas_others  = array_filter(
 	<div class="band__bg" aria-hidden="true">
 		<?php echo aerodallas_image( (int) get_post_thumbnail_id(), $aerodallas_hero, array( 'sizes' => '100vw', 'eager' => true, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
+	<?php get_template_part( 'template-parts/flight-path' ); ?>
 	<div class="container service-hero__inner">
 		<nav class="breadcrumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'aero-dallas' ); ?>">
 			<ol>

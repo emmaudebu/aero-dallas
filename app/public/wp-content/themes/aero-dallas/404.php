@@ -11,6 +11,7 @@ get_header();
 ?>
 <section class="not-found">
 	<div class="page-header__grid" aria-hidden="true"></div>
+	<?php get_template_part( 'template-parts/flight-path' ); ?>
 	<div class="container not-found__inner">
 		<p class="not-found__code" aria-hidden="true">404</p>
 		<h1 class="not-found__title"><?php esc_html_e( 'This page could not be found', 'aero-dallas' ); ?></h1>

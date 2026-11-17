@@ -25,6 +25,7 @@ $aerodallas_services = aerodallas_items( 'aerodallas_service' );
 	<div class="hero__bg" aria-hidden="true">
 		<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_hero_image', 0 ), 'hero-jet', array( 'sizes' => '100vw', 'eager' => true, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 	</div>
+	<?php get_template_part( 'template-parts/flight-path' ); ?>
 	<div class="container hero__inner">
 		<div class="hero__content">
 			<?php aerodallas_eyebrow( aerodallas_field( 'hero_eyebrow' ) ); ?>

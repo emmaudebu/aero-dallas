@@ -1,6 +1,6 @@
 /**
- * AERO DALLAS — header, mobile menu, scroll reveal, article copy link and
- * policies TOC.
+ * AERO DALLAS — header, mobile menu, scroll reveal, hero flight path,
+ * article copy link and policies TOC.
  * Vanilla JS, loaded with defer.
  */
 ( function () {
@@ -137,6 +137,27 @@
 		} );
 	}
 	root.classList.add( 'reveal-ready' );
+
+	/* Hero flight path: fly the aircraft only while the hero is on screen. - */
+	if ( ! window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
+		document.querySelectorAll( '.flight-path' ).forEach( function ( svg ) {
+			var motion = svg.querySelector( 'animateMotion' );
+			if ( ! motion || typeof motion.beginElement !== 'function' ) {
+				return;
+			}
+			svg.classList.add( 'is-flying' );
+			motion.beginElement();
+			if ( hasIO ) {
+				new IntersectionObserver( function ( entries ) {
+					if ( entries[ 0 ].isIntersecting ) {
+						svg.unpauseAnimations();
+					} else {
+						svg.pauseAnimations();
+					}
+				} ).observe( svg );
+			}
+		} );
+	}
 
 	/* Articles: copy link button (shown only where the clipboard works). --- */
 	document.querySelectorAll( '[data-copy-link]' ).forEach( function ( button ) {

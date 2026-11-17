@@ -30,6 +30,7 @@ $aerodallas_class   = trim( 'page-hero ' . ( $args['class'] ?? '' ) );
 	<div class="page-hero__bg" aria-hidden="true">
 		<?php echo aerodallas_image( $aerodallas_thumb, (string) ( $args['photo'] ?? '' ), array( 'sizes' => '100vw', 'eager' => true, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 	</div>
+	<?php get_template_part( 'template-parts/flight-path' ); ?>
 	<div class="container page-hero__inner">
 		<div class="page-hero__content">
 			<nav class="crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'aero-dallas' ); ?>">

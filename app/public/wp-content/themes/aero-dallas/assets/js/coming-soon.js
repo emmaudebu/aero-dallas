@@ -1,20 +1,12 @@
 /**
- * AERO DALLAS — coming soon page: countdown to the launch date and the
- * aircraft flying across the page.
+ * AERO DALLAS — coming soon page: countdown to the launch date. The flight
+ * path is started by main.js.
  * Vanilla JS, loaded with defer.
  */
 ( function () {
 	'use strict';
 
 	var calm = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
-
-	/* Aircraft: only flies when motion is welcome. ------------------------ */
-	var flight = document.querySelector( '.cs-flight' );
-	var motion = flight && flight.querySelector( 'animateMotion' );
-	if ( motion && ! calm && typeof motion.beginElement === 'function' ) {
-		flight.classList.add( 'is-flying' );
-		motion.beginElement();
-	}
 
 	/* Countdown. ---------------------------------------------------------- */
 	var count = document.querySelector( '.cs-count[data-launch]' );

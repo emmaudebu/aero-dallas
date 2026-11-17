@@ -5191,3 +5191,50 @@ body.menu-open .action-bar {
 		padding: 1rem 1.1rem;
 	}
 }
+
+/* Flight path: dotted routes and an aircraft behind the hero content ------- */
+.flight-path {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.flight-path__route {
+	fill: none;
+	stroke: var(--orange);
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-dasharray: 2 12;
+	opacity: 0.55;
+	animation: flight-march 3s linear infinite;
+}
+
+.flight-path__route--faint {
+	stroke: var(--flight-faint, var(--heading));
+	opacity: 0.14;
+	animation-duration: 5s;
+}
+
+/* Heroes that stay dark in both modes. */
+.service-hero,
+.not-found {
+	--flight-faint: #fff;
+}
+
+.flight-path__plane {
+	visibility: hidden;
+	fill: var(--orange);
+}
+
+.flight-path.is-flying .flight-path__plane {
+	visibility: visible;
+}
+
+@keyframes flight-march {
+	to {
+		stroke-dashoffset: -140;
+	}
+}
