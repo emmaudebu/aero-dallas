@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AERODALLAS_VERSION', '1.2.0' );
+define( 'AERODALLAS_VERSION', '1.3.0' );
 define( 'AERODALLAS_DIR', get_template_directory() );
 define( 'AERODALLAS_URI', get_template_directory_uri() );
 
@@ -24,6 +24,7 @@ $aerodallas_modules = array(
 	'seo-schema',
 	'service-content',
 	'news',
+	'coming-soon',
 	'activation',
 );
 

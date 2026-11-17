@@ -28,6 +28,12 @@ Everything below must be confirmed by the business owner before the website goes
 - [ ] Choose the default appearance (light or dark) in Customize → Appearance
 - [ ] Optional sections stay hidden until real content exists: only add **confirmed** statistics, **approved** client testimonials, and enable "Latest Insights" once articles are published
 
+## Coming soon mode (optional)
+
+- [ ] To show a holding page before launch: Customize → AERO DALLAS — Company Details → **Coming soon mode**, set the launch date and time, and tick *Show the coming soon page to visitors*
+- [ ] Check the time zone in Settings → General before setting the launch time
+- [ ] On launch day, confirm the website opened (log out or use a private window); if *Open the website automatically* is off, untick *Show the coming soon page to visitors*
+
 ## News
 
 - [ ] Delete WordPress's sample "Hello world!" post (Posts) and the "Sample Page" (Pages)
