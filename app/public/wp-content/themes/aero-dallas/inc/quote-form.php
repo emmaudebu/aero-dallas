@@ -265,7 +265,9 @@ function aerodallas_quote_store_file( $post_id ) {
 }
 
 /**
- * Email the request to the notification address.
+ * Email the request to the notification address: the branded HTML email
+ * (template-parts/email-quote.php) with a plain-text version for clients
+ * that do not show HTML.
  *
  * @param int    $post_id       Request ID.
  * @param array  $values        Values.
@@ -274,7 +276,8 @@ function aerodallas_quote_store_file( $post_id ) {
  * @return bool
  */
 function aerodallas_quote_send_email( $post_id, $values, $service_label, $file_id ) {
-	$labels = aerodallas_quote_meta_labels();
+	$edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+	$labels   = aerodallas_quote_meta_labels();
 	$lines  = array();
 	foreach ( $values as $key => $value ) {
 		if ( 'service' === $key ) {
@@ -289,16 +292,43 @@ function aerodallas_quote_send_email( $post_id, $values, $service_label, $file_i
 		$lines[] = $labels[ $key ] . ': ' . ( '' === $value ? '—' : $value );
 	}
 	$attachments = array();
+	$file        = array();
 	if ( $file_id ) {
 		$lines[]  = '';
 		$lines[]  = __( 'Specifications file:', 'aero-dallas' ) . ' ' . wp_get_attachment_url( $file_id );
 		$path     = get_attached_file( $file_id );
-		if ( $path && file_exists( $path ) ) {
+		$exists   = $path && file_exists( $path );
+		if ( $exists ) {
 			$attachments[] = $path;
 		}
+		$file = array(
+			// Without the random prefix added in aerodallas_quote_store_file().
+			'name'     => preg_replace( '/^[A-Za-z0-9]{12}-/', '', wp_basename( (string) $path ) ),
+			'url'      => wp_get_attachment_url( $file_id ),
+			'size'     => $exists ? size_format( filesize( $path ) ) : '',
+			'type'     => strtoupper( (string) pathinfo( (string) $path, PATHINFO_EXTENSION ) ),
+			'attached' => $exists,
+		);
 	}
 	$lines[] = '';
-	$lines[] = __( 'View in WordPress:', 'aero-dallas' ) . ' ' . admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+	$lines[] = __( 'View in WordPress:', 'aero-dallas' ) . ' ' . $edit_url;
+
+	ob_start();
+	get_template_part(
+		'template-parts/email-quote',
+		null,
+		array(
+			'post_id'    => $post_id,
+			'values'     => $values,
+			'service'    => $service_label,
+			'file'       => $file,
+			'file_error' => (string) get_post_meta( $post_id, '_quote_file_error', true ),
+			'edit_url'   => $edit_url,
+			'source'     => (string) get_post_meta( $post_id, '_quote_source', true ),
+			'received'   => (int) get_post_time( 'U', true, $post_id ),
+		)
+	);
+	$html = (string) ob_get_clean();
 
 	$subject = sprintf(
 		/* translators: 1: service, 2: name. */
@@ -306,12 +336,21 @@ function aerodallas_quote_send_email( $post_id, $values, $service_label, $file_i
 		$service_label,
 		$values['name']
 	);
-	$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 	if ( is_email( $values['email'] ) ) {
 		$headers[] = sprintf( 'Reply-To: %s <%s>', str_replace( array( '<', '>', '"', "\r", "\n" ), '', $values['name'] ), $values['email'] );
 	}
 
-	return wp_mail( aerodallas_quote_recipient(), wp_specialchars_decode( $subject ), implode( "\n", $lines ), $headers, $attachments );
+	// Plain-text part for clients that do not show HTML.
+	$text     = implode( "\n", $lines );
+	$add_text = static function ( $phpmailer ) use ( $text ) {
+		$phpmailer->AltBody = $text; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+	};
+	add_action( 'phpmailer_init', $add_text );
+	$sent = wp_mail( aerodallas_quote_recipient(), wp_specialchars_decode( $subject ), $html, $headers, $attachments );
+	remove_action( 'phpmailer_init', $add_text );
+
+	return $sent;
 }
 
 /**

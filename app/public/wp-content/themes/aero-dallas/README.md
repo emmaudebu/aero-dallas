@@ -90,7 +90,7 @@ The form is on the Contact Us page (`/contact-us/#quote`). Every "Request a Quot
 2. Spam protection without a CAPTCHA: a WordPress nonce, a hidden honeypot field, a signed time check (submissions faster than 3 seconds or older than 24 hours are rejected), and a limit of 5 submissions per visitor per 10 minutes.
 3. The request is saved as a private **Quote Request** in the admin (left menu → **Quote Requests**). The list shows name, company, contact details, service, file and date. New requests are counted in a badge next to the menu item.
 4. Any uploaded file is stored in the Media Library, attached to the request, and given a random prefix so its address cannot be guessed. Allowed types are PDF, DOC, DOCX, XLS, XLSX, JPG and PNG, up to 10 MB. The real file type is verified, not only the extension.
-5. An email with all details goes to the **Quote notification email**, or to the site admin email if that is empty. The uploaded file is attached and linked, and *Reply-To* is set to the customer's address.
+5. An email with all details goes to the **Quote notification email**, or to the site admin email if that is empty. It is a branded HTML email (`template-parts/email-quote.php`): the customer's name and service at the top with *Reply* and *Call* buttons, then the contact details, the request and description, the file, and a button that opens the request in WordPress. A plain-text version is included for email apps that do not show HTML. The uploaded file is attached and linked, and *Reply-To* is set to the customer's address, so pressing Reply answers the customer. The logo in the email is loaded from the website, so it shows once the site is online.
 
 With JavaScript the form submits in place and shows inline messages. Without JavaScript it falls back to a normal form post with the same validation and messages.
 
@@ -124,7 +124,7 @@ aero-dallas/
 ├── template-parts/   brand, page-header, page-hero, hero-panel, flight-path, news-card, quick-quote,
 │                     service-card, why-choose, process-steps, who-we-are, stats, testimonials,
 │                     insights, faq, cta-band, quote-form, contact-details, swoosh,
-│                     coming-soon (the complete coming soon page)
+│                     coming-soon (the complete coming soon page), email-quote (quote email)
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
 │                     cpt-quote-request, quote-form, seo-schema, service-content, news,
 │                     coming-soon, activation
@@ -164,3 +164,5 @@ Version 1.1.0 gives each service its own page. On the first page load after upda
 Version 1.2.0 adds the News section. On the first page load after updating, it creates the News page (unless one exists), makes it the posts page if none was set, adds it to the header and footer menus before Contact Us, and creates the article topics.
 
 Version 1.3.0 adds coming soon mode. It is off until you switch it on in the Customizer, so updating changes nothing on the live site.
+
+Version 1.3.1 sends quote request emails as a branded HTML email instead of plain text. Nothing needs to be set up.
