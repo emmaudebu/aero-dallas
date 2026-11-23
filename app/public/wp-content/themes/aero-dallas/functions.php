@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AERODALLAS_VERSION', '1.8.2' );
+define( 'AERODALLAS_VERSION', '1.8.3' );
 define( 'AERODALLAS_DIR', get_template_directory() );
 define( 'AERODALLAS_URI', get_template_directory_uri() );
 
