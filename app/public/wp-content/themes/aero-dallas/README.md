@@ -87,7 +87,7 @@ Notes:
   - **Text sizes**: heading and paragraph size in pixels on large screens (tablets scale them down), and a separate heading size for phones.
   - **Slideshow: effect & timing**: effect (fade, slide across, zoom and fade, rise up), time on each slide, transition speed, automatic changes on or off, thumbnails on or off, caption bar on or off, and the caption link text.
   - **Slide 1–8**: show or hide each slide, its photo (empty keeps the default photo), title, tag, link (empty opens the quote form with the title filled in) and whether the photo fills the frame or is shown whole on white. Slides 7 and 8 are empty until you choose a photo and tick *Show this slide*.
-  Visitors with reduced motion switched on see a still photo and can use the thumbnails. On phones and small tablets everything in the hero is centred; on phones the photo frame is also taller, the caption sits in a bar under the photo instead of over it, and the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
+  Visitors with reduced motion switched on see a still photo and can use the thumbnails. On phones and small tablets everything in the hero is centred, with the two buttons side by side; on phones the photo frame is also taller, the caption sits in a bar under the photo instead of over it, and the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
 ## The Request a Quote form

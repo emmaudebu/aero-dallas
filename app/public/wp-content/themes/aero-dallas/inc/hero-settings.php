@@ -32,7 +32,7 @@ function aerodallas_hero_defaults() {
 		'hero_btn2_label' => __( 'Explore Our Services', 'aero-dallas' ),
 		'hero_btn2_url'   => '',
 		'hero_title_size' => 60,
-		'hero_title_size_mobile' => 30,
+		'hero_title_size_mobile' => 32,
 		'hero_lead_size'  => 20,
 		'hero_effect'     => 'fade',
 		'hero_interval'   => 5,
