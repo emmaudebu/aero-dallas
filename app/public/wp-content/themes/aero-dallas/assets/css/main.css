@@ -1220,14 +1220,11 @@ body.menu-open {
 		justify-content: safe center;
 	}
 
+	/* The panel sits in the middle; its list reads from the left. */
 	.hero--showcase .hero-sectors {
 		width: 100%;
 		margin-inline: auto;
-		text-align: center;
-	}
-
-	.hero--showcase .hero-sectors__item a {
-		justify-content: center;
+		text-align: left;
 	}
 }
 
