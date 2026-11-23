@@ -444,6 +444,9 @@ function aerodallas_upgrade() {
 	if ( version_compare( $version, '1.6.0', '<' ) ) {
 		aerodallas_upgrade_service_photos();
 	}
+	if ( version_compare( $version, '1.8.0', '<' ) ) {
+		aerodallas_upgrade_hero_photo();
+	}
 	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
 	flush_rewrite_rules();
 }
@@ -606,6 +609,26 @@ function aerodallas_upgrade_service_photos() {
 			update_post_meta( $service->ID, '_aerodallas_hero_photo', $details[ $anchor ]['hero_photo'] );
 		}
 	}
+}
+
+/**
+ * 1.8.0: the home hero is set up under Customize → Home Hero. A home hero
+ * photo chosen earlier under Photos becomes the first free slide.
+ */
+function aerodallas_upgrade_hero_photo() {
+	$photo = (int) get_theme_mod( 'aerodallas_hero_image', 0 );
+	if ( ! $photo ) {
+		return;
+	}
+	foreach ( aerodallas_hero_slot_defaults() as $i => $slot ) {
+		$n = $i + 1;
+		if ( '' === $slot['photo'] && ! get_theme_mod( "aerodallas_hs{$n}_image", 0 ) ) {
+			set_theme_mod( "aerodallas_hs{$n}_image", $photo );
+			set_theme_mod( "aerodallas_hs{$n}_show", true );
+			break;
+		}
+	}
+	remove_theme_mod( 'aerodallas_hero_image' );
 }
 
 /**

@@ -145,10 +145,11 @@
 		var controls = showcase.querySelector( '[data-showcase-controls]' );
 		var pause = showcase.querySelector( '[data-showcase-pause]' );
 		var calm = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
-		var time = 5000;
+		var time = Number( showcase.getAttribute( 'data-interval' ) ) || 5000;
+		var autoplay = showcase.getAttribute( 'data-autoplay' ) !== '0';
 		var timer = 0;
 		var now = 0;
-		var paused = calm;
+		var paused = calm || ! autoplay;
 		var held = false;
 		var seen = true;
 		if ( slides.length < 2 || ! controls ) {
@@ -156,8 +157,10 @@
 		}
 
 		var show = function ( index ) {
+			var before = now;
 			now = ( index + slides.length ) % slides.length;
 			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-prev', i === before && i !== now );
 				slide.classList.toggle( 'is-active', i === now );
 			} );
 			thumbs.forEach( function ( thumb, i ) {
@@ -207,7 +210,9 @@
 		stage.addEventListener( 'focusin', hold );
 		stage.addEventListener( 'focusout', release );
 
-		if ( pause ) {
+		if ( pause && ! autoplay ) {
+			pause.hidden = true;
+		} else if ( pause ) {
 			pause.setAttribute( 'aria-pressed', paused ? 'true' : 'false' );
 			pause.addEventListener( 'click', function () {
 				paused = ! paused;

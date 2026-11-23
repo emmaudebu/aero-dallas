@@ -49,7 +49,7 @@ function aerodallas_meta_description() {
 		$id   = get_queried_object_id();
 		$desc = (string) get_post_meta( $id, '_aerodallas_seo_description', true );
 		if ( '' === $desc && is_front_page() ) {
-			$desc = aerodallas_field( 'hero_lead', $id );
+			$desc = aerodallas_hero( 'hero_lead' );
 		}
 		if ( '' === $desc && is_singular( 'aerodallas_service' ) ) {
 			$desc = aerodallas_service_intro( get_post( $id ) );

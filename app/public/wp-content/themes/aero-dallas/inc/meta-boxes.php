@@ -27,24 +27,8 @@ function aerodallas_page_fields() {
 
 	return array(
 		'front'    => array(
-			'hero_eyebrow'     => array_merge( $eyebrow, array( 'default' => __( 'Industrial & Aviation Support', 'aero-dallas' ) ) ),
-			'hero_heading'     => array(
-				'label'   => __( 'Hero heading', 'aero-dallas' ),
-				'type'    => 'text',
-				'default' => __( 'Where Industrial Expertise Meets Dependable Support.', 'aero-dallas' ),
-			),
-			'hero_highlight'   => array(
-				'label'   => __( 'Hero heading highlight (words from the heading shown in orange)', 'aero-dallas' ),
-				'type'    => 'text',
-				'default' => __( 'Dependable Support.', 'aero-dallas' ),
-			),
-			'hero_lead'        => array(
-				'label'   => __( 'Hero lead paragraph', 'aero-dallas' ),
-				'type'    => 'textarea',
-				'default' => __( 'AERO DALLAS INDUSTRIAL provides specialised industrial support solutions across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
-			),
 			'hero_text'        => array(
-				'label'   => __( 'Hero supporting paragraph', 'aero-dallas' ),
+				'label'   => __( 'Core services intro paragraph', 'aero-dallas' ),
 				'type'    => 'textarea',
 				'default' => __( 'We deliver dependable technical assistance, machinery repairs, equipment support, and essential aviation ground support solutions that help businesses maintain operational efficiency. Our commitment to reliability, technical excellence, and professional service ensures that your equipment and operations receive the support they need.', 'aero-dallas' ),
 			),
@@ -319,7 +303,7 @@ function aerodallas_page_sections_box( $post ) {
 	$fields = aerodallas_page_fields()[ $key ];
 
 	$notes = array(
-		'front'    => __( 'The home page is built from these fields plus Site Content (services, steps, why-choose points, FAQs). The main editor content of this page is not shown.', 'aero-dallas' ),
+		'front'    => __( 'The home page is built from these fields plus Site Content (services, steps, why-choose points, FAQs). The top section (heading, text, buttons and equipment slideshow) is edited in Appearance → Customize → Home Hero. The main editor content of this page is not shown.', 'aero-dallas' ),
 		'services' => __( 'The main editor content is the intro shown in the hero. The four service sections come from Site Content → Services.', 'aero-dallas' ),
 		'process'  => __( 'The main editor content is the intro shown in the hero. The steps come from Site Content → Process Steps.', 'aero-dallas' ),
 		'policies' => __( 'The main editor content holds the policies. Each Heading block becomes an entry in the table of contents; set its HTML anchor (Advanced panel) to control the link, e.g. "privacy".', 'aero-dallas' ),

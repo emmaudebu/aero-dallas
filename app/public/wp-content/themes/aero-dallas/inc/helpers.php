@@ -322,61 +322,6 @@ function aerodallas_hero_sectors() {
 }
 
 /**
- * Home hero showcase: the equipment photos shown in turn beside the
- * heading, each linked to the quote form. The Customizer's home hero photo,
- * when set, is shown first.
- *
- * @return array<int,array{attachment:int,photo:string,label:string,category:string,fit:string,url:string}>
- */
-function aerodallas_hero_showcase() {
-	$categories = array(
-		'aviation'   => __( 'Aviation', 'aero-dallas' ),
-		'industrial' => __( 'Industrial', 'aero-dallas' ),
-	);
-	$items      = array_filter(
-		aerodallas_equipment(),
-		static function ( $item ) {
-			return $item['hero'] > 0;
-		}
-	);
-	usort(
-		$items,
-		static function ( $a, $b ) {
-			return $a['hero'] <=> $b['hero'];
-		}
-	);
-	$slides = array();
-	$custom = (int) get_theme_mod( 'aerodallas_hero_image', 0 );
-	if ( $custom && wp_attachment_is_image( $custom ) ) {
-		$slides[] = array(
-			'attachment' => $custom,
-			'photo'      => '',
-			'label'      => '',
-			'category'   => '',
-			'fit'        => 'cover',
-			'url'        => '',
-		);
-	}
-	foreach ( $items as $item ) {
-		$slides[] = array(
-			'attachment' => 0,
-			'photo'      => $item['photo'],
-			'label'      => $item['label'],
-			'category'   => $categories[ $item['service'] ] ?? '',
-			'fit'        => $item['fit'],
-			'url'        => add_query_arg(
-				array(
-					'service'   => $item['service'],
-					'equipment' => rawurlencode( $item['label'] ),
-				),
-				aerodallas_page_url( 'contact' )
-			) . '#quote',
-		);
-	}
-	return $slides;
-}
-
-/**
  * Uppercase letter for a zero-based index (A, B, C ...).
  *
  * @param int $index Index.

@@ -45,7 +45,8 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Phone, email, address, hours, regions served, Instagram | Appearance → Customize → **AERO DALLAS INDUSTRIAL — Company Details → Contact details** |
 | Where quote requests are emailed | Same panel → **Quote notification email** |
 | The quote call-to-action band (heading and text) | Same panel → **Quote call-to-action band** |
-| Home hero photo, About photo, Vision & mission photo | Same panel → **Photos** |
+| Home hero heading, text, buttons, text sizes, slides and slideshow effect | Customize → **Home Hero** |
+| About photo, Vision & mission photo | AERO DALLAS INDUSTRIAL — Company Details → **Photos** |
 | Inner page hero photo (About, Services, How We Work, Policies, Contact) | Set a **Featured image** on the page |
 | Inner page hero heading, orange highlight and intro | Pages → edit the page → "Page sections" box (**Page heading**, **Heading highlight**, **Hero intro paragraph**). On Services, How We Work and Contact the intro is the page's main editor content. |
 | Services (name, home card title, short text, detail list, photo, anchor) | **Site Content → Services** |
@@ -81,7 +82,12 @@ Notes:
 - **Health, Safety & Quality**: the full policy is section F on the Policies page (edit it there like the other policies). The Home and About pages show a summary from `template-parts/hsq.php`: the introduction, "Our Commitment" and the six principles (first paragraph of each), with a **Read Our Full Policy** button that opens section F. The summary text lives in `inc/hsq.php`; its heading can be changed under **Page sections** on the Home and About pages.
 - **Equipment catalogue**: the home page shows four featured items (with a link to the full list), the Aviation Ground Support and Industrial Support pages show their own equipment, and the Parts & Equipment Supply page shows everything with **All / Aviation / Industrial** filters. Each card opens the quote form with the service and the equipment already filled in. Product photos on a white background are shown whole on a white panel; other photos fill the card. The list (name, photo, category, whether it is featured on the home page) is `aerodallas_equipment()` in `inc/service-content.php`; photos are in `assets/img/photos/eq-*.webp`.
 - **Photo mosaics**: the home "Why Choose" and "Who We Are" sections and the About page intro show three photos as rounded rectangles (one large, two stacked) with short captions, from `template-parts/photo-mosaic.php`. The **About / "Who We Are" photo** in the Customizer replaces the large photo.
-- **Home hero**: the heading and buttons sit beside a large equipment showcase that rotates through the company's equipment photos every 5 seconds, each with its category, name and a **Request a quote** link (the quote form opens with that equipment filled in). Thumbnails below the photo switch between them, pointing at the photo holds it, and a pause button stops the rotation; visitors with reduced motion switched on see the first photo and can use the thumbnails. The photos shown and their order come from the `hero` value in `aerodallas_equipment()` (`inc/service-content.php`). A **Home hero photo** set in Customize → … → Photos is shown first. On phones, the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
+- **Home hero**: the heading and buttons sit beside a large equipment showcase. Everything in it is set in **Appearance → Customize → Home Hero** (the preview switches to the home page):
+  - **Heading, text & buttons**: small label, heading, the words shown in orange, the paragraph, and the text and link of both buttons (empty text hides a button; empty link uses About Us / Services).
+  - **Text sizes**: heading and paragraph size in pixels on large screens; smaller screens scale them down.
+  - **Slideshow: effect & timing**: effect (fade, slide across, zoom and fade, rise up), time on each slide, transition speed, automatic changes on or off, thumbnails on or off, caption bar on or off, and the caption link text.
+  - **Slide 1–8**: show or hide each slide, its photo (empty keeps the default photo), title, tag, link (empty opens the quote form with the title filled in) and whether the photo fills the frame or is shown whole on white. Slides 7 and 8 are empty until you choose a photo and tick *Show this slide*.
+  Visitors with reduced motion switched on see a still photo and can use the thumbnails. On phones, the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
 ## The Request a Quote form
@@ -132,7 +138,7 @@ aero-dallas/
 │                     photo-mosaic
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
 │                     cpt-quote-request, quote-form, seo-schema, service-content, news,
-│                     coming-soon, hsq, activation
+│                     coming-soon, hsq, hero-settings, activation
 └── assets/           css, js, fonts, img/brand, img/photos
 ```
 
@@ -187,3 +193,5 @@ Version 1.5.0 adds the full Health, Safety & Quality policy. On the first page l
 Version 1.6.0 adds equipment photos: an equipment gallery on the Aviation Ground Support, Industrial Support and Parts & Equipment Supply pages, new hero photos on those three pages, and the pushback tractor as the aviation photo in the home hero. On the first page load after updating, each of those three services gets its new hero photo only if it still has the original one; a featured image set on a service still replaces it.
 
 Version 1.7.0 adds the company's own equipment photos: a home page equipment section, a filterable equipment catalogue on the Parts & Equipment Supply page, a redesigned home hero with a large equipment showcase of those photos, and rectangular photo mosaics in place of the circular photo clusters. Nothing needs to be set up.
+
+Version 1.8.0 adds **Customize → Home Hero** for the home page hero. The hero heading, text and highlight move there from the Home page's "Page sections" box and keep what you had saved. A home hero photo chosen earlier under Photos becomes the first empty slide.

@@ -195,7 +195,6 @@ function aerodallas_customize_register( $wp_customize ) {
 		)
 	);
 	$photos = array(
-		'hero_image'  => __( 'Home hero photo', 'aero-dallas' ),
 		'about_image' => __( 'About / "Who We Are" photo', 'aero-dallas' ),
 		'detail_image' => __( 'Vision & mission photo (About page)', 'aero-dallas' ),
 		'process_image' => __( '"How We Work" band background', 'aero-dallas' ),

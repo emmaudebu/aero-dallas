@@ -1120,10 +1120,15 @@ body.menu-open {
 	.hero__inner {
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
 	}
+}
 
-	.hero--showcase .hero__title {
-		font-size: clamp(2.6rem, 0.9rem + 2.9vw, 3.75rem);
-	}
+/* Sizes from Customize → Home Hero → Text sizes, scaled down on small screens. */
+.hero--showcase .hero__title {
+	font-size: clamp(calc(var(--hero-title, 60px) * 0.62), calc(var(--hero-title, 60px) * 0.25 + 3vw), var(--hero-title, 60px));
+}
+
+.hero--showcase .hero__lead {
+	font-size: clamp(calc(var(--hero-lead, 20px) * 0.85), calc(var(--hero-lead, 20px) * 0.8 + 0.35vw), var(--hero-lead, 20px));
 }
 
 .showcase {
@@ -1160,20 +1165,71 @@ body.menu-open {
 	box-shadow: 0 40px 80px -28px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
+/* Effects (Customize → Home Hero → Slideshow): fade (default), slide,
+   zoom and rise. --showcase-speed is the transition time. */
 .showcase__slide {
 	position: absolute;
 	inset: 0;
 	margin: 0;
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.9s var(--ease), visibility 0s linear 0.9s;
+	transition: opacity var(--showcase-speed, 0.9s) var(--ease), transform var(--showcase-speed, 0.9s) var(--ease), visibility 0s linear var(--showcase-speed, 0.9s);
 }
 
 .showcase__slide.is-active {
 	z-index: 1;
 	opacity: 1;
 	visibility: visible;
-	transition: opacity 0.9s var(--ease), visibility 0s;
+	transform: none;
+	transition: opacity var(--showcase-speed, 0.9s) var(--ease), transform var(--showcase-speed, 0.9s) var(--ease), visibility 0s;
+}
+
+.showcase--zoom .showcase__slide {
+	transform: scale(1.12);
+}
+
+.showcase--rise .showcase__slide {
+	transform: translateY(12%);
+}
+
+/* Slide: the next photo comes in from the right and pushes the last one out. */
+.showcase--slide .showcase__slide {
+	opacity: 1;
+	transform: translateX(100%);
+	transition: none;
+}
+
+.showcase--slide .showcase__slide.is-active,
+.showcase--slide .showcase__slide.is-prev {
+	visibility: visible;
+	transition: transform var(--showcase-speed, 0.9s) var(--ease);
+}
+
+.showcase--slide .showcase__slide.is-prev {
+	transform: translateX(-100%);
+}
+
+/* The photo on show always sits in place, whatever the effect. */
+.showcase .showcase__slide.is-active {
+	transform: none;
+}
+
+.showcase--no-thumbs .showcase__thumbs {
+	visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.showcase .showcase__slide,
+	.showcase .showcase__slide.is-prev {
+		opacity: 0;
+		transform: none;
+		transition: opacity 0.2s linear, visibility 0s linear 0.2s;
+	}
+
+	.showcase .showcase__slide.is-active {
+		opacity: 1;
+		transition: opacity 0.2s linear, visibility 0s;
+	}
 }
 
 .showcase__media {
@@ -1352,6 +1408,10 @@ body.menu-open {
 	background: var(--surface);
 	color: var(--heading);
 	cursor: pointer;
+}
+
+.showcase__pause[hidden] {
+	display: none;
 }
 
 .showcase__pause:hover {

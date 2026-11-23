@@ -21,9 +21,14 @@ the_post();
 $aerodallas_services = aerodallas_items( 'aerodallas_service' );
 $aerodallas_sectors  = aerodallas_hero_sectors();
 $aerodallas_showcase = aerodallas_hero_showcase();
+$aerodallas_buttons  = array(
+	array( aerodallas_hero( 'hero_btn1_label' ), aerodallas_hero( 'hero_btn1_url' ), aerodallas_page_url( 'about' ) ),
+	array( aerodallas_hero( 'hero_btn2_label' ), aerodallas_hero( 'hero_btn2_url' ), aerodallas_page_url( 'services' ) ),
+);
+$aerodallas_captions = (bool) aerodallas_hero( 'hero_captions' );
 ?>
 
-<section class="hero hero--showcase" aria-labelledby="hero-title">
+<section class="hero hero--showcase" aria-labelledby="hero-title" style="<?php echo esc_attr( sprintf( '--hero-title: %dpx; --hero-lead: %dpx;', aerodallas_hero( 'hero_title_size' ), aerodallas_hero( 'hero_lead_size' ) ) ); ?>">
 	<div class="hero__backdrop" aria-hidden="true">
 		<span class="hero__glow hero__glow--a"></span>
 		<span class="hero__glow hero__glow--b"></span>
@@ -31,33 +36,45 @@ $aerodallas_showcase = aerodallas_hero_showcase();
 	<?php get_template_part( 'template-parts/flight-path' ); ?>
 	<div class="container hero__inner">
 		<div class="hero__content">
-			<?php aerodallas_eyebrow( aerodallas_field( 'hero_eyebrow' ) ); ?>
-			<h1 class="hero__title" id="hero-title"><?php echo aerodallas_highlight( aerodallas_field( 'hero_heading' ), aerodallas_field( 'hero_highlight' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h1>
-			<?php if ( aerodallas_field( 'hero_lead' ) ) : ?>
-				<p class="hero__lead"><?php echo esc_html( aerodallas_field( 'hero_lead' ) ); ?></p>
+			<?php aerodallas_eyebrow( aerodallas_hero( 'hero_eyebrow' ) ); ?>
+			<h1 class="hero__title" id="hero-title"><?php echo aerodallas_highlight( aerodallas_hero( 'hero_heading' ), aerodallas_hero( 'hero_highlight' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h1>
+			<?php if ( aerodallas_hero( 'hero_lead' ) ) : ?>
+				<p class="hero__lead"><?php echo esc_html( aerodallas_hero( 'hero_lead' ) ); ?></p>
 			<?php endif; ?>
-			<div class="hero__actions">
-				<a class="btn btn--primary btn--lg" href="<?php echo esc_url( aerodallas_page_url( 'about' ) ); ?>"><?php esc_html_e( 'About Us', 'aero-dallas' ); ?></a>
-				<a class="hero__explore" href="<?php echo esc_url( aerodallas_page_url( 'services' ) ); ?>">
-					<span class="hero__explore-icon"><?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<?php esc_html_e( 'Explore Our Services', 'aero-dallas' ); ?>
-				</a>
-			</div>
+			<?php if ( $aerodallas_buttons[0][0] || $aerodallas_buttons[1][0] ) : ?>
+				<div class="hero__actions">
+					<?php if ( $aerodallas_buttons[0][0] ) : ?>
+						<a class="btn btn--primary btn--lg" href="<?php echo esc_url( $aerodallas_buttons[0][1] ? $aerodallas_buttons[0][1] : $aerodallas_buttons[0][2] ); ?>"><?php echo esc_html( $aerodallas_buttons[0][0] ); ?></a>
+					<?php endif; ?>
+					<?php if ( $aerodallas_buttons[1][0] ) : ?>
+						<a class="hero__explore" href="<?php echo esc_url( $aerodallas_buttons[1][1] ? $aerodallas_buttons[1][1] : $aerodallas_buttons[1][2] ); ?>">
+							<span class="hero__explore-icon"><?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<?php echo esc_html( $aerodallas_buttons[1][0] ); ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( $aerodallas_showcase ) : ?>
-			<div class="showcase" data-showcase>
+			<div class="showcase showcase--<?php echo esc_attr( aerodallas_hero( 'hero_effect' ) ); ?><?php echo aerodallas_hero( 'hero_thumbs' ) ? '' : ' showcase--no-thumbs'; ?>" data-showcase data-interval="<?php echo esc_attr( (string) ( (int) aerodallas_hero( 'hero_interval' ) * 1000 ) ); ?>" data-autoplay="<?php echo aerodallas_hero( 'hero_autoplay' ) ? '1' : '0'; ?>" style="<?php echo esc_attr( sprintf( '--showcase-speed: %sms;', (string) round( (float) aerodallas_hero( 'hero_speed' ) * 1000 ) ) ); ?>">
 				<div class="showcase__stage">
 					<?php foreach ( $aerodallas_showcase as $aerodallas_i => $aerodallas_item ) : ?>
 						<figure class="showcase__slide showcase__slide--<?php echo esc_attr( $aerodallas_item['fit'] ); ?><?php echo 0 === $aerodallas_i ? ' is-active' : ''; ?>" data-showcase-slide>
 							<span class="showcase__media">
 								<?php echo aerodallas_image( $aerodallas_item['attachment'], $aerodallas_item['photo'], array( 'class' => 'showcase__img', 'sizes' => '(min-width: 1100px) 680px, 100vw', 'eager' => 0 === $aerodallas_i, 'alt' => $aerodallas_item['label'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 							</span>
-							<?php if ( $aerodallas_item['label'] ) : ?>
+							<?php if ( $aerodallas_captions && ( $aerodallas_item['label'] || $aerodallas_item['category'] ) ) : ?>
 								<figcaption class="showcase__caption">
-									<span class="showcase__tag"><?php echo esc_html( $aerodallas_item['category'] ); ?></span>
-									<span class="showcase__title"><?php echo esc_html( $aerodallas_item['label'] ); ?></span>
-									<a class="showcase__link" href="<?php echo esc_url( $aerodallas_item['url'] ); ?>"><?php esc_html_e( 'Request a quote', 'aero-dallas' ); ?> <?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="screen-reader-text"> <?php echo esc_html( $aerodallas_item['label'] ); ?></span></a>
+									<?php if ( $aerodallas_item['category'] ) : ?>
+										<span class="showcase__tag"><?php echo esc_html( $aerodallas_item['category'] ); ?></span>
+									<?php endif; ?>
+									<?php if ( $aerodallas_item['label'] ) : ?>
+										<span class="showcase__title"><?php echo esc_html( $aerodallas_item['label'] ); ?></span>
+									<?php endif; ?>
+									<?php if ( $aerodallas_item['url'] && aerodallas_hero( 'hero_link_text' ) ) : ?>
+										<a class="showcase__link" href="<?php echo esc_url( $aerodallas_item['url'] ); ?>"><?php echo esc_html( aerodallas_hero( 'hero_link_text' ) ); ?> <?php echo aerodallas_icon( 'arrow-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span class="screen-reader-text"> <?php echo esc_html( $aerodallas_item['label'] ); ?></span></a>
+									<?php endif; ?>
 								</figcaption>
 							<?php endif; ?>
 						</figure>
