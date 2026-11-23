@@ -1131,6 +1131,62 @@ body.menu-open {
 	font-size: clamp(calc(var(--hero-lead, 20px) * 0.85), calc(var(--hero-lead, 20px) * 0.8 + 0.35vw), var(--hero-lead, 20px));
 }
 
+@media (max-width: 599px) {
+	.hero--showcase .hero__title {
+		font-size: var(--hero-title-phone, 30px);
+		line-height: 1.08;
+	}
+
+	.hero--showcase .hero__lead {
+		margin-top: 1rem;
+		font-size: 1rem;
+	}
+
+	.hero--showcase .hero__actions {
+		margin-top: 1.5rem;
+	}
+}
+
+/* Phones and small tablets: everything in the hero is centred. */
+@media (max-width: 899px) {
+	.hero--showcase .hero__content {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.hero--showcase .hero__lead {
+		margin-inline: auto;
+	}
+
+	.hero--showcase .hero__actions {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.hero--showcase .showcase__caption {
+		justify-content: center;
+		text-align: center;
+	}
+
+	.hero--showcase .showcase__link {
+		margin-left: 0;
+	}
+
+	.hero--showcase .showcase__thumbs {
+		justify-content: safe center;
+	}
+
+	.hero--showcase .hero-sectors {
+		width: 100%;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.hero--showcase .hero-sectors__item a {
+		justify-content: center;
+	}
+}
+
 .showcase {
 	position: relative;
 	width: 100%;
@@ -1432,20 +1488,51 @@ body.menu-open {
 	display: block;
 }
 
+/* Phones: a taller frame, with the caption in a bar under the photo
+   instead of over it. */
 @media (max-width: 599px) {
 	.showcase::before {
 		display: none;
 	}
 
 	.showcase__stage {
+		aspect-ratio: 4 / 5;
 		border-radius: 16px;
 	}
 
+	.showcase__slide {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.showcase__media {
+		position: relative;
+		inset: auto;
+		flex: 1;
+		min-height: 0;
+	}
+
+	.showcase__slide--cover .showcase__media::after {
+		display: none;
+	}
+
+	.showcase__slide--contain .showcase__img {
+		padding: 6%;
+	}
+
+	.showcase .showcase__slide .showcase__caption {
+		transform: none;
+	}
+
 	.showcase__caption {
-		right: 0.6rem;
-		bottom: 0.6rem;
-		left: 0.6rem;
-		padding: 0.65rem 0.8rem;
+		position: static;
+		flex: none;
+		padding: 0.8rem 1rem 1rem;
+		border: 0;
+		border-radius: 0;
+		background: var(--navy-deep);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
 	}
 
 	.showcase__title {

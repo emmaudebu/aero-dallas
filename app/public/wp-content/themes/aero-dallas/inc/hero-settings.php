@@ -32,6 +32,7 @@ function aerodallas_hero_defaults() {
 		'hero_btn2_label' => __( 'Explore Our Services', 'aero-dallas' ),
 		'hero_btn2_url'   => '',
 		'hero_title_size' => 60,
+		'hero_title_size_mobile' => 30,
 		'hero_lead_size'  => 20,
 		'hero_effect'     => 'fade',
 		'hero_interval'   => 5,
@@ -262,11 +263,12 @@ function aerodallas_hero_customize_register( $wp_customize ) {
 		'aerodallas_hero_sizes',
 		array(
 			'title'       => __( 'Text sizes', 'aero-dallas' ),
-			'description' => __( 'Sizes on a large screen, in pixels. Smaller screens scale them down automatically.', 'aero-dallas' ),
+			'description' => __( 'Sizes in pixels. The large-screen sizes scale down on tablets; phones use the phone heading size.', 'aero-dallas' ),
 			'panel'       => $panel,
 		)
 	);
 	$add( 'aerodallas_hero_sizes', 'hero_title_size', array( 'label' => __( 'Heading size (32–88 px)', 'aero-dallas' ), 'type' => 'number', 'input_attrs' => array( 'min' => 32, 'max' => 88, 'step' => 1 ) ), aerodallas_hero_sanitize_range( 32, 88 ) );
+	$add( 'aerodallas_hero_sizes', 'hero_title_size_mobile', array( 'label' => __( 'Heading size on phones (22–48 px)', 'aero-dallas' ), 'type' => 'number', 'input_attrs' => array( 'min' => 22, 'max' => 48, 'step' => 1 ) ), aerodallas_hero_sanitize_range( 22, 48 ) );
 	$add( 'aerodallas_hero_sizes', 'hero_lead_size', array( 'label' => __( 'Paragraph size (15–28 px)', 'aero-dallas' ), 'type' => 'number', 'input_attrs' => array( 'min' => 15, 'max' => 28, 'step' => 1 ) ), aerodallas_hero_sanitize_range( 15, 28 ) );
 
 	// Slideshow effect and timing.

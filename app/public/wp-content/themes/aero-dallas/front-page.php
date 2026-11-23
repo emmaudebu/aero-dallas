@@ -28,7 +28,7 @@ $aerodallas_buttons  = array(
 $aerodallas_captions = (bool) aerodallas_hero( 'hero_captions' );
 ?>
 
-<section class="hero hero--showcase" aria-labelledby="hero-title" style="<?php echo esc_attr( sprintf( '--hero-title: %dpx; --hero-lead: %dpx;', aerodallas_hero( 'hero_title_size' ), aerodallas_hero( 'hero_lead_size' ) ) ); ?>">
+<section class="hero hero--showcase" aria-labelledby="hero-title" style="<?php echo esc_attr( sprintf( '--hero-title: %dpx; --hero-title-phone: %dpx; --hero-lead: %dpx;', aerodallas_hero( 'hero_title_size' ), aerodallas_hero( 'hero_title_size_mobile' ), aerodallas_hero( 'hero_lead_size' ) ) ); ?>">
 	<div class="hero__backdrop" aria-hidden="true">
 		<span class="hero__glow hero__glow--a"></span>
 		<span class="hero__glow hero__glow--b"></span>
