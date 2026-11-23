@@ -1,5 +1,5 @@
 /**
- * AERO DALLAS — Request a Quote form.
+ * AERO DALLAS INDUSTRIAL — Request a Quote form.
  * Client-side checks, fetch() submission with inline messages, file picker.
  * Without JavaScript the form posts normally and the server renders results.
  */

@@ -98,7 +98,7 @@ if ( $aerodallas_launch ) {
 					<?php if ( $aerodallas_instagram ) : ?>
 						<a class="cs__social" href="<?php echo esc_url( $aerodallas_instagram ); ?>" target="_blank" rel="noopener">
 							<?php echo aerodallas_icon( 'instagram' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-							<span class="screen-reader-text"><?php esc_html_e( 'AERO DALLAS on Instagram (opens in a new tab)', 'aero-dallas' ); ?></span>
+							<span class="screen-reader-text"><?php esc_html_e( 'AERO DALLAS INDUSTRIAL on Instagram (opens in a new tab)', 'aero-dallas' ); ?></span>
 						</a>
 					<?php endif; ?>
 				</div>
@@ -107,12 +107,12 @@ if ( $aerodallas_launch ) {
 
 		<div class="cs__visual cs-rise">
 			<figure class="cs-photo">
-				<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_cs_image', 0 ), 'hero-jet', array( 'class' => 'cs-photo__img', 'sizes' => '(min-width: 1000px) 46vw, 100vw', 'eager' => true ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_cs_image', 0 ), 'service-industrial', array( 'class' => 'cs-photo__img', 'sizes' => '(min-width: 1000px) 46vw, 100vw', 'eager' => true ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<figcaption class="cs-status">
-					<span class="cs-status__radar" aria-hidden="true"><?php echo aerodallas_icon( 'plane' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="cs-status__radar" aria-hidden="true"><?php echo aerodallas_icon( 'gear' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<span>
-						<span class="cs-status__label"><?php esc_html_e( 'Flight status', 'aero-dallas' ); ?></span>
-						<span class="cs-status__value"><?php esc_html_e( 'Preparing for take-off', 'aero-dallas' ); ?></span>
+						<span class="cs-status__label"><?php esc_html_e( 'Launch status', 'aero-dallas' ); ?></span>
+						<span class="cs-status__value"><?php esc_html_e( 'Final preparations under way', 'aero-dallas' ); ?></span>
 					</span>
 				</figcaption>
 			</figure>
@@ -133,7 +133,7 @@ if ( $aerodallas_launch ) {
 		<p>
 			<?php
 			/* translators: %s: year. */
-			echo esc_html( sprintf( __( '© %s AERO DALLAS. All rights reserved.', 'aero-dallas' ), wp_date( 'Y' ) ) );
+			echo esc_html( sprintf( __( '© %s AERO DALLAS INDUSTRIAL. All rights reserved.', 'aero-dallas' ), wp_date( 'Y' ) ) );
 			?>
 		</p>
 	</footer>

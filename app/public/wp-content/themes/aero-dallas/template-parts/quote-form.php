@@ -111,7 +111,7 @@ $aerodallas_value = static function ( $key ) use ( $aerodallas_values ) {
 		<div class="field">
 			<label for="aq-equipment"><?php esc_html_e( 'Equipment Type', 'aero-dallas' ); ?></label>
 			<input type="text" id="aq-equipment" name="aq_equipment" maxlength="160" value="<?php echo esc_attr( $aerodallas_value( 'equipment' ) ); ?>" aria-describedby="aq-equipment-hint">
-			<p class="field__hint" id="aq-equipment-hint"><?php esc_html_e( 'For example: ground power unit, aircraft tow bar, compressor.', 'aero-dallas' ); ?></p>
+			<p class="field__hint" id="aq-equipment-hint"><?php esc_html_e( 'For example: industrial compressor, ground power unit, spare parts, delivery of a machine.', 'aero-dallas' ); ?></p>
 		</div>
 
 		<div class="field field--full<?php echo isset( $aerodallas_errors['description'] ) ? ' has-error' : ''; ?>">

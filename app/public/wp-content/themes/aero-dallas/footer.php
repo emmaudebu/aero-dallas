@@ -101,7 +101,7 @@ $aerodallas_policy_links = array(
 		<p>
 			<?php
 			/* translators: %s: year. */
-			echo esc_html( sprintf( __( '© %s AERO DALLAS. All rights reserved.', 'aero-dallas' ), wp_date( 'Y' ) ) );
+			echo esc_html( sprintf( __( '© %s AERO DALLAS INDUSTRIAL. All rights reserved.', 'aero-dallas' ), wp_date( 'Y' ) ) );
 			?>
 		</p>
 		<p class="site-footer__legal">

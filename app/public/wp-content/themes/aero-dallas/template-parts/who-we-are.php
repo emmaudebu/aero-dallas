@@ -1,7 +1,7 @@
 <?php
 /**
  * Home "Who We Are": intro text, four core values with icons, and a
- * large circular photo with two smaller circles.
+ * photo mosaic.
  *
  * @package aero-dallas
  */
@@ -36,10 +36,29 @@ $aerodallas_icons  = array( 'shield', 'briefcase', 'target', 'gauge' );
 			<?php endif; ?>
 			<a class="btn btn--primary" href="<?php echo esc_url( aerodallas_page_url( 'about' ) ); ?>"><?php esc_html_e( 'More About Us', 'aero-dallas' ); ?></a>
 		</div>
-		<div class="circles circles--right" data-reveal aria-hidden="true">
-			<div class="circles__main"><?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_about_image', 0 ), 'detail-engine', array( 'sizes' => '(min-width: 1024px) 420px, 80vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-			<div class="circles__small circles__small--a"><?php echo aerodallas_image( 0, 'about-welding', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-			<div class="circles__small circles__small--b"><?php echo aerodallas_image( 0, 'service-logistics', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-		</div>
+		<?php
+		get_template_part(
+			'template-parts/photo-mosaic',
+			null,
+			array(
+				'flip'   => true,
+				'photos' => array(
+					array(
+						'attachment' => (int) get_theme_mod( 'aerodallas_about_image', 0 ),
+						'photo'      => 'about-welding',
+						'label'      => __( 'Mechanical engineering', 'aero-dallas' ),
+					),
+					array(
+						'photo' => 'detail-engine',
+						'label' => __( 'Aviation support', 'aero-dallas' ),
+					),
+					array(
+						'photo' => 'service-logistics',
+						'label' => __( 'Air & ground logistics', 'aero-dallas' ),
+					),
+				),
+			)
+		);
+		?>
 	</div>
 </section>

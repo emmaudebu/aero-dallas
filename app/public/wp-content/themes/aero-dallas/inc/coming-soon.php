@@ -23,9 +23,9 @@ define( 'AERODALLAS_CS_PREVIEW', 'coming-soon-preview' );
 function aerodallas_cs_defaults() {
 	return array(
 		'cs_eyebrow'   => __( 'Coming Soon', 'aero-dallas' ),
-		'cs_heading'   => __( 'Our New Website Is Taking Off Soon', 'aero-dallas' ),
-		'cs_highlight' => __( 'Taking Off Soon', 'aero-dallas' ),
-		'cs_text'      => __( 'We are preparing a new online home for AERO DALLAS industrial support, aviation ground support, parts supply and logistics. In the meantime, our team is available to discuss your requirements.', 'aero-dallas' ),
+		'cs_heading'   => __( 'Our New Website Is Launching Soon', 'aero-dallas' ),
+		'cs_highlight' => __( 'Launching Soon', 'aero-dallas' ),
+		'cs_text'      => __( 'We are preparing a new online home for AERO DALLAS INDUSTRIAL: mechanical engineering support, aviation ground support, parts and equipment supply, and air and ground logistics. In the meantime, our team is available to discuss your requirements.', 'aero-dallas' ),
 	);
 }
 

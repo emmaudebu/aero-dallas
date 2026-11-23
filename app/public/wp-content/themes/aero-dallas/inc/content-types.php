@@ -38,7 +38,7 @@ function aerodallas_content_types() {
 			'plural'   => __( 'Why Choose Points', 'aero-dallas' ),
 			'singular' => __( 'Why Choose Point', 'aero-dallas' ),
 			'supports' => array( 'title', 'page-attributes' ),
-			'help'     => __( 'The "Why Choose AERO DALLAS?" list on the home and About pages. Title = the point.', 'aero-dallas' ),
+			'help'     => __( 'The "Why Choose AERO DALLAS INDUSTRIAL?" list on the home and About pages. Title = the point.', 'aero-dallas' ),
 		),
 		'aerodallas_testimonial' => array(
 			'plural'   => __( 'Testimonials', 'aero-dallas' ),
@@ -149,7 +149,7 @@ function aerodallas_content_overview() {
 	printf(
 		'<li><a href="%1$s">%2$s</a></li>',
 		esc_url( admin_url( 'customize.php?autofocus[panel]=aerodallas_company' ) ),
-		esc_html__( 'Phone, email, address, hours, Instagram, quote email and photos: Appearance → Customize → AERO DALLAS — Company Details.', 'aero-dallas' )
+		esc_html__( 'Phone, email, address, hours, Instagram, quote email and photos: Appearance → Customize → AERO DALLAS INDUSTRIAL — Company Details.', 'aero-dallas' )
 	);
 	printf(
 		'<li><a href="%1$s">%2$s</a></li>',

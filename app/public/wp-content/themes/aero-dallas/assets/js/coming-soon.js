@@ -1,5 +1,5 @@
 /**
- * AERO DALLAS — coming soon page: countdown to the launch date. The flight
+ * AERO DALLAS INDUSTRIAL — coming soon page: countdown to the launch date. The flight
  * path is started by main.js.
  * Vanilla JS, loaded with defer.
  */

@@ -55,11 +55,29 @@ get_template_part(
 				<?php the_content(); ?>
 			</div>
 		</div>
-		<div class="circles" data-reveal aria-hidden="true">
-			<div class="circles__main"><?php echo aerodallas_image( (int) get_theme_mod( 'aerodallas_about_image', 0 ), 'service-industrial', array( 'sizes' => '(min-width: 1024px) 420px, 80vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-			<div class="circles__small circles__small--a"><?php echo aerodallas_image( 0, 'service-aviation', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-			<div class="circles__small circles__small--b"><?php echo aerodallas_image( 0, 'service-logistics', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-		</div>
+		<?php
+		get_template_part(
+			'template-parts/photo-mosaic',
+			null,
+			array(
+				'photos' => array(
+					array(
+						'attachment' => (int) get_theme_mod( 'aerodallas_about_image', 0 ),
+						'photo'      => 'service-industrial',
+						'label'      => __( 'Industrial support', 'aero-dallas' ),
+					),
+					array(
+						'photo' => 'eq-aircraft-jack',
+						'label' => __( 'Aviation ground support', 'aero-dallas' ),
+					),
+					array(
+						'photo' => 'eq-roller-conveyor',
+						'label' => __( 'Parts & equipment', 'aero-dallas' ),
+					),
+				),
+			)
+		);
+		?>
 	</div>
 </section>
 
@@ -83,7 +101,7 @@ get_template_part(
 				?>
 				<article class="vm-card" data-reveal>
 					<div class="vm-card__media" aria-hidden="true">
-						<?php echo aerodallas_image( 'vision' === $aerodallas_key ? (int) get_theme_mod( 'aerodallas_detail_image', 0 ) : 0, 'vision' === $aerodallas_key ? 'detail-engine' : 'hero-jet', array( 'sizes' => '(min-width: 900px) 600px, 100vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo aerodallas_image( 'vision' === $aerodallas_key ? (int) get_theme_mod( 'aerodallas_detail_image', 0 ) : 0, 'vision' === $aerodallas_key ? 'detail-engine' : 'parts-detail', array( 'sizes' => '(min-width: 900px) 600px, 100vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<div class="vm-card__body">
 						<span class="icon-badge vm-card__icon"><?php echo aerodallas_icon( $aerodallas_vm_item[1] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
@@ -122,12 +140,20 @@ get_template_part(
 
 <?php
 get_template_part(
+	'template-parts/hsq',
+	null,
+	array(
+		'heading' => aerodallas_field( 'hsq_heading' ),
+		'alt'     => true,
+	)
+);
+
+get_template_part(
 	'template-parts/why-choose',
 	null,
 	array(
 		'heading' => aerodallas_field( 'why_heading' ),
 		'media'   => false,
-		'mist'    => true,
 	)
 );
 get_template_part( 'template-parts/cta-band' );

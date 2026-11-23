@@ -65,7 +65,7 @@ function aerodallas_meta_description() {
 	} elseif ( is_category() || is_tag() ) {
 		$desc = term_description();
 		/* translators: %s: topic name. */
-		$desc = '' !== trim( wp_strip_all_tags( $desc ) ) ? $desc : sprintf( __( 'Articles and updates from AERO DALLAS about %s.', 'aero-dallas' ), single_term_title( '', false ) );
+		$desc = '' !== trim( wp_strip_all_tags( $desc ) ) ? $desc : sprintf( __( 'Articles and updates from AERO DALLAS INDUSTRIAL about %s.', 'aero-dallas' ), single_term_title( '', false ) );
 	} elseif ( is_home() || is_archive() ) {
 		$desc = get_bloginfo( 'description' );
 	}
@@ -133,7 +133,7 @@ function aerodallas_schema_organization() {
 	$org = array(
 		'@type'  => 'Organization',
 		'@id'    => home_url( '/#organization' ),
-		'name'   => 'AERO DALLAS',
+		'name'   => 'AERO DALLAS INDUSTRIAL',
 		'url'    => home_url( '/' ),
 		'logo'   => array(
 			'@type'  => 'ImageObject',

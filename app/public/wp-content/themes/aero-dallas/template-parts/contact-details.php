@@ -63,7 +63,7 @@ if ( ! $aerodallas_rows ) {
 }
 ?>
 <div class="contact-card">
-	<p class="contact-card__name">AERO DALLAS</p>
+	<p class="contact-card__name">AERO DALLAS INDUSTRIAL</p>
 	<p class="contact-card__tag"><?php esc_html_e( 'Industrial & Aviation Support', 'aero-dallas' ); ?></p>
 	<dl class="contact-list">
 		<?php foreach ( $aerodallas_rows as $aerodallas_row ) : ?>

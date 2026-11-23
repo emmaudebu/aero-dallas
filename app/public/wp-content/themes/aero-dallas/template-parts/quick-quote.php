@@ -25,7 +25,7 @@ $aerodallas_services = aerodallas_service_options();
 		<div class="quick-quote__field">
 			<span class="quick-quote__icon"><?php echo aerodallas_icon( 'gear' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 			<label for="qq-equipment"><?php esc_html_e( 'Equipment type', 'aero-dallas' ); ?></label>
-			<input type="text" id="qq-equipment" name="equipment" placeholder="<?php esc_attr_e( 'e.g. ground power unit', 'aero-dallas' ); ?>" maxlength="160">
+			<input type="text" id="qq-equipment" name="equipment" placeholder="<?php esc_attr_e( 'e.g. compressor, GPU, spare parts', 'aero-dallas' ); ?>" maxlength="160">
 		</div>
 		<div class="quick-quote__field">
 			<span class="quick-quote__icon"><?php echo aerodallas_icon( 'briefcase' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AERO DALLAS — coming soon page
+   AERO DALLAS INDUSTRIAL — coming soon page
    Loaded after main.css (tokens, fonts, buttons, logo, mode toggle) only on
    the coming soon page. Animations use transform and opacity; the global
    reduced-motion rule in main.css settles them on their final frame.
@@ -380,11 +380,21 @@ body.coming-soon {
 }
 
 .cs-status__radar .icon {
-	width: 22px;
-	height: 22px;
-	fill: var(--navy);
-	stroke: none;
-	transform: rotate(45deg);
+	width: 24px;
+	height: 24px;
+	stroke-width: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.cs-status__radar .icon {
+		animation: cs-spin 8s linear infinite;
+	}
+}
+
+@keyframes cs-spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .cs-status__label {

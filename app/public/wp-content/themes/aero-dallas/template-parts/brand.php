@@ -14,7 +14,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $aerodallas_variant = ( $args['variant'] ?? 'auto' ) === 'white' ? 'white' : 'auto';
-$aerodallas_label   = __( 'AERO DALLAS — Industrial & Aviation Support, home', 'aero-dallas' );
+$aerodallas_label   = __( 'AERO DALLAS INDUSTRIAL, home', 'aero-dallas' );
 $aerodallas_dark    = 'dark' === aerodallas_default_mode();
 $aerodallas_img     = static function ( $file, $class, $lazy ) {
 	printf(

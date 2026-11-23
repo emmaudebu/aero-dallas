@@ -108,7 +108,7 @@ $aerodallas_none = '<span style="color:#7d879a;font-weight:normal;">' . esc_html
 							<tr>
 								<td valign="middle">
 									<a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration:none;">
-										<img src="<?php echo esc_url( AERODALLAS_URI . '/assets/img/brand/logo-main-white.png' ); ?>" width="150" height="50" alt="AERO DALLAS" style="display:block;width:150px;height:auto;border:0;<?php echo esc_attr( $aerodallas_display ); ?>font-size:20px;line-height:24px;color:#ffffff;">
+										<img src="<?php echo esc_url( AERODALLAS_URI . '/assets/img/brand/logo-main-white.png' ); ?>" width="150" height="50" alt="AERO DALLAS INDUSTRIAL" style="display:block;width:150px;height:auto;border:0;<?php echo esc_attr( $aerodallas_display ); ?>font-size:20px;line-height:24px;color:#ffffff;">
 									</a>
 								</td>
 								<td class="hide-sm" valign="middle" align="right" style="<?php echo esc_attr( $aerodallas_font ); ?>font-size:12px;line-height:18px;color:rgba(236,240,248,0.72);">
@@ -300,7 +300,7 @@ $aerodallas_none = '<span style="color:#7d879a;font-weight:normal;">' . esc_html
 						<br>
 						<?php
 						/* translators: %s: year. */
-						echo esc_html( sprintf( __( '© %s AERO DALLAS. All rights reserved.', 'aero-dallas' ), wp_date( 'Y', $args['received'] ) ) );
+						echo esc_html( sprintf( __( '© %s AERO DALLAS INDUSTRIAL. All rights reserved.', 'aero-dallas' ), wp_date( 'Y', $args['received'] ) ) );
 						?>
 					</td>
 				</tr>

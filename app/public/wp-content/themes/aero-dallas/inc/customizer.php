@@ -29,7 +29,7 @@ function aerodallas_customize_register( $wp_customize ) {
 	$wp_customize->add_panel(
 		'aerodallas_company',
 		array(
-			'title'       => __( 'AERO DALLAS — Company Details', 'aero-dallas' ),
+			'title'       => __( 'AERO DALLAS INDUSTRIAL — Company Details', 'aero-dallas' ),
 			'description' => __( 'Any field left empty is simply not shown on the website.', 'aero-dallas' ),
 			'priority'    => 25,
 		)

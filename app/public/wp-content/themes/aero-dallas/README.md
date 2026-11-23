@@ -1,6 +1,6 @@
-# AERO DALLAS — WordPress theme
+# AERO DALLAS INDUSTRIAL — WordPress theme
 
-Custom classic theme for **AERO DALLAS — Industrial & Aviation Support**. Hand-coded PHP, plain CSS and vanilla JavaScript. No page builder, no parent theme and no required plugins.
+Custom classic theme for **AERO DALLAS INDUSTRIAL — Industrial & Aviation Support**. Hand-coded PHP, plain CSS and vanilla JavaScript. No page builder, no parent theme and no required plugins.
 
 - WordPress 6.5 or newer, PHP 8.1 or newer
 - Built-in Request a Quote form (no form plugin needed)
@@ -14,7 +14,7 @@ The site has two looks that share all content:
 - **Light mode:** bright photo hero, navy logo, and a floating quick-quote bar (service, equipment type, company) that opens the quote form already filled in.
 - **Dark mode:** dark photo hero, white logo, and a strip of the four service areas under the hero.
 
-Choose the default under **Appearance → Customize → AERO DALLAS — Company Details → Appearance (light / dark)**: Light, Dark, or follow the visitor's device setting. Visitors can switch with the sun/moon button in the header, and their choice is remembered on their device. You can hide the toggle in the same panel; the default then always applies.
+Choose the default under **Appearance → Customize → AERO DALLAS INDUSTRIAL — Company Details → Appearance (light / dark)**: Light, Dark, or follow the visitor's device setting. Visitors can switch with the sun/moon button in the header, and their choice is remembered on their device. You can hide the toggle in the same panel; the default then always applies.
 
 The logo switches automatically: the main logo (navy wordmark, `assets/img/brand/logo-main.webp`) on light backgrounds, and a white-wordmark version of the same artwork (`logo-main-white.webp`) on dark backgrounds (header in dark mode, footer, mobile menu). Both have transparent backgrounds. To replace the light-mode logo without editing files, upload one under Appearance → Customize → Site Identity → Logo.
 
@@ -42,7 +42,7 @@ Activating the theme builds the whole site. Running it again (for example after 
 
 | What | Where |
 |---|---|
-| Phone, email, address, hours, regions served, Instagram | Appearance → Customize → **AERO DALLAS — Company Details → Contact details** |
+| Phone, email, address, hours, regions served, Instagram | Appearance → Customize → **AERO DALLAS INDUSTRIAL — Company Details → Contact details** |
 | Where quote requests are emailed | Same panel → **Quote notification email** |
 | The quote call-to-action band (heading and text) | Same panel → **Quote call-to-action band** |
 | Home hero photo, About photo, Vision & mission photo | Same panel → **Photos** |
@@ -52,10 +52,10 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Each service's own page (`/services/<slug>/`): hero intro, "What's Included" list, detailed write-up, hero and secondary photos | **Site Content → Services → edit the service.** The main editor is the detailed write-up; the **Service details** box holds the intro, the included list (one item per line) and the photos. A featured image replaces the hero photo. The page address comes from the service's slug (Permalink in the sidebar). |
 | How We Work steps | **Site Content → Process Steps** |
 | Core values | **Site Content → Core Values** |
-| "Why choose AERO DALLAS?" points | **Site Content → Why Choose Points** |
+| "Why choose AERO DALLAS INDUSTRIAL?" points | **Site Content → Why Choose Points** |
 | FAQs | **Site Content → FAQs** |
 | Client testimonials (hidden until at least one is published) | **Site Content → Testimonials** |
-| Statistics band (hidden until a number and label are filled in) | Customize → AERO DALLAS — Company Details → **Home: statistics and insights** |
+| Statistics band (hidden until a number and label are filled in) | Customize → AERO DALLAS INDUSTRIAL — Company Details → **Home: statistics and insights** |
 | "Latest Insights" on the home page (3 newest articles; off by default) | Same section → **Show "Latest Insights"** |
 | News articles | **Posts → Add New**. Give each article a **Featured image** (used on its card and as its hero photo), choose one **Category** (its topic), and optionally write an **Excerpt** (the card summary and the article's hero intro). Without a featured image, a bundled photo matching the topic is used. |
 | News page hero heading, orange highlight and intro | Pages → News → "Page sections" box. A featured image on the News page replaces its hero photo. |
@@ -67,7 +67,7 @@ Activating the theme builds the whole site. Running it again (for example after 
 | Search result description per page | **Pages → edit → "Search & sharing" box** |
 | Header logo (optional replacement) | Appearance → Customize → Site Identity → Logo |
 | Browser tab icon (optional replacement) | Appearance → Customize → Site Identity → Site Icon |
-| Coming soon page: on/off, launch date and time, text and photo | Customize → AERO DALLAS — Company Details → **Coming soon mode** |
+| Coming soon page: on/off, launch date and time, text and photo | Customize → AERO DALLAS INDUSTRIAL — Company Details → **Coming soon mode** |
 
 Notes:
 
@@ -77,7 +77,11 @@ Notes:
 - **Service anchors** (`industrial`, `aviation`, `parts-supply`, `logistics`) are used in links such as `/services/#aviation` and to pre-select the service on the quote form (`/contact-us/?service=aviation#quote`).
 - **News**: the newest article is shown as a large feature card (a *sticky* post takes that place), the rest in a grid of 10 per page (Settings → Reading → *Blog pages show at most*). Articles have share links (LinkedIn, Facebook, X, email, and copy link on HTTPS), previous/next links and up to three related articles from the same topic. Comments are switched off on articles.
 - **Coming soon mode**: while it is on, visitors see an animated holding page with a live countdown to the launch date, the phone number, email and Instagram link (whichever are filled in) and the four services. Logged-in editors and administrators still see the full website, with an orange "Coming soon mode is on" reminder in the toolbar. To check the page while logged in, open the **Coming soon mode** section in the Customizer (the preview switches to it), or add `?coming-soon-preview=1` to any address. Visitors receive a 503 "temporarily unavailable" status with a Retry-After header, so search engines keep the site's rankings and return later; feeds return the same status. If *Open the website automatically* is on, the site opens itself at the launch time and visitors on the page are reloaded into it; otherwise the page says the launch is moments away until you switch the mode off. The countdown uses the site time zone (Settings → General) and the server's clock, so a wrong clock on a visitor's device does not affect it. Pages are sent with no-cache headers, but if a caching plugin or host cache is added later, clear it after switching the mode off.
-- **Flight path animation**: every hero (home, inner pages, services, News, articles, 404 and the coming soon page) has a dotted flight path with an aircraft flying along it. It comes from `template-parts/flight-path.php`; the aircraft stays parked for visitors who have reduced motion switched on, and pauses while the hero is scrolled out of view.
+- **Air and ground routes**: every hero (home, inner pages, services, News, articles, 404 and the coming soon page) has a dotted air route with an aircraft flying along it and a dashed ground route with a truck driving along it. They come from `template-parts/flight-path.php`; they stay still for visitors who have reduced motion switched on, and pause while the hero is scrolled out of view.
+- **Health, Safety & Quality**: the full policy is section F on the Policies page (edit it there like the other policies). The Home and About pages show a summary from `template-parts/hsq.php`: the introduction, "Our Commitment" and the six principles (first paragraph of each), with a **Read Our Full Policy** button that opens section F. The summary text lives in `inc/hsq.php`; its heading can be changed under **Page sections** on the Home and About pages.
+- **Equipment catalogue**: the home page shows four featured items (with a link to the full list), the Aviation Ground Support and Industrial Support pages show their own equipment, and the Parts & Equipment Supply page shows everything with **All / Aviation / Industrial** filters. Each card opens the quote form with the service and the equipment already filled in. Product photos on a white background are shown whole on a white panel; other photos fill the card. The list (name, photo, category, whether it is featured on the home page) is `aerodallas_equipment()` in `inc/service-content.php`; photos are in `assets/img/photos/eq-*.webp`.
+- **Photo mosaics**: the home "Why Choose" and "Who We Are" sections and the About page intro show three photos as rounded rectangles (one large, two stacked) with short captions, from `template-parts/photo-mosaic.php`. The **About / "Who We Are" photo** in the Customizer replaces the large photo.
+- **Home hero**: the heading and buttons sit beside a large equipment showcase that rotates through the company's equipment photos every 5 seconds, each with its category, name and a **Request a quote** link (the quote form opens with that equipment filled in). Thumbnails below the photo switch between them, pointing at the photo holds it, and a pause button stops the rotation; visitors with reduced motion switched on see the first photo and can use the thumbnails. The photos shown and their order come from the `hero` value in `aerodallas_equipment()` (`inc/service-content.php`). A **Home hero photo** set in Customize → … → Photos is shown first. On phones, the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
 ## The Request a Quote form
@@ -124,10 +128,11 @@ aero-dallas/
 ├── template-parts/   brand, page-header, page-hero, hero-panel, flight-path, news-card, quick-quote,
 │                     service-card, why-choose, process-steps, who-we-are, stats, testimonials,
 │                     insights, faq, cta-band, quote-form, contact-details, swoosh,
-│                     coming-soon (the complete coming soon page), email-quote (quote email)
+│                     coming-soon (the complete coming soon page), email-quote (quote email), hsq, equipment-gallery,
+│                     photo-mosaic
 ├── inc/              helpers, icons, setup, enqueue, content-types, meta-boxes, customizer,
 │                     cpt-quote-request, quote-form, seo-schema, service-content, news,
-│                     coming-soon, activation
+│                     coming-soon, hsq, activation
 └── assets/           css, js, fonts, img/brand, img/photos
 ```
 
@@ -152,9 +157,17 @@ aero-dallas/
   - Logistics page hero, cargo aircraft on the apron: Peaky_82 — https://unsplash.com/photos/PEf3deR3l_U
   - About, welding: Rob Lambert — https://unsplash.com/photos/9Q_pLLP_jmA
   - Detail, jet engine: Felix Berger — https://unsplash.com/photos/PfYaLrYS1Oc
+  - Equipment, towbarless pushback tractor (also the Aviation hero and home slide): Alexander Schimmeck — https://unsplash.com/photos/R4MMvozW888
+  - Equipment, CNC milling (also the Industrial hero): aluminum Zheng ji — https://unsplash.com/photos/sxtClAGwRck
+  - Equipment, CNC lathe: Guick — https://unsplash.com/photos/BmcNqFojf54
+  - Equipment, roller conveyor (also the Parts & Equipment Supply hero): Alberto Rodríguez — https://unsplash.com/photos/qVpGF1mlaM8
+- **Photos supplied by AERO DALLAS INDUSTRIAL** (`eq-towbarless-tractor`, `eq-air-start-unit`, `eq-aircraft-jack`, `eq-baggage-carousel`, `eq-incline-conveyor`, `eq-paging-conveyor`): product photos provided by the company. Confirm you have the manufacturer's or supplier's permission to use them before launch, or replace them with your own photography.
+- **Public domain photography** from Wikimedia Commons (no attribution required; credited here for reference):
+  - Equipment, ground power unit: ILA-boy — https://commons.wikimedia.org/wiki/File:ILA_2008_PD_026.JPG (cropped)
+  - Equipment, aircraft tow bar: MKFI — https://commons.wikimedia.org/wiki/File:NH90_tow_bar_Kokonaisturvallisuus_2015.JPG (cropped)
 - **Icons**: drawn for this theme.
 
-Stock photos show generic equipment and settings, not AERO DALLAS's own work. Replace them with real company photography when it is available.
+Stock photos show generic equipment and settings, not AERO DALLAS INDUSTRIAL's own work. Replace them with real company photography when it is available.
 
 ## Upgrading
 
@@ -166,3 +179,11 @@ Version 1.2.0 adds the News section. On the first page load after updating, it c
 Version 1.3.0 adds coming soon mode. It is off until you switch it on in the Customizer, so updating changes nothing on the live site.
 
 Version 1.3.1 sends quote request emails as a branded HTML email instead of plain text. Nothing needs to be set up.
+
+Version 1.4.0 uses the full business name, AERO DALLAS INDUSTRIAL, and shows every side of the business, not only aviation. On the first page load after updating, the name is updated in the pages, services, process steps, values, reasons and FAQs the theme set up (including their fields), in the theme's Customizer texts, and in the site title if it was just "Aero Dallas". News articles and client testimonials are left as written. The home hero now rotates through one photo for each service area, and the hero routes show a truck on the ground as well as the aircraft in the air.
+
+Version 1.5.0 adds the full Health, Safety & Quality policy. On the first page load after updating, section F on the Policies page is replaced with the full policy, but only if it still has the original short draft paragraph; if you had edited it, it is left as it is. The Home and About pages get a Health, Safety & Quality section.
+
+Version 1.6.0 adds equipment photos: an equipment gallery on the Aviation Ground Support, Industrial Support and Parts & Equipment Supply pages, new hero photos on those three pages, and the pushback tractor as the aviation photo in the home hero. On the first page load after updating, each of those three services gets its new hero photo only if it still has the original one; a featured image set on a service still replaces it.
+
+Version 1.7.0 adds the company's own equipment photos: a home page equipment section, a filterable equipment catalogue on the Parts & Equipment Supply page, a redesigned home hero with a large equipment showcase of those photos, and rectangular photo mosaics in place of the circular photo clusters. Nothing needs to be set up.

@@ -126,13 +126,15 @@ $aerodallas_others  = array_filter(
 </div>
 
 <?php
+get_template_part( 'template-parts/equipment-gallery', null, array( 'service' => $aerodallas_anchor ) );
+
 get_template_part(
 	'template-parts/process-steps',
 	null,
 	array(
 		'variant' => 'band',
 		'heading' => __( 'How We Work', 'aero-dallas' ),
-		'intro'   => __( 'AERO DALLAS follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ),
+		'intro'   => __( 'AERO DALLAS INDUSTRIAL follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ),
 	)
 );
 

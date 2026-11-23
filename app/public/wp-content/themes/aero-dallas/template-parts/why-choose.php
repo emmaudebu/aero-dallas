@@ -1,8 +1,8 @@
 <?php
 /**
- * "Why Choose AERO DALLAS?": icon row of reasons and a circular photo cluster.
+ * "Why Choose AERO DALLAS INDUSTRIAL?": icon row of reasons and a photo mosaic.
  *
- * Args: heading, media (bool, photo cluster), mist (bool, tinted background).
+ * Args: heading, media (bool, photo mosaic), mist (bool, tinted background).
  *
  * @package aero-dallas
  */
@@ -13,7 +13,7 @@ $aerodallas_reasons = aerodallas_items( 'aerodallas_reason' );
 if ( ! $aerodallas_reasons ) {
 	return;
 }
-$aerodallas_heading = $args['heading'] ?? __( 'Why Choose AERO DALLAS?', 'aero-dallas' );
+$aerodallas_heading = $args['heading'] ?? __( 'Why Choose AERO DALLAS INDUSTRIAL?', 'aero-dallas' );
 $aerodallas_media   = $args['media'] ?? true;
 $aerodallas_icons   = array( 'briefcase', 'gear', 'shield', 'target', 'chat', 'headset' );
 ?>
@@ -21,7 +21,7 @@ $aerodallas_icons   = array( 'briefcase', 'gear', 'shield', 'target', 'chat', 'h
 	<div class="container why__grid">
 		<div class="why__body" data-reveal>
 			<p class="eyebrow"><?php esc_html_e( 'Why Choose Us', 'aero-dallas' ); ?></p>
-			<h2 class="section-title" id="why-title"><?php echo aerodallas_highlight( $aerodallas_heading, 'AERO DALLAS?' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h2>
+			<h2 class="section-title" id="why-title"><?php echo aerodallas_highlight( $aerodallas_heading, 'AERO DALLAS INDUSTRIAL?' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></h2>
 			<ul class="why__list">
 				<?php foreach ( $aerodallas_reasons as $aerodallas_i => $aerodallas_reason ) : ?>
 					<li class="why__item">
@@ -35,11 +35,28 @@ $aerodallas_icons   = array( 'briefcase', 'gear', 'shield', 'target', 'chat', 'h
 			<?php endif; ?>
 		</div>
 		<?php if ( $aerodallas_media ) : ?>
-			<div class="circles" data-reveal aria-hidden="true">
-				<div class="circles__main"><?php echo aerodallas_image( 0, 'service-industrial', array( 'sizes' => '(min-width: 1024px) 420px, 80vw', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-				<div class="circles__small circles__small--a"><?php echo aerodallas_image( 0, 'service-aviation', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-				<div class="circles__small circles__small--b"><?php echo aerodallas_image( 0, 'service-parts', array( 'sizes' => '200px', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-			</div>
+			<?php
+			get_template_part(
+				'template-parts/photo-mosaic',
+				null,
+				array(
+					'photos' => array(
+						array(
+							'photo' => 'eq-air-start-unit',
+							'label' => __( 'Air start units', 'aero-dallas' ),
+						),
+						array(
+							'photo' => 'eq-cnc-milling',
+							'label' => __( 'CNC machining', 'aero-dallas' ),
+						),
+						array(
+							'photo' => 'eq-tow-bar',
+							'label' => __( 'Aircraft tow bars', 'aero-dallas' ),
+						),
+					),
+				)
+			);
+			?>
 		<?php endif; ?>
 	</div>
 </section>

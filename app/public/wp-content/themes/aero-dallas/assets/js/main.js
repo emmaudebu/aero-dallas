@@ -1,5 +1,5 @@
 /**
- * AERO DALLAS — header, mobile menu, scroll reveal, hero flight path,
+ * AERO DALLAS INDUSTRIAL — header, mobile menu, scroll reveal, hero flight path,
  * article copy link and policies TOC.
  * Vanilla JS, loaded with defer.
  */
@@ -138,15 +138,132 @@
 	}
 	root.classList.add( 'reveal-ready' );
 
-	/* Hero flight path: fly the aircraft only while the hero is on screen. - */
+	/* Home hero showcase: rotate the equipment photos. --------------------- */
+	document.querySelectorAll( '[data-showcase]' ).forEach( function ( showcase ) {
+		var slides = showcase.querySelectorAll( '[data-showcase-slide]' );
+		var thumbs = showcase.querySelectorAll( '[data-showcase-thumb]' );
+		var controls = showcase.querySelector( '[data-showcase-controls]' );
+		var pause = showcase.querySelector( '[data-showcase-pause]' );
+		var calm = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+		var time = 5000;
+		var timer = 0;
+		var now = 0;
+		var paused = calm;
+		var held = false;
+		var seen = true;
+		if ( slides.length < 2 || ! controls ) {
+			return;
+		}
+
+		var show = function ( index ) {
+			now = ( index + slides.length ) % slides.length;
+			slides.forEach( function ( slide, i ) {
+				slide.classList.toggle( 'is-active', i === now );
+			} );
+			thumbs.forEach( function ( thumb, i ) {
+				thumb.setAttribute( 'aria-current', i === now ? 'true' : 'false' );
+			} );
+		};
+
+		var run = function () {
+			window.clearTimeout( timer );
+			showcase.removeAttribute( 'data-showcase-running' );
+			if ( paused || held || ! seen || document.hidden ) {
+				return;
+			}
+			void showcase.offsetWidth; // Restart the progress bar.
+			showcase.setAttribute( 'data-showcase-running', '' );
+			timer = window.setTimeout( function () {
+				show( now + 1 );
+				run();
+			}, time );
+		};
+
+		showcase.style.setProperty( '--showcase-time', time + 'ms' );
+		controls.hidden = false;
+
+		thumbs.forEach( function ( thumb, i ) {
+			thumb.addEventListener( 'click', function () {
+				show( i );
+				run();
+			} );
+		} );
+
+		// Hold the current photo while the pointer is over it or a link in it has focus.
+		var stage = showcase.querySelector( '.showcase__stage' );
+		var hold = function () {
+			held = true;
+			run();
+		};
+		var release = function ( event ) {
+			if ( event.type === 'focusout' && stage.contains( event.relatedTarget ) ) {
+				return;
+			}
+			held = false;
+			run();
+		};
+		stage.addEventListener( 'mouseenter', hold );
+		stage.addEventListener( 'mouseleave', release );
+		stage.addEventListener( 'focusin', hold );
+		stage.addEventListener( 'focusout', release );
+
+		if ( pause ) {
+			pause.setAttribute( 'aria-pressed', paused ? 'true' : 'false' );
+			pause.addEventListener( 'click', function () {
+				paused = ! paused;
+				pause.setAttribute( 'aria-pressed', paused ? 'true' : 'false' );
+				run();
+			} );
+		}
+
+		if ( hasIO ) {
+			new IntersectionObserver( function ( entries ) {
+				seen = entries[ 0 ].isIntersecting;
+				run();
+			} ).observe( showcase );
+		}
+		document.addEventListener( 'visibilitychange', run );
+		run();
+	} );
+
+	/* Equipment catalogue: All / Aviation / Industrial filters. ------------ */
+	document.querySelectorAll( '[data-equipment-filters]' ).forEach( function ( group ) {
+		var section = group.closest( '.equipment' );
+		var items = section.querySelectorAll( '.equipment__item' );
+		var buttons = group.querySelectorAll( '[data-filter]' );
+		var status = group.querySelector( '[data-equipment-status]' );
+		group.hidden = false;
+		buttons.forEach( function ( button ) {
+			button.addEventListener( 'click', function () {
+				var filter = button.getAttribute( 'data-filter' );
+				var shown = 0;
+				buttons.forEach( function ( b ) {
+					b.setAttribute( 'aria-pressed', b === button ? 'true' : 'false' );
+				} );
+				items.forEach( function ( item ) {
+					var match = filter === 'all' || item.getAttribute( 'data-category' ) === filter;
+					item.hidden = ! match;
+					if ( match ) {
+						shown++;
+						item.classList.add( 'is-visible' );
+					}
+				} );
+				status.textContent = shown + ' ' + ( shown === 1 ? 'item' : 'items' ) + ' shown';
+			} );
+		} );
+	} );
+
+	/* Hero flight path: run the aircraft and truck only while on screen. --- */
 	if ( ! window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ) {
 		document.querySelectorAll( '.flight-path' ).forEach( function ( svg ) {
-			var motion = svg.querySelector( 'animateMotion' );
-			if ( ! motion || typeof motion.beginElement !== 'function' ) {
+			var motions = svg.querySelectorAll( 'animateMotion' );
+			if ( ! motions.length || typeof motions[ 0 ].beginElement !== 'function' ) {
 				return;
 			}
 			svg.classList.add( 'is-flying' );
-			motion.beginElement();
+			motions.forEach( function ( motion ) {
+				motion.beginElement();
+			} );
 			if ( hasIO ) {
 				new IntersectionObserver( function ( entries ) {
 					if ( entries[ 0 ].isIntersecting ) {

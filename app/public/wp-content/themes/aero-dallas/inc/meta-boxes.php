@@ -41,7 +41,7 @@ function aerodallas_page_fields() {
 			'hero_lead'        => array(
 				'label'   => __( 'Hero lead paragraph', 'aero-dallas' ),
 				'type'    => 'textarea',
-				'default' => __( 'AERO DALLAS provides specialised industrial support solutions across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
+				'default' => __( 'AERO DALLAS INDUSTRIAL provides specialised industrial support solutions across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
 			),
 			'hero_text'        => array(
 				'label'   => __( 'Hero supporting paragraph', 'aero-dallas' ),
@@ -61,7 +61,7 @@ function aerodallas_page_fields() {
 			'about_text'       => array(
 				'label'   => __( 'About intro text', 'aero-dallas' ),
 				'type'    => 'textarea',
-				'default' => __( 'AERO DALLAS is an industrial support company providing specialised services across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ) . "\n\n" . __( 'We are committed to helping businesses maintain operational efficiency through dependable technical assistance, quality equipment supply, machinery repairs, and effective logistics solutions.', 'aero-dallas' ),
+				'default' => __( 'AERO DALLAS INDUSTRIAL is an industrial support company providing specialised services across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ) . "\n\n" . __( 'We are committed to helping businesses maintain operational efficiency through dependable technical assistance, quality equipment supply, machinery repairs, and effective logistics solutions.', 'aero-dallas' ),
 			),
 			'process_heading'  => array(
 				'label'   => __( 'How We Work heading', 'aero-dallas' ),
@@ -71,12 +71,17 @@ function aerodallas_page_fields() {
 			'process_text'     => array(
 				'label'   => __( 'How We Work intro', 'aero-dallas' ),
 				'type'    => 'textarea',
-				'default' => __( 'AERO DALLAS follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ),
+				'default' => __( 'AERO DALLAS INDUSTRIAL follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ),
 			),
 			'why_heading'      => array(
 				'label'   => __( 'Why choose heading', 'aero-dallas' ),
 				'type'    => 'text',
-				'default' => __( 'Why Choose AERO DALLAS?', 'aero-dallas' ),
+				'default' => __( 'Why Choose AERO DALLAS INDUSTRIAL?', 'aero-dallas' ),
+			),
+			'hsq_heading'      => array(
+				'label'   => __( 'Health, safety & quality heading', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Quality Service Begins with Safe Operations', 'aero-dallas' ),
 			),
 			'faq_heading'      => array(
 				'label'   => __( 'FAQ heading', 'aero-dallas' ),
@@ -125,7 +130,12 @@ function aerodallas_page_fields() {
 			'why_heading'   => array(
 				'label'   => __( 'Why choose heading', 'aero-dallas' ),
 				'type'    => 'text',
-				'default' => __( 'Why Choose AERO DALLAS?', 'aero-dallas' ),
+				'default' => __( 'Why Choose AERO DALLAS INDUSTRIAL?', 'aero-dallas' ),
+			),
+			'hsq_heading'   => array(
+				'label'   => __( 'Health, safety & quality heading', 'aero-dallas' ),
+				'type'    => 'text',
+				'default' => __( 'Quality Service Begins with Safe Operations', 'aero-dallas' ),
 			),
 		),
 		'services' => array(
@@ -200,7 +210,7 @@ function aerodallas_page_fields() {
 			'lead'      => array(
 				'label'   => __( 'Hero intro paragraph', 'aero-dallas' ),
 				'type'    => 'textarea',
-				'default' => __( 'Updates, insights and company news from AERO DALLAS on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
+				'default' => __( 'Updates, insights and company news from AERO DALLAS INDUSTRIAL on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
 			),
 		),
 		'default'  => array(
@@ -313,7 +323,7 @@ function aerodallas_page_sections_box( $post ) {
 		'services' => __( 'The main editor content is the intro shown in the hero. The four service sections come from Site Content → Services.', 'aero-dallas' ),
 		'process'  => __( 'The main editor content is the intro shown in the hero. The steps come from Site Content → Process Steps.', 'aero-dallas' ),
 		'policies' => __( 'The main editor content holds the policies. Each Heading block becomes an entry in the table of contents; set its HTML anchor (Advanced panel) to control the link, e.g. "privacy".', 'aero-dallas' ),
-		'contact'  => __( 'The main editor content is the intro shown in the hero. Contact details come from Appearance → Customize → AERO DALLAS — Company Details.', 'aero-dallas' ),
+		'contact'  => __( 'The main editor content is the intro shown in the hero. Contact details come from Appearance → Customize → AERO DALLAS INDUSTRIAL — Company Details.', 'aero-dallas' ),
 		'about'    => __( 'The main editor content is the "Who We Are" text. The hero photo can be replaced with a featured image.', 'aero-dallas' ),
 		'default'  => __( 'Choose a page template in the Page panel to see more fields after saving.', 'aero-dallas' ),
 	);

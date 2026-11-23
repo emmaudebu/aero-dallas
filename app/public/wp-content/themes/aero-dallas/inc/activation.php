@@ -56,7 +56,7 @@ function aerodallas_blocks_list( $items ) {
  */
 function aerodallas_default_pages() {
 	$policies  = aerodallas_blocks_heading( __( 'A. General Business Policy', 'aero-dallas' ), 'general' );
-	$policies .= aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS is committed to conducting business with professionalism, integrity, transparency, and accountability. Client engagements are handled based on agreed requirements, approved quotations, and mutually accepted terms and conditions. We reserve the right to review service requests based on technical feasibility, equipment availability, and operational capacity.', 'aero-dallas' ) ) );
+	$policies .= aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS INDUSTRIAL is committed to conducting business with professionalism, integrity, transparency, and accountability. Client engagements are handled based on agreed requirements, approved quotations, and mutually accepted terms and conditions. We reserve the right to review service requests based on technical feasibility, equipment availability, and operational capacity.', 'aero-dallas' ) ) );
 	$policies .= aerodallas_blocks_heading( __( 'B. Quotation & Payment Policy', 'aero-dallas' ), 'quotation-payment' );
 	$policies .= aerodallas_blocks_list(
 		array(
@@ -75,7 +75,7 @@ function aerodallas_default_pages() {
 			__( 'Schedules may depend on equipment availability, parts sourcing, logistics, and technical requirements.', 'aero-dallas' ),
 			__( 'Clients will be informed of significant changes to agreed timelines.', 'aero-dallas' ),
 			__( 'Equipment and services will be supplied or delivered according to approved specifications and scope.', 'aero-dallas' ),
-			__( 'AERO DALLAS will make reasonable efforts to ensure professional and dependable service delivery.', 'aero-dallas' ),
+			__( 'AERO DALLAS INDUSTRIAL will make reasonable efforts to ensure professional and dependable service delivery.', 'aero-dallas' ),
 		)
 	);
 	$policies .= aerodallas_blocks_heading( __( 'D. Cancellation & Refund Policy', 'aero-dallas' ), 'cancellation-refund' );
@@ -98,53 +98,53 @@ function aerodallas_default_pages() {
 		)
 	);
 	$policies .= aerodallas_blocks_heading( __( 'F. Health, Safety & Quality Policy', 'aero-dallas' ), 'health-safety-quality' );
-	$policies .= aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS recognises the importance of safety, quality, and responsible operational practices in industrial and aviation support environments. We aim to promote safe working practices, maintain professional service standards, follow relevant equipment handling procedures, support proper equipment maintenance and functionality, and encourage compliance with applicable safety and operational requirements.', 'aero-dallas' ) ) );
+	$policies .= aerodallas_hsq_blocks();
 	$policies .= aerodallas_blocks_heading( __( 'G. Privacy Policy', 'aero-dallas' ), 'privacy' );
-	$policies .= aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS respects the privacy of clients, business partners, and website visitors. Information submitted through the website, including names, email addresses, phone numbers, and service inquiries, will be used for business communication, quotation preparation, and service-related purposes. We aim to protect personal information, use it for legitimate business purposes, and apply appropriate safeguards. Sharing may occur where necessary for service delivery, legally required, or otherwise permitted.', 'aero-dallas' ) ) );
+	$policies .= aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS INDUSTRIAL respects the privacy of clients, business partners, and website visitors. Information submitted through the website, including names, email addresses, phone numbers, and service inquiries, will be used for business communication, quotation preparation, and service-related purposes. We aim to protect personal information, use it for legitimate business purposes, and apply appropriate safeguards. Sharing may occur where necessary for service delivery, legally required, or otherwise permitted.', 'aero-dallas' ) ) );
 
 	return array(
 		'home'     => array(
 			'title'   => __( 'Home', 'aero-dallas' ),
 			'content' => '',
-			'seo'     => __( 'AERO DALLAS provides specialised industrial support solutions across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
+			'seo'     => __( 'AERO DALLAS INDUSTRIAL provides specialised industrial support solutions across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
 		),
 		'about'    => array(
 			'title'   => __( 'About Us', 'aero-dallas' ),
 			'content' => aerodallas_blocks_paragraphs(
 				array(
-					__( 'AERO DALLAS is an industrial support company providing specialised services across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
+					__( 'AERO DALLAS INDUSTRIAL is an industrial support company providing specialised services across mechanical engineering, aviation ground support, equipment supply, and industrial logistics.', 'aero-dallas' ),
 					__( 'We are committed to helping businesses maintain operational efficiency through dependable technical assistance, quality equipment supply, machinery repairs, and effective logistics solutions.', 'aero-dallas' ),
 					__( 'Our approach is built on professionalism, technical competence, reliability, and a strong understanding of the operational demands of industrial and aviation environments.', 'aero-dallas' ),
-					__( "At AERO DALLAS, we understand that equipment reliability and efficient operations are essential to business success. We therefore strive to provide practical, dependable, and professionally delivered support solutions tailored to our clients' needs.", 'aero-dallas' ),
+					__( "At AERO DALLAS INDUSTRIAL, we understand that equipment reliability and efficient operations are essential to business success. We therefore strive to provide practical, dependable, and professionally delivered support solutions tailored to our clients' needs.", 'aero-dallas' ),
 					__( 'We aim to build lasting business relationships through integrity, commitment, technical excellence, and consistent service delivery.', 'aero-dallas' ),
 				)
 			),
-			'seo'     => __( 'Who AERO DALLAS is, our vision and mission, and the core values behind our industrial and aviation support services.', 'aero-dallas' ),
+			'seo'     => __( 'Who AERO DALLAS INDUSTRIAL is, our vision and mission, and the core values behind our industrial and aviation support services.', 'aero-dallas' ),
 		),
 		'services' => array(
 			'title'   => __( 'Services', 'aero-dallas' ),
-			'content' => aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS offers specialised services designed to support the operational needs of businesses within the industrial and aviation sectors.', 'aero-dallas' ) ) ),
+			'content' => aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS INDUSTRIAL offers specialised services designed to support the operational needs of businesses within the industrial and aviation sectors.', 'aero-dallas' ) ) ),
 			'seo'     => __( 'Industrial support, aviation ground support equipment (GPU, HPU, air starter units, aircraft jacks, tow bars), parts and equipment supply, and air and ground logistics.', 'aero-dallas' ),
 		),
 		'process'  => array(
 			'title'   => __( 'How We Work', 'aero-dallas' ),
-			'content' => aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ) ) ),
+			'content' => aerodallas_blocks_paragraphs( array( __( 'AERO DALLAS INDUSTRIAL follows a structured approach to ensure that every client receives professional attention, clear communication, and appropriate technical support.', 'aero-dallas' ) ) ),
 			'seo'     => __( 'Our seven-step process: inquiry and consultation, assessment, quotation, approval, service delivery, inspection and handover, and follow-up.', 'aero-dallas' ),
 		),
 		'policies' => array(
 			'title'   => __( 'Policies', 'aero-dallas' ),
 			'content' => $policies,
-			'seo'     => __( 'AERO DALLAS business, quotation and payment, service and delivery, cancellation and refund, warranty, health and safety, and privacy policies.', 'aero-dallas' ),
+			'seo'     => __( 'AERO DALLAS INDUSTRIAL business, quotation and payment, service and delivery, cancellation and refund, warranty, health and safety, and privacy policies.', 'aero-dallas' ),
 		),
 		'news'     => array(
 			'title'   => __( 'News', 'aero-dallas' ),
 			'content' => '',
-			'seo'     => __( 'Logistics updates, industry insights and company news from AERO DALLAS on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
+			'seo'     => __( 'Logistics updates, industry insights and company news from AERO DALLAS INDUSTRIAL on air and ground logistics, aviation ground support, parts supply and industrial support.', 'aero-dallas' ),
 		),
 		'contact'  => array(
 			'title'   => __( 'Contact Us', 'aero-dallas' ),
-			'content' => aerodallas_blocks_paragraphs( array( __( 'Whether you require industrial machinery repairs, aviation ground support equipment, parts supply, or logistics assistance, AERO DALLAS is ready to discuss your requirements. Our team is committed to providing professional responses and dependable support tailored to your business needs.', 'aero-dallas' ) ) ),
-			'seo'     => __( 'Contact AERO DALLAS or request a quote for industrial machinery repairs, aviation ground support equipment, parts supply, or logistics.', 'aero-dallas' ),
+			'content' => aerodallas_blocks_paragraphs( array( __( 'Whether you require industrial machinery repairs, aviation ground support equipment, parts supply, or logistics assistance, AERO DALLAS INDUSTRIAL is ready to discuss your requirements. Our team is committed to providing professional responses and dependable support tailored to your business needs.', 'aero-dallas' ) ) ),
+			'seo'     => __( 'Contact AERO DALLAS INDUSTRIAL or request a quote for industrial machinery repairs, aviation ground support equipment, parts supply, or logistics.', 'aero-dallas' ),
 		),
 	);
 }
@@ -216,7 +216,7 @@ function aerodallas_default_items() {
 			array(
 				'title'   => __( 'Air & Ground Logistics Services', 'aero-dallas' ),
 				'excerpt' => __( 'Air and ground logistics support for industrial and operational needs.', 'aero-dallas' ),
-				'content' => '<p>' . esc_html__( 'AERO DALLAS provides air and ground logistics support to facilitate the movement and coordination of industrial equipment, parts, and operational supplies. Our logistics services are structured to support efficient handling and dependable coordination based on project requirements.', 'aero-dallas' ) . '</p>',
+				'content' => '<p>' . esc_html__( 'AERO DALLAS INDUSTRIAL provides air and ground logistics support to facilitate the movement and coordination of industrial equipment, parts, and operational supplies. Our logistics services are structured to support efficient handling and dependable coordination based on project requirements.', 'aero-dallas' ) . '</p>',
 				'meta'    => array(
 					'card_title' => __( 'Industrial Logistics', 'aero-dallas' ),
 					'anchor'     => 'logistics',
@@ -251,9 +251,9 @@ function aerodallas_default_items() {
 			array( 'title' => __( 'Dedicated support for operational requirements', 'aero-dallas' ) ),
 		),
 		'aerodallas_faq'     => array(
-			array( 'title' => __( 'What services does AERO DALLAS provide?', 'aero-dallas' ), 'content' => __( 'Mechanical engineering support, machinery repairs, parts supply, aviation ground support equipment repairs and supply, and air and ground logistics services.', 'aero-dallas' ) ),
+			array( 'title' => __( 'What services does AERO DALLAS INDUSTRIAL provide?', 'aero-dallas' ), 'content' => __( 'Mechanical engineering support, machinery repairs, parts supply, aviation ground support equipment repairs and supply, and air and ground logistics services.', 'aero-dallas' ) ),
 			array( 'title' => __( 'Can I request a quotation for equipment supply?', 'aero-dallas' ), 'content' => __( 'Yes. Submit your requirements and specifications through the website to request a quotation.', 'aero-dallas' ) ),
-			array( 'title' => __( 'Does AERO DALLAS provide machinery repairs?', 'aero-dallas' ), 'content' => __( 'Yes. Industrial machinery repair and mechanical engineering support are offered subject to equipment type and technical assessment.', 'aero-dallas' ) ),
+			array( 'title' => __( 'Does AERO DALLAS INDUSTRIAL provide machinery repairs?', 'aero-dallas' ), 'content' => __( 'Yes. Industrial machinery repair and mechanical engineering support are offered subject to equipment type and technical assessment.', 'aero-dallas' ) ),
 			array( 'title' => __( 'Do you supply aviation ground support equipment?', 'aero-dallas' ), 'content' => __( 'We support supply of ground power units, hydraulic power units, air starter units, aircraft jacks, and aircraft tow bars, subject to availability and specifications.', 'aero-dallas' ) ),
 			array( 'title' => __( 'How do I engage your services?', 'aero-dallas' ), 'content' => __( 'Contact us by phone, Instagram, or the website inquiry form. Our team will review your requirements and guide you through the next steps.', 'aero-dallas' ) ),
 		),
@@ -435,6 +435,15 @@ function aerodallas_upgrade() {
 	if ( version_compare( $version, '1.2.0', '<' ) ) {
 		aerodallas_setup_news();
 	}
+	if ( version_compare( $version, '1.4.0', '<' ) ) {
+		aerodallas_upgrade_business_name();
+	}
+	if ( version_compare( $version, '1.5.0', '<' ) ) {
+		aerodallas_upgrade_hsq_policy();
+	}
+	if ( version_compare( $version, '1.6.0', '<' ) ) {
+		aerodallas_upgrade_service_photos();
+	}
 	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
 	flush_rewrite_rules();
 }
@@ -488,6 +497,118 @@ function aerodallas_upgrade_services() {
 }
 
 /**
+ * Business name with "Industrial" added: "AERO DALLAS" becomes
+ * "AERO DALLAS INDUSTRIAL" (and "Aero Dallas" becomes "Aero Dallas Industrial").
+ * Text that already has the full name is left alone.
+ *
+ * @param string $text Text.
+ * @return string
+ */
+function aerodallas_full_business_name( $text ) {
+	return (string) preg_replace_callback(
+		'/\bAero Dallas\b(?!\s+Industrial\b)/i',
+		static function ( $match ) {
+			return strtoupper( $match[0] ) === $match[0] ? 'AERO DALLAS INDUSTRIAL' : 'Aero Dallas Industrial';
+		},
+		(string) $text
+	);
+}
+
+/**
+ * 1.4.0: the business is AERO DALLAS INDUSTRIAL. Use the full name in the
+ * content the theme set up: its pages, services, process steps, values,
+ * reasons and FAQs (with their fields), the theme's Customizer texts, and the
+ * site title when it is just "Aero Dallas". Articles and client testimonials
+ * are left as written.
+ */
+function aerodallas_upgrade_business_name() {
+	$posts = get_posts(
+		array(
+			'post_type'      => array( 'aerodallas_service', 'aerodallas_step', 'aerodallas_value', 'aerodallas_reason', 'aerodallas_faq' ),
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+		)
+	);
+	$page_ids = array_filter( array_map( 'intval', (array) get_option( 'aerodallas_page_ids', array() ) ) );
+	if ( $page_ids ) {
+		$posts = array_merge(
+			$posts,
+			get_posts(
+				array(
+					'post_type'      => 'page',
+					'post_status'    => 'any',
+					'post__in'       => $page_ids,
+					'posts_per_page' => -1,
+				)
+			)
+		);
+	}
+
+	// Saved as the theme, not as whoever loaded the page, so block markup is kept.
+	$kses = false !== has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+	if ( $kses ) {
+		kses_remove_filters();
+	}
+	foreach ( $posts as $post ) {
+		$update = array( 'ID' => $post->ID );
+		foreach ( array( 'post_title', 'post_content', 'post_excerpt' ) as $field ) {
+			$renamed = aerodallas_full_business_name( $post->$field );
+			if ( $renamed !== $post->$field ) {
+				$update[ $field ] = $renamed;
+			}
+		}
+		if ( count( $update ) > 1 ) {
+			wp_update_post( wp_slash( $update ) );
+		}
+		foreach ( get_post_meta( $post->ID ) as $key => $values ) {
+			if ( 0 !== strpos( $key, '_aerodallas_' ) || ! is_string( $values[0] ) || is_serialized( $values[0] ) ) {
+				continue;
+			}
+			$renamed = aerodallas_full_business_name( $values[0] );
+			if ( $renamed !== $values[0] ) {
+				update_post_meta( $post->ID, $key, wp_slash( $renamed ) );
+			}
+		}
+	}
+	if ( $kses ) {
+		kses_init_filters();
+	}
+
+	foreach ( (array) get_theme_mods() as $key => $value ) {
+		if ( 0 === strpos( (string) $key, 'aerodallas_' ) && is_string( $value ) ) {
+			$renamed = aerodallas_full_business_name( $value );
+			if ( $renamed !== $value ) {
+				set_theme_mod( $key, $renamed );
+			}
+		}
+	}
+
+	$title = (string) get_option( 'blogname' );
+	if ( preg_match( '/^\s*aero dallas\s*$/i', $title ) ) {
+		update_option( 'blogname', aerodallas_full_business_name( trim( $title ) ) );
+	}
+}
+
+/**
+ * 1.6.0: equipment photos for the industrial, aviation and parts service
+ * heroes. A hero photo that was changed from the original is left alone.
+ */
+function aerodallas_upgrade_service_photos() {
+	$previous = array(
+		'industrial'   => 'service-industrial',
+		'aviation'     => 'service-aviation',
+		'parts-supply' => 'service-parts',
+	);
+	$details  = aerodallas_service_details();
+	foreach ( aerodallas_items( 'aerodallas_service' ) as $service ) {
+		$anchor = (string) get_post_meta( $service->ID, '_aerodallas_anchor', true );
+		if ( isset( $previous[ $anchor ], $details[ $anchor ] ) && get_post_meta( $service->ID, '_aerodallas_hero_photo', true ) === $previous[ $anchor ] ) {
+			update_post_meta( $service->ID, '_aerodallas_hero_photo', $details[ $anchor ]['hero_photo'] );
+		}
+	}
+}
+
+/**
  * Run all setup steps.
  */
 function aerodallas_activate() {
@@ -521,7 +642,7 @@ function aerodallas_activation_notice() {
 	}
 	printf(
 		'<div class="notice notice-success is-dismissible"><p>%1$s <a href="%2$s">%3$s</a> · <a href="%4$s">%5$s</a></p></div>',
-		esc_html__( 'AERO DALLAS is set up: pages, menus and content have been created.', 'aero-dallas' ),
+		esc_html__( 'AERO DALLAS INDUSTRIAL is set up: pages, menus and content have been created.', 'aero-dallas' ),
 		esc_url( admin_url( 'customize.php?autofocus[panel]=aerodallas_company' ) ),
 		esc_html__( 'Add company details', 'aero-dallas' ),
 		esc_url( admin_url( 'admin.php?page=aerodallas-content' ) ),

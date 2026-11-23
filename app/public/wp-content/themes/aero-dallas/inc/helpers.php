@@ -177,6 +177,18 @@ function aerodallas_photos() {
 		'hero-jet'           => __( 'Jet aircraft parked on the apron at sunset', 'aero-dallas' ),
 		'band-night-gate'    => __( 'Airliner at the gate at night with ground crew and equipment', 'aero-dallas' ),
 		'band-truck-dusk'    => __( 'Freight truck on the highway at dusk', 'aero-dallas' ),
+		'eq-ground-power-unit' => __( 'Diesel ground power unit with its power cables coiled on the side, parked on the apron', 'aero-dallas' ),
+		'eq-tow-bar'           => __( 'Aircraft tow bar with wheels lying on the tarmac', 'aero-dallas' ),
+		'eq-pushback-tractor'  => __( 'Towbarless aircraft pushback tractor on the apron, seen from above', 'aero-dallas' ),
+		'eq-baggage-carousel'  => __( 'Airport baggage carousel and belt conveyor sections in a fabrication workshop', 'aero-dallas' ),
+		'eq-towbarless-tractor' => __( 'Towbarless aircraft pushback tractor with its nose-wheel cradle', 'aero-dallas' ),
+		'eq-air-start-unit'    => __( 'Air start unit with its air hoses stowed in the side tray', 'aero-dallas' ),
+		'eq-aircraft-jack'     => __( 'Red tripod aircraft jack positioned under the wing of a light aircraft in a hangar', 'aero-dallas' ),
+		'eq-incline-conveyor'  => __( 'Mobile incline belt conveyor on a wheeled trailer frame', 'aero-dallas' ),
+		'eq-paging-conveyor'   => __( 'Stainless steel paging and feeder belt conveyor on a stand', 'aero-dallas' ),
+		'eq-cnc-milling'       => __( 'CNC milling machine cutting an aluminium part with coolant', 'aero-dallas' ),
+		'eq-roller-conveyor'   => __( 'Roller conveyor system running through a warehouse', 'aero-dallas' ),
+		'eq-cnc-lathe'         => __( 'CNC lathe with its control panel in a machine shop', 'aero-dallas' ),
 	);
 }
 
@@ -289,6 +301,79 @@ function aerodallas_service_options() {
 	}
 	$options['other'] = __( 'Other / Not sure', 'aero-dallas' );
 	return $options;
+}
+
+/**
+ * Home hero "What we support" list: the service areas with their links.
+ *
+ * @return array<int,array{label:string,url:string,icon:string}>
+ */
+function aerodallas_hero_sectors() {
+	$sectors = array();
+	foreach ( aerodallas_items( 'aerodallas_service' ) as $service ) {
+		$label     = (string) get_post_meta( $service->ID, '_aerodallas_card_title', true );
+		$sectors[] = array(
+			'label' => $label ? $label : get_the_title( $service ),
+			'url'   => get_permalink( $service ),
+			'icon'  => (string) get_post_meta( $service->ID, '_aerodallas_icon', true ),
+		);
+	}
+	return $sectors;
+}
+
+/**
+ * Home hero showcase: the equipment photos shown in turn beside the
+ * heading, each linked to the quote form. The Customizer's home hero photo,
+ * when set, is shown first.
+ *
+ * @return array<int,array{attachment:int,photo:string,label:string,category:string,fit:string,url:string}>
+ */
+function aerodallas_hero_showcase() {
+	$categories = array(
+		'aviation'   => __( 'Aviation', 'aero-dallas' ),
+		'industrial' => __( 'Industrial', 'aero-dallas' ),
+	);
+	$items      = array_filter(
+		aerodallas_equipment(),
+		static function ( $item ) {
+			return $item['hero'] > 0;
+		}
+	);
+	usort(
+		$items,
+		static function ( $a, $b ) {
+			return $a['hero'] <=> $b['hero'];
+		}
+	);
+	$slides = array();
+	$custom = (int) get_theme_mod( 'aerodallas_hero_image', 0 );
+	if ( $custom && wp_attachment_is_image( $custom ) ) {
+		$slides[] = array(
+			'attachment' => $custom,
+			'photo'      => '',
+			'label'      => '',
+			'category'   => '',
+			'fit'        => 'cover',
+			'url'        => '',
+		);
+	}
+	foreach ( $items as $item ) {
+		$slides[] = array(
+			'attachment' => 0,
+			'photo'      => $item['photo'],
+			'label'      => $item['label'],
+			'category'   => $categories[ $item['service'] ] ?? '',
+			'fit'        => $item['fit'],
+			'url'        => add_query_arg(
+				array(
+					'service'   => $item['service'],
+					'equipment' => rawurlencode( $item['label'] ),
+				),
+				aerodallas_page_url( 'contact' )
+			) . '#quote',
+		);
+	}
+	return $slides;
 }
 
 /**

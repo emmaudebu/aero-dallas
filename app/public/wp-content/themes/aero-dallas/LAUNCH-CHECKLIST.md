@@ -1,8 +1,8 @@
-# AERO DALLAS — Launch checklist
+# AERO DALLAS INDUSTRIAL — Launch checklist
 
 Everything below must be confirmed by the business owner before the website goes live. Nothing on this list is shown on the public site until it has been entered: empty contact fields simply do not render.
 
-## Company details (Appearance → Customize → AERO DALLAS — Company Details)
+## Company details (Appearance → Customize → AERO DALLAS INDUSTRIAL — Company Details)
 
 - [ ] Registered business address
 - [ ] Official business email address
@@ -30,7 +30,7 @@ Everything below must be confirmed by the business owner before the website goes
 
 ## Coming soon mode (optional)
 
-- [ ] To show a holding page before launch: Customize → AERO DALLAS — Company Details → **Coming soon mode**, set the launch date and time, and tick *Show the coming soon page to visitors*
+- [ ] To show a holding page before launch: Customize → AERO DALLAS INDUSTRIAL — Company Details → **Coming soon mode**, set the launch date and time, and tick *Show the coming soon page to visitors*
 - [ ] Check the time zone in Settings → General before setting the launch time
 - [ ] On launch day, confirm the website opened (log out or use a private window); if *Open the website automatically* is off, untick *Show the coming soon page to visitors*
 

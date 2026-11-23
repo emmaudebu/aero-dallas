@@ -48,7 +48,7 @@ if ( is_search() ) {
 		'heading'   => $aerodallas_term->name,
 		'highlight' => $aerodallas_term->name,
 		/* translators: %s: topic name. */
-		'lead'      => '' !== $aerodallas_desc ? $aerodallas_desc : sprintf( __( 'Articles and updates from AERO DALLAS about %s.', 'aero-dallas' ), $aerodallas_term->name ),
+		'lead'      => '' !== $aerodallas_desc ? $aerodallas_desc : sprintf( __( 'Articles and updates from AERO DALLAS INDUSTRIAL about %s.', 'aero-dallas' ), $aerodallas_term->name ),
 		'photo'     => $aerodallas_posts ? aerodallas_post_photo( $aerodallas_posts[0] ) : 'logistics-freighter',
 		'thumb'     => 0,
 	);

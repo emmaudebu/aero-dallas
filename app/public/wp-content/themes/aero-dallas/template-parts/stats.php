@@ -1,7 +1,7 @@
 <?php
 /**
  * Statistics band. Renders only when figures are filled in under
- * Customize → AERO DALLAS — Company Details → Home: statistics and insights.
+ * Customize → AERO DALLAS INDUSTRIAL — Company Details → Home: statistics and insights.
  *
  * @package aero-dallas
  */

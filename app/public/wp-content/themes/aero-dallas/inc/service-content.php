@@ -65,19 +65,19 @@ function aerodallas_service_details() {
 		__( 'Aviation equipment support', 'aero-dallas' ),
 	);
 	$parts_overview   = __( 'We support businesses with the supply of industrial and aviation-related parts and equipment required for maintenance, repairs, and operational support. Our focus is on identifying suitable equipment and components based on client specifications and operational requirements.', 'aero-dallas' );
-	$logistics_overview = __( 'AERO DALLAS provides air and ground logistics support to facilitate the movement and coordination of industrial equipment, parts, and operational supplies. Our logistics services are structured to support efficient handling and dependable coordination based on project requirements.', 'aero-dallas' );
+	$logistics_overview = __( 'AERO DALLAS INDUSTRIAL provides air and ground logistics support to facilitate the movement and coordination of industrial equipment, parts, and operational supplies. Our logistics services are structured to support efficient handling and dependable coordination based on project requirements.', 'aero-dallas' );
 
 	return array(
 		'industrial'   => array(
 			'slug'          => 'industrial-support',
 			'intro'         => __( 'Mechanical engineering support, industrial machinery repairs and equipment maintenance that help businesses keep their operations running efficiently.', 'aero-dallas' ),
 			'scope'         => $industrial_scope,
-			'hero_photo'    => 'service-industrial',
+			'hero_photo'    => 'eq-cnc-milling',
 			'gallery_photo' => 'about-welding',
 			'legacy'        => implode( ' ', $industrial_scope ),
 			'content'       =>
 				$h2( __( 'Overview', 'aero-dallas' ), 'overview' ) .
-				$p( array( __( 'AERO DALLAS provides specialised industrial support across mechanical engineering, machinery repairs, equipment maintenance and spare parts supply. Every request starts with a review of your equipment, its condition and your operational requirements, so that the work proposed is practical, clearly scoped and agreed before anything begins.', 'aero-dallas' ) ) ) .
+				$p( array( __( 'AERO DALLAS INDUSTRIAL provides specialised industrial support across mechanical engineering, machinery repairs, equipment maintenance and spare parts supply. Every request starts with a review of your equipment, its condition and your operational requirements, so that the work proposed is practical, clearly scoped and agreed before anything begins.', 'aero-dallas' ) ) ) .
 				$h2( __( 'What we support', 'aero-dallas' ), 'what-we-support' ) .
 				$h3( __( 'Mechanical engineering support', 'aero-dallas' ) ) .
 				$p( array( __( 'Technical assistance to help identify equipment faults, assess repair or replacement options and plan the work needed to restore dependable operation.', 'aero-dallas' ) ) ) .
@@ -108,12 +108,12 @@ function aerodallas_service_details() {
 			'slug'          => 'aviation-ground-support',
 			'intro'         => __( 'Repairs, supply and support for essential aviation ground support equipment, from ground power and hydraulic units to aircraft jacks and tow bars.', 'aero-dallas' ),
 			'scope'         => $aviation_scope,
-			'hero_photo'    => 'service-aviation',
+			'hero_photo'    => 'eq-pushback-tractor',
 			'gallery_photo' => 'hero-ground-power',
 			'legacy'        => implode( ' ', $aviation_scope ),
 			'content'       =>
 				$h2( __( 'Overview', 'aero-dallas' ), 'overview' ) .
-				$p( array( __( 'Ground support equipment keeps aircraft powered, serviced and moving safely on the ground. AERO DALLAS supports the repair and supply of essential aviation ground equipment, subject to availability and specifications, so that your operation can keep its ground equipment available and in working order.', 'aero-dallas' ) ) ) .
+				$p( array( __( 'Ground support equipment keeps aircraft powered, serviced and moving safely on the ground. AERO DALLAS INDUSTRIAL supports the repair and supply of essential aviation ground equipment, subject to availability and specifications, so that your operation can keep its ground equipment available and in working order.', 'aero-dallas' ) ) ) .
 				$h2( __( 'Equipment we support', 'aero-dallas' ), 'equipment' ) .
 				$h3( __( 'Ground Power Units (GPU)', 'aero-dallas' ) ) .
 				$p( array( __( 'Ground power units supply electrical power to an aircraft on the ground while its engines are shut down, supporting servicing, checks and turnaround activity.', 'aero-dallas' ) ) ) .
@@ -155,7 +155,7 @@ function aerodallas_service_details() {
 				__( 'Parts for maintenance and repair work', 'aero-dallas' ),
 				__( 'Sourcing to client specifications', 'aero-dallas' ),
 			),
-			'hero_photo'    => 'service-parts',
+			'hero_photo'    => 'eq-roller-conveyor',
 			'gallery_photo' => 'parts-detail',
 			'legacy'        => $parts_overview,
 			'content'       =>
@@ -226,5 +226,33 @@ function aerodallas_service_details() {
 				$h2( __( 'Schedules and timelines', 'aero-dallas' ), 'timelines' ) .
 				$p( array( __( 'Service timelines are agreed before work begins. Schedules can depend on equipment availability, parts sourcing, logistics and technical requirements, and you will be informed of significant changes to agreed timelines.', 'aero-dallas' ) ) ),
 		),
+	);
+}
+
+/**
+ * Equipment shown in the equipment galleries, each linked to the quote form
+ * with the service and equipment filled in. "fit" is "contain" for product
+ * photos on a white background, so the whole item stays in view. "featured"
+ * items appear on the home page; "hero" gives the order in the home hero
+ * showcase (0: not shown there).
+ *
+ * @return array<int,array{label:string,photo:string,service:string,fit:string,featured:bool,hero:int}>
+ */
+function aerodallas_equipment() {
+	$item = static function ( $label, $photo, $service, $fit = 'cover', $featured = false, $hero = 0 ) {
+		return compact( 'label', 'photo', 'service', 'fit', 'featured', 'hero' );
+	};
+	return array(
+		$item( __( 'Towbarless Pushback Tractors', 'aero-dallas' ), 'eq-towbarless-tractor', 'aviation', 'contain', true, 2 ),
+		$item( __( 'Air Start Units (ASU)', 'aero-dallas' ), 'eq-air-start-unit', 'aviation', 'cover', false, 1 ),
+		$item( __( 'Ground Power Units (GPU)', 'aero-dallas' ), 'eq-ground-power-unit', 'aviation' ),
+		$item( __( 'Aircraft Jacks', 'aero-dallas' ), 'eq-aircraft-jack', 'aviation', 'cover', true, 3 ),
+		$item( __( 'Aircraft Tow Bars', 'aero-dallas' ), 'eq-tow-bar', 'aviation' ),
+		$item( __( 'Baggage Carousels & Belt Conveyors', 'aero-dallas' ), 'eq-baggage-carousel', 'aviation', 'cover', false, 5 ),
+		$item( __( 'Incline Belt Conveyors', 'aero-dallas' ), 'eq-incline-conveyor', 'industrial', 'contain', true, 4 ),
+		$item( __( 'Paging & Feeder Conveyors', 'aero-dallas' ), 'eq-paging-conveyor', 'industrial', 'contain', true, 6 ),
+		$item( __( 'Roller Conveyor Systems', 'aero-dallas' ), 'eq-roller-conveyor', 'industrial' ),
+		$item( __( 'CNC Milling Machines', 'aero-dallas' ), 'eq-cnc-milling', 'industrial' ),
+		$item( __( 'CNC Lathes & Machine Tools', 'aero-dallas' ), 'eq-cnc-lathe', 'industrial' ),
 	);
 }
