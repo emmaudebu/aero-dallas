@@ -447,6 +447,9 @@ function aerodallas_upgrade() {
 	if ( version_compare( $version, '1.8.0', '<' ) ) {
 		aerodallas_upgrade_hero_photo();
 	}
+	if ( version_compare( $version, '1.9.1', '<' ) ) {
+		aerodallas_upgrade_instagram();
+	}
 	update_option( 'aerodallas_setup_version', AERODALLAS_VERSION, false );
 	flush_rewrite_rules();
 }
@@ -629,6 +632,18 @@ function aerodallas_upgrade_hero_photo() {
 		}
 	}
 	remove_theme_mod( 'aerodallas_hero_image' );
+}
+
+/**
+ * 1.9.1: the Instagram account moved to @aerodallasusa. A saved link to the
+ * old account is updated; any other saved link is left alone.
+ */
+function aerodallas_upgrade_instagram() {
+	$url  = (string) get_theme_mod( 'aerodallas_instagram_url', '' );
+	$path = strtolower( trim( (string) wp_parse_url( $url, PHP_URL_PATH ), '/' ) );
+	if ( 'aerodallasindustrial' === $path ) {
+		set_theme_mod( 'aerodallas_instagram_url', aerodallas_detail_defaults()['instagram_url'] );
+	}
 }
 
 /**

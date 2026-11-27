@@ -1342,6 +1342,11 @@ body.menu-open {
 	object-fit: cover;
 }
 
+/* Keep the truck's cab in frame when the photo is cropped narrow. */
+.showcase__slide--eq-box-truck .showcase__img {
+	object-position: 82% 50%;
+}
+
 /* Product photos on white: shown whole, above the caption. */
 .showcase__slide--contain .showcase__img {
 	padding: 5% 7% 24%;

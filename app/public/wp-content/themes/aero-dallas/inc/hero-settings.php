@@ -1,7 +1,7 @@
 <?php
 /**
  * Home hero settings: Appearance → Customize → Home Hero. Heading, text and
- * buttons, text sizes, the slideshow effect and timing, and up to eight
+ * buttons, text sizes, the slideshow effect and timing, and up to fourteen
  * showcase slides (photo, title, tag, link, fit).
  *
  * @package aero-dallas
@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AERODALLAS_HERO_SLOTS', 8 );
+define( 'AERODALLAS_HERO_SLOTS', 14 );
 
 /**
  * Default hero settings. The text defaults to what was saved in the Home
@@ -70,7 +70,9 @@ function aerodallas_hero_effects() {
 }
 
 /**
- * Default slides: the equipment marked for the hero, then empty slots.
+ * Default slides: the equipment marked for the hero and the logistics,
+ * welding and workshop photos, in the order of their hero number, then
+ * empty slots.
  *
  * @return array<int,array{show:bool,photo:string,title:string,tag:string,service:string,fit:string}>
  */
@@ -78,12 +80,30 @@ function aerodallas_hero_slot_defaults() {
 	$tags  = array(
 		'aviation'   => __( 'Aviation', 'aero-dallas' ),
 		'industrial' => __( 'Industrial', 'aero-dallas' ),
+		'logistics'  => __( 'Logistics', 'aero-dallas' ),
 	);
-	$items = array_filter(
-		aerodallas_equipment(),
-		static function ( $item ) {
-			return $item['hero'] > 0;
-		}
+	$extra = static function ( $label, $photo, $service, $hero ) {
+		return array(
+			'label'   => $label,
+			'photo'   => $photo,
+			'service' => $service,
+			'fit'     => 'cover',
+			'hero'    => $hero,
+		);
+	};
+	$items = array_merge(
+		array_filter(
+			aerodallas_equipment(),
+			static function ( $item ) {
+				return $item['hero'] > 0;
+			}
+		),
+		array(
+			$extra( __( 'Welding & Fabrication', 'aero-dallas' ), 'eq-welding', 'industrial', 4 ),
+			$extra( __( 'Metal Fabrication Shop', 'aero-dallas' ), 'eq-fabrication-shop', 'industrial', 5 ),
+			$extra( __( 'Box Truck Logistics', 'aero-dallas' ), 'eq-box-truck', 'logistics', 11 ),
+			$extra( __( 'Fabrication Workshop', 'aero-dallas' ), 'eq-fabrication-workshop', 'industrial', 12 ),
+		)
 	);
 	usort(
 		$items,

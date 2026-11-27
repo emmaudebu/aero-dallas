@@ -86,7 +86,7 @@ Notes:
   - **Heading, text & buttons**: small label, heading, the words shown in orange, the paragraph, and the text and link of both buttons (empty text hides a button; empty link uses About Us / Services).
   - **Text sizes**: heading and paragraph size in pixels on large screens (tablets scale them down), and a separate heading size for phones.
   - **Slideshow: effect & timing**: effect (fade, slide across, zoom and fade, rise up), time on each slide, transition speed, automatic changes on or off, thumbnails on or off, caption bar on or off, and the caption link text.
-  - **Slide 1–8**: show or hide each slide, its photo (empty keeps the default photo), title, tag, link (empty opens the quote form with the title filled in) and whether the photo fills the frame or is shown whole on white. Slides 7 and 8 are empty until you choose a photo and tick *Show this slide*.
+  - **Slide 1–14**: show or hide each slide, its photo (empty keeps the default photo), title, tag, link (empty opens the quote form with the title filled in) and whether the photo fills the frame or is shown whole on white. Slides 1–12 show equipment, the welding and fabrication photos (slides 4 and 5) and the box truck; slides 13 and 14 are empty until you choose a photo and tick *Show this slide*.
   Visitors with reduced motion switched on see a still photo and can use the thumbnails. On phones and small tablets everything in the hero is centred, with the two buttons side by side; on phones the photo frame is also taller, the caption sits in a bar under the photo instead of over it, and the "What we support" list of service areas follows the showcase, in place of the quick quote bar.
 - **Photos**: to replace a service photo, set a *Featured image* on the service. Other photos are replaced in the Customizer. With no replacement set, the bundled photo is used.
 
@@ -167,10 +167,15 @@ aero-dallas/
   - Equipment, CNC milling (also the Industrial hero): aluminum Zheng ji — https://unsplash.com/photos/sxtClAGwRck
   - Equipment, CNC lathe: Guick — https://unsplash.com/photos/BmcNqFojf54
   - Equipment, roller conveyor (also the Parts & Equipment Supply hero): Alberto Rodríguez — https://unsplash.com/photos/qVpGF1mlaM8
+  - Home slide, fabrication workshop: Cemrecan Yurtman — https://unsplash.com/photos/welder-working-on-a-piece-of-metal-in-a-factory-enPxH6uqABg
 - **Photos supplied by AERO DALLAS INDUSTRIAL** (`eq-towbarless-tractor`, `eq-air-start-unit`, `eq-aircraft-jack`, `eq-baggage-carousel`, `eq-incline-conveyor`, `eq-paging-conveyor`): product photos provided by the company. Confirm you have the manufacturer's or supplier's permission to use them before launch, or replace them with your own photography.
+- **Photos chosen by AERO DALLAS INDUSTRIAL from other websites** (`eq-welding`, from gz-supplies.com; `eq-fabrication-shop`, the left half of an image from rsmobileweldingservice.com): these belong to those websites or their photographers. Get the owner's permission before launch, or replace them with your own photography.
 - **Public domain photography** from Wikimedia Commons (no attribution required; credited here for reference):
   - Equipment, ground power unit: ILA-boy — https://commons.wikimedia.org/wiki/File:ILA_2008_PD_026.JPG (cropped)
   - Equipment, aircraft tow bar: MKFI — https://commons.wikimedia.org/wiki/File:NH90_tow_bar_Kokonaisturvallisuus_2015.JPG (cropped)
+- **Creative Commons photography** from Wikimedia Commons. These licences require credit to the author; keep these credits with the theme, and add them to a credits or policies page if the photos stay on the live site:
+  - Equipment and home slide, hydraulic power unit: PEO ACWA, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) — https://commons.wikimedia.org/wiki/File:Pueblo_Chemical_Agent-Destruction_Pilot_Plant_Hydraulic_Power_Unit_(8454071290).jpg (resized)
+  - Home slide, box truck: Elise240SX, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — https://commons.wikimedia.org/wiki/File:2013_Hino_195_Silver_Knight_Box_Truck_in_White,_Front_Right,_07-12-2023.jpg (resized; the resized copy is shared under the same licence)
 - **Icons**: drawn for this theme.
 
 Stock photos show generic equipment and settings, not AERO DALLAS INDUSTRIAL's own work. Replace them with real company photography when it is available.
@@ -195,3 +200,9 @@ Version 1.6.0 adds equipment photos: an equipment gallery on the Aviation Ground
 Version 1.7.0 adds the company's own equipment photos: a home page equipment section, a filterable equipment catalogue on the Parts & Equipment Supply page, a redesigned home hero with a large equipment showcase of those photos, and rectangular photo mosaics in place of the circular photo clusters. Nothing needs to be set up.
 
 Version 1.8.0 adds **Customize → Home Hero** for the home page hero. The hero heading, text and highlight move there from the Home page's "Page sections" box and keep what you had saved. A home hero photo chosen earlier under Photos becomes the first empty slide.
+
+Version 1.9.0 adds four home hero slides (ground power unit, hydraulic power unit, box truck and fabrication workshop) and room for up to twelve slides. The hydraulic power unit is also added to the equipment catalogue. Slides you had already changed in the Customizer keep your changes. Nothing needs to be set up.
+
+Version 1.9.2 adds two more home hero slides (welding, and a metal fabrication shop, shown 4th and 5th) and room for up to fourteen slides. Nothing needs to be set up.
+
+Version 1.9.1 changes the Instagram account to [@aerodallasusa](https://www.instagram.com/aerodallasusa/). On the first page load after updating, a saved link to the old @aerodallasindustrial account is updated; a different link saved in the Customizer is left as it is.

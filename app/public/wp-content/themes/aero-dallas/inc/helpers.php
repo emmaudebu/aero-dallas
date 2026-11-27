@@ -19,7 +19,7 @@ function aerodallas_detail_defaults() {
 		'email'         => '',
 		'address'       => '',
 		'hours'         => '',
-		'instagram_url' => 'https://www.instagram.com/aerodallasindustrial/',
+		'instagram_url' => 'https://www.instagram.com/aerodallasusa/',
 		'regions'       => '',
 		'quote_email'   => '',
 	);
@@ -52,7 +52,7 @@ function aerodallas_phone_href() {
 }
 
 /**
- * Instagram handle derived from the profile URL, e.g. "@aerodallasindustrial".
+ * Instagram handle derived from the profile URL, e.g. "@aerodallasusa".
  *
  * @return string
  */
@@ -189,6 +189,11 @@ function aerodallas_photos() {
 		'eq-cnc-milling'       => __( 'CNC milling machine cutting an aluminium part with coolant', 'aero-dallas' ),
 		'eq-roller-conveyor'   => __( 'Roller conveyor system running through a warehouse', 'aero-dallas' ),
 		'eq-cnc-lathe'         => __( 'CNC lathe with its control panel in a machine shop', 'aero-dallas' ),
+		'eq-hydraulic-power-unit' => __( 'Hydraulic power unit with its motor, pumps, gauges and pipework on a skid', 'aero-dallas' ),
+		'eq-box-truck'         => __( 'White box truck parked at the kerb', 'aero-dallas' ),
+		'eq-fabrication-workshop' => __( 'Steel box sections being cut with a gas torch in a fabrication workshop, sparks flying', 'aero-dallas' ),
+		'eq-welding'           => __( 'Welder in a protective helmet and gloves welding a steel beam in a workshop, sparks flying', 'aero-dallas' ),
+		'eq-fabrication-shop'  => __( 'Welders at work benches in a metal fabrication shop with tools on the wall', 'aero-dallas' ),
 	);
 }
 

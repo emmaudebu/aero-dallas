@@ -60,7 +60,7 @@ $aerodallas_captions = (bool) aerodallas_hero( 'hero_captions' );
 			<div class="showcase showcase--<?php echo esc_attr( aerodallas_hero( 'hero_effect' ) ); ?><?php echo aerodallas_hero( 'hero_thumbs' ) ? '' : ' showcase--no-thumbs'; ?>" data-showcase data-interval="<?php echo esc_attr( (string) ( (int) aerodallas_hero( 'hero_interval' ) * 1000 ) ); ?>" data-autoplay="<?php echo aerodallas_hero( 'hero_autoplay' ) ? '1' : '0'; ?>" style="<?php echo esc_attr( sprintf( '--showcase-speed: %sms;', (string) round( (float) aerodallas_hero( 'hero_speed' ) * 1000 ) ) ); ?>">
 				<div class="showcase__stage">
 					<?php foreach ( $aerodallas_showcase as $aerodallas_i => $aerodallas_item ) : ?>
-						<figure class="showcase__slide showcase__slide--<?php echo esc_attr( $aerodallas_item['fit'] ); ?><?php echo 0 === $aerodallas_i ? ' is-active' : ''; ?>" data-showcase-slide>
+						<figure class="showcase__slide showcase__slide--<?php echo esc_attr( $aerodallas_item['fit'] ); ?><?php echo $aerodallas_item['attachment'] ? '' : esc_attr( ' showcase__slide--' . $aerodallas_item['photo'] ); ?><?php echo 0 === $aerodallas_i ? ' is-active' : ''; ?>" data-showcase-slide>
 							<span class="showcase__media">
 								<?php echo aerodallas_image( $aerodallas_item['attachment'], $aerodallas_item['photo'], array( 'class' => 'showcase__img', 'sizes' => '(min-width: 1100px) 680px, 100vw', 'eager' => 0 === $aerodallas_i, 'alt' => $aerodallas_item['label'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 							</span>
